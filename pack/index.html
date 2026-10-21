@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pack de arquivos · Magic Hub</title>
+<meta name="description" content="Texturas, transições, efeitos sonoros e presets da CRMO, separados por pasta e por programa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../crmo.css">
+<link rel="stylesheet" href="../landing.css">
+<link rel="stylesheet" href="../topo.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="estrela8" viewBox="0 0 100 100"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></symbol>
+</svg>
+<div class="brilho" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="topo-marca" href="../"><i><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg></i>Magic Hub</a>
+    <nav class="topo-links" aria-label="Páginas">
+      <a href="../">Início</a>
+      <a href="../plugins/">Plugins</a>
+      <a href="./" aria-current="page">Pack</a>
+      <a href="../conta/">Minha conta</a>
+    </nav>
+    <a class="topo-comprar" href="../assinar/">Comprar</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<!-- SUBSTITUIR: o conteúdo do pack ainda não existe. Tudo que tem "Em breve" sai
+     de pack.js (ITENS) e vira item de verdade quando ganhar status "ok" e link. -->
+<section class="hero pack-hero">
+  <div class="wrap hero-in">
+    <div>
+      <span class="selo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Pack de arquivos · em breve</span>
+      <h1 class="titulo titulo-g">Tudo que eu uso<br><em>numa pasta só</em></h1>
+      <p class="sub">Texturas, transições, efeitos sonoros e presets, separados por pasta e pelo programa em que você vai usar. Você baixa só o que precisa.</p>
+      <div class="acoes">
+        <a class="btn btn-quieto" href="#biblioteca"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></i><span>Ver o que tem dentro</span></a>
+      </div>
+      <div class="hero-nota">
+        <span><b>&#10003;</b> Premiere e After Effects</span>
+        <span><b>&#10003;</b> Cada pasta baixa separada</span>
+      </div>
+    </div>
+    <img src="../assets/pasta-3d.webp" alt="A pasta do pack de arquivos" width="454" height="454" fetchpriority="high">
+  </div>
+</section>
+
+<!-- ============ BIBLIOTECA ============ -->
+<section class="secao superficie" id="biblioteca">
+  <div class="wrap">
+    <div class="cabeca" style="margin-bottom:44px">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Dentro do pack</p>
+      <h2 class="titulo" data-reveal>A pasta<br><em>por dentro</em></h2>
+      <p class="sub" data-reveal>Escolha uma pasta ou o programa que você usa para ver o que entra em cada uma.</p>
+    </div>
+    <div class="biblioteca">
+      <aside class="pastas" id="pastas" aria-label="Filtros"></aside>
+      <div>
+        <div class="estante-topo"><h3 id="titulo-estante">Tudo</h3><span class="mono" id="contagem"></span></div>
+        <div class="estante" id="estante"></div>
+        <noscript><p class="vazio">Ligue o JavaScript para ver os itens do pack.</p></noscript>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O QUE VOCÊ VAI EDITAR ============ -->
+<section class="secao">
+  <div class="wrap">
+    <div class="cabeca" style="margin-bottom:44px">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Por onde começar</p>
+      <h2 class="titulo" data-reveal>O que você<br><em>vai editar hoje?</em></h2>
+      <p class="sub" data-reveal>Escolha o tipo de vídeo e veja os itens do pack que mais combinam com ele.</p>
+    </div>
+    <div class="escolha">
+      <div class="usos" id="usos" role="group" aria-label="Tipo de vídeo"></div>
+      <div class="recomenda" id="recomenda" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASSOS ============ -->
+<!-- SUBSTITUIR: como o pack é liberado (junto com o Magic Hub? produto separado?) -->
+<section class="secao superficie">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Como baixar</p>
+      <h2 class="titulo" data-reveal>Baixe só<br><em>o que usar</em></h2>
+    </div>
+    <div class="passos" style="margin-top:48px">
+      <div class="passo" data-reveal><h3>Garanta o acesso</h3><p>O pack fica ligado à sua conta CRMO, no mesmo e-mail da compra.</p></div>
+      <div class="passo" data-reveal><h3>Entre na sua conta</h3><p>Em Minha conta, com Google, código por e-mail ou a senha do painel.</p></div>
+      <div class="passo" data-reveal><h3>Baixe só o que usar</h3><p>Cada pasta baixa separada. Não precisa ocupar o disco com o pack inteiro.</p></div>
+    </div>
+    <div class="acoes" style="justify-content:center;margin-top:36px" data-reveal>
+      <a class="btn btn-indigo" href="../conta/"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.4-3.8 4.3-5.6 7.5-5.6s6.1 1.8 7.5 5.6"/></svg></i><span>Ir para minha conta</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="secao" id="duvidas">
+  <div class="wrap">
+    <div class="cabeca" style="margin-bottom:40px">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Dúvidas</p>
+      <h2 class="titulo" data-reveal>Dúvidas<br><em>sobre o pack</em></h2>
+    </div>
+    <!-- SUBSTITUIR: formato dos arquivos, licença de uso e entrega quando o pack existir -->
+    <div class="faq">
+      <details><summary>Funciona em qual programa?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>Texturas e efeitos sonoros entram em qualquer editor. Transições e presets dizem no próprio item se são para o Premiere ou para o After Effects.</p></details>
+      <details><summary>Preciso baixar tudo de uma vez?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>Não. Cada pasta baixa separada, então você pega só o que vai usar no projeto.</p></details>
+      <details><summary>Quando sai?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>Os itens marcados "Em breve" ainda estão sendo organizados. Eles aparecem aqui assim que entrarem no pack.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <img src="../assets/logo-crmo.png" alt="CRMO" width="110" height="24">
+    <nav class="rodape-links" aria-label="Páginas">
+      <a href="../">Início</a>
+      <a href="../plugins/">Plugins</a>
+      <a href="../conta/">Minha conta</a>
+      <a href="mailto:contato.carlosmograph@gmail.com">Contato</a>
+    </nav>
+    <small>Copyright &copy; 2026 — Carlos Eduardo (CRMO). Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
+  </div>
+</footer>
+
+<script src="pack.js"></script>
+<script src="../crmo.js" defer></script>
+</body>
+</html>

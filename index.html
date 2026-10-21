@@ -1,1 +1,241 @@
-<!doctype html><meta charset="utf-8"><title>CRMO</title><meta http-equiv="refresh" content="0; url=conta/"><a href="conta/">Minha conta</a>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Magic Hub · CRMO</title>
+<meta name="description" content="Os plugins Magic da CRMO num painel só, no After Effects e no Premiere. Pagamento único, acesso vitalício.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="crmo.css">
+<link rel="stylesheet" href="landing.css">
+<link rel="stylesheet" href="topo.css">
+</head>
+<body>
+<!-- A estrela da marca e os glifos dos plugins (os mesmos do painel, extension/js/icones.js) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="estrela8" viewBox="0 0 100 100"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></symbol>
+  <symbol id="g-curva" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M6.5 17.5C13 17.5 12 6.5 19 6.5"/></symbol>
+  <symbol id="g-raio" viewBox="0 0 24 24"><path d="M13.2 3 5.8 13.2h5.4L10.4 21l7.6-10.4h-5.5z"/></symbol>
+  <symbol id="g-texto" viewBox="0 0 24 24"><path d="M5 6.5h14M12 6.5V19M9 19h6"/></symbol>
+  <symbol id="g-caixa" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="9" rx="4.5"/><path d="M8.5 12h7"/></symbol>
+  <symbol id="g-onda" viewBox="0 0 24 24"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 10.5v3"/></symbol>
+  <symbol id="g-legenda" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3.5"/><path d="M7 12.5h3.5M13 12.5h4M7 15.5h6"/></symbol>
+</svg>
+<div class="brilho" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="topo-marca" href="./"><i><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg></i>Magic Hub</a>
+    <nav class="topo-links" aria-label="Páginas">
+      <a href="./" aria-current="page">Início</a>
+      <a href="plugins/">Plugins</a>
+      <a href="pack/">Pack</a>
+      <a href="conta/">Minha conta</a>
+    </nav>
+    <a class="topo-comprar" href="assinar/">Comprar</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <span class="selo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>After Effects e Premiere</span>
+      <h1 class="titulo titulo-g">Seis plugins,<br><em>um painel só</em></h1>
+      <p class="sub">Instale, atualize e use os plugins Magic da CRMO sem sair do After Effects e do Premiere. Um login, nenhum ZXP Installer, acesso para sempre.</p>
+      <div class="acoes">
+        <a class="btn btn-laranja" href="assinar/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Comprar acesso vitalício</span></a>
+        <a class="btn btn-quieto" href="#plugins"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></i><span>Ver os plugins</span></a>
+      </div>
+      <div class="hero-nota">
+        <span><b>&#10003;</b> Pagamento único</span>
+        <span><b>&#10003;</b> Windows e Mac</span>
+        <span><b>&#10003;</b> Versões 2022 ou mais novas</span>
+      </div>
+    </div>
+
+    <!-- A janela do Hub é desenhada aqui, não é print: muda o catálogo, muda isto junto -->
+    <div class="palco" data-reveal>
+      <div class="hub-mock inclinavel" role="img" aria-label="O painel Magic Hub com os seis plugins instalados">
+        <div class="hub-barra">
+          <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+          <b>Magic Hub</b>
+          <span class="selo">AE 2026</span>
+        </div>
+        <div class="hub-filtros">
+          <span class="ativo"><b>5</b>Instalados</span>
+          <span><b>1</b>Atualizar</span>
+          <span><b>0</b>Novos</span>
+        </div>
+        <div class="hub-grade">
+          <div class="hub-item"><span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span><b>Magic Ease</b><small>Instalado</small></div>
+          <div class="hub-item"><span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span><b>Magic Motion</b><small>Instalado</small></div>
+          <div class="hub-item"><span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span><b>Magic Text</b><small>Instalado</small></div>
+          <div class="hub-item"><span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span><b>Magic Box</b><small>Instalado</small></div>
+          <div class="hub-item"><span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span><b>Magic SFX</b><small>Instalado</small></div>
+          <div class="hub-item"><span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span><b>Magic Caption</b><small class="instalar">Atualizar</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLUGINS ============ -->
+<!-- nomes, resumos e cores vêm de crmo-plugins/dist/catalogo.json -->
+<section class="secao superficie" id="plugins">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Os plugins</p>
+      <h2 class="titulo" data-reveal>O que vem<br><em>no Magic Hub</em></h2>
+      <p class="sub" data-reveal>Cada um resolve uma parte da edição que antes era clique repetido. Todos instalam e atualizam pelo mesmo painel.</p>
+    </div>
+    <div class="grade g-2 g-3-l" style="margin-top:52px">
+      <article class="card" style="--cor:#FF6316" data-reveal>
+        <span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span>
+        <h3>Magic Ease</h3>
+        <p>Curvas de velocidade num atalho, e mola nos keyframes.</p>
+        <p class="detalhe">Alt+E abre as curvas em cima da timeline e aplica em todos os keyframes selecionados.</p>
+        <span class="tag">After Effects</span>
+      </article>
+      <article class="card" style="--cor:#D0FE60" data-reveal>
+        <span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span>
+        <h3>Magic Motion</h3>
+        <p>Entrada e saída de layers num clique, com escalonamento e loops.</p>
+        <p class="detalhe">10 animações, ferramentas de keyframe e âncora sem tirar a layer do lugar.</p>
+        <span class="tag">After Effects</span>
+      </article>
+      <article class="card" style="--cor:#8F8AFF" data-reveal>
+        <span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span>
+        <h3>Magic Text</h3>
+        <p>Animações de texto com prévia ao vivo no seu próprio texto.</p>
+        <p class="detalhe">22 famílias em letras, palavras ou linhas, com 3D por letra, tudo em Text Animator nativo.</p>
+        <span class="tag">After Effects</span>
+      </article>
+      <article class="card" style="--cor:#6761FF" data-reveal>
+        <span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span>
+        <h3>Magic Box</h3>
+        <p>Caixas que crescem com o texto, botões, cartões e ícones vetoriais.</p>
+        <p class="detalhe">7 estilos, 3 modelos prontos e milhares de ícones de licença livre em Shape Layer.</p>
+        <span class="tag">After Effects</span>
+      </article>
+      <article class="card" style="--cor:#FF6316" data-reveal>
+        <span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span>
+        <h3>Magic SFX</h3>
+        <p>Sua biblioteca de efeitos sonoros, com sound design automático.</p>
+        <p class="detalhe">Busca, prévia com forma de onda e som no cursor. No After, lê as animações e põe som nos momentos certos.</p>
+        <span class="tag">After Effects e Premiere</span>
+      </article>
+      <article class="card" style="--cor:#6761FF" data-reveal>
+        <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span>
+        <h3>Magic Caption</h3>
+        <p>Legendas automáticas com 15 estilos animados e a palavra grande em destaque.</p>
+        <p class="detalhe">Transcreve no seu computador, sem internet e sem crédito por minuto, e exporta SRT.</p>
+        <span class="tag">After Effects</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="secao">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Como funciona</p>
+      <h2 class="titulo" data-reveal>Três passos,<br><em>e já está usando</em></h2>
+    </div>
+    <div class="passos" style="margin-top:48px">
+      <div class="passo" data-reveal><h3>Compre o acesso</h3><p>Pagamento único na Kiwify. O acesso fica ligado ao e-mail que você usou na compra.</p></div>
+      <div class="passo" data-reveal><h3>Instale o Magic Hub</h3><p>Baixe o instalador, rode e abra no After ou no Premiere em <code>Janela › Extensões › Magic Hub</code>.</p></div>
+      <div class="passo" data-reveal><h3>Entre e instale</h3><p>Entre com o e-mail da compra. Cada plugin instala e atualiza num clique, sem ZXP Installer.</p></div>
+    </div>
+    <div class="acoes" style="justify-content:center;margin-top:36px" data-reveal>
+      <a class="btn btn-quieto" href="plugins/"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Ver como instalar</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PACK ============ -->
+<section class="secao" style="padding-top:0">
+  <div class="wrap">
+    <div class="faixa" data-reveal>
+      <div>
+        <p class="rotulo"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Pack de arquivos</p>
+        <h2 class="titulo">Texturas, sons<br><em>e transições</em></h2>
+        <p class="sub">Os arquivos que eu uso para editar, separados por pasta e pelo programa em que você vai usar.</p>
+        <div class="acoes">
+          <a class="btn btn-quieto" href="pack/"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Ver o pack</span></a>
+        </div>
+      </div>
+      <img src="assets/pasta-3d.webp" alt="" width="454" height="454" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFERTA ============ -->
+<section class="secao superficie" id="comprar">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Acesso</p>
+      <h2 class="titulo" data-reveal>Paga uma vez,<br><em>usa para sempre</em></h2>
+    </div>
+    <div class="plano plano-destaque oferta" style="--cor:#FF6316" data-reveal>
+      <div>
+        <p class="plano-nome">Magic Hub · 6 plugins</p>
+        <div class="valor"><b class="palavra">Vitalício</b><small>pagamento único</small></div>
+      </div>
+      <p class="plano-desc">Os seis plugins de hoje e os que vierem depois, no After Effects e no Premiere.</p>
+      <ul class="checks" style="--cor:#D0FE60">
+        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Todos os plugins CRMO no <b>After Effects</b> e no <b>Premiere</b></span></li>
+        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Instalação e atualização <b>num clique</b>, sem ZXP Installer</span></li>
+        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Plugins novos entram no Hub <b>assim que saem</b></span></li>
+        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Windows e Mac, versões 2022 ou mais novas</span></li>
+      </ul>
+      <a class="btn btn-laranja btn-bloco" href="assinar/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Comprar acesso vitalício</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="secao" id="duvidas">
+  <div class="wrap">
+    <div class="cabeca" style="margin-bottom:40px">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Dúvidas</p>
+      <h2 class="titulo" data-reveal>Tire suas<br><em>dúvidas</em></h2>
+    </div>
+    <div class="faq">
+      <details><summary>Em quais versões funciona?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>After Effects e Premiere Pro 2022 ou mais novos, no Windows e no Mac. O Magic SFX roda nos dois programas; os outros cinco rodam no After Effects.</p></details>
+      <details><summary>É assinatura?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>Não. É pagamento único e o acesso é vitalício. Os plugins novos aparecem no Hub assim que saem.</p></details>
+      <details><summary>Como recebo depois de comprar?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>O acesso fica ligado ao e-mail da compra. Baixe o Magic Hub na aba Plugins, entre com esse e-mail e instale o que quiser. Se não liberou, confira em Minha conta.</p></details>
+      <details><summary>Precisa de internet?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>Para entrar e baixar, sim. Depois, quem já entrou segue usando por 7 dias sem conexão. O Magic Caption transcreve no seu computador, sem mandar o áudio para lugar nenhum.</p></details>
+      <details><summary>Preciso do ZXP Installer?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p>Não. O instalador do Magic Hub faz tudo, e a partir dele cada plugin instala, atualiza e remove pelo próprio painel.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <img src="assets/logo-crmo.png" alt="CRMO" width="110" height="24">
+    <nav class="rodape-links" aria-label="Páginas">
+      <a href="plugins/">Plugins</a>
+      <a href="pack/">Pack</a>
+      <a href="conta/">Minha conta</a>
+      <a href="mailto:contato.carlosmograph@gmail.com">Contato</a>
+    </nav>
+    <small>Copyright &copy; 2026 — Carlos Eduardo (CRMO). Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
+  </div>
+</footer>
+
+<script src="crmo.js" defer></script>
+</body>
+</html>
