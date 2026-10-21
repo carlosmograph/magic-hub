@@ -205,10 +205,42 @@
 .faixa .sub{margin-top:14px}
 .faixa .acoes{margin-top:26px}
 
-/* ---------------- oferta ---------------- */
-.oferta{max-width:460px;margin:48px auto 0}
-.oferta .valor b.palavra{font-size:52px;text-transform:uppercase}
-.oferta .checks{margin:4px 0 8px}
+/* ---------------- preço (o mesmo bloco do Magic Pack) ----------------
+   Cartões de vidro sobre um orbe indigo: o vidro só funciona com cor atrás.
+   Cada cartão usa a cor do que acrescenta: lima = o Hub de graça, laranja = o pack,
+   indigo = os plugins. O .plano base, .valor, .fita e .plano-nome vêm do crmo.css. */
+.precos-palco{position:relative;margin-top:56px}
+.precos-orbe{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:0;
+  width:min(112%,880px);aspect-ratio:1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(103,97,255,.40),rgba(143,138,255,.11) 46%,transparent 70%)}
+@media(prefers-reduced-motion:no-preference){.precos-orbe{animation:crmo-pulsa 9s ease-in-out infinite alternate}}
+.precos{position:relative;z-index:1;display:grid;gap:20px;max-width:1080px;margin-inline:auto}
+@media(min-width:760px) and (max-width:939px){.precos{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:940px){.precos{grid-template-columns:repeat(3,1fr)}}
+.plano.destaque-laranja{border-color:rgba(255,99,22,.42);
+  background:linear-gradient(165deg,rgba(255,99,22,.10),rgba(253,247,233,.02) 55%);
+  box-shadow:inset 0 1px 0 rgba(255,99,22,.26),0 30px 60px -30px rgba(0,0,0,.85),0 0 56px -24px rgba(255,99,22,.2)}
+.plano.destaque-plano{border-color:rgba(103,97,255,.7);
+  background:linear-gradient(165deg,rgba(103,97,255,.18),rgba(253,247,233,.02) 55%);
+  box-shadow:inset 0 1px 0 rgba(143,138,255,.4),0 34px 70px -28px rgba(0,0,0,.9),0 0 78px -14px rgba(103,97,255,.36)}
+.destaque-plano .fita{background:var(--indigo);color:#EFEEFF}
+.destaque-plano .parcela{color:var(--indigo-claro)}
+/* o recomendado sobe um degrau com top, não translate (o reveal anima translate) */
+@media(min-width:940px){.plano.destaque-plano{top:-16px}}
+.parcela{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--laranja);margin-top:10px}
+.parcela-quieta{color:var(--suave-2)}
+.plano ul{display:grid;gap:14px}
+/* duas colunas e só duas: o ícone e o texto inteiro dentro do <span> */
+.plano li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;line-height:1.45;color:var(--suave)}
+.plano li i{flex:0 0 auto;width:19px;height:19px;margin-top:1px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(208,254,96,.14);border:1px solid rgba(208,254,96,.34)}
+.plano li i svg{width:10px;height:10px;stroke:var(--lima);fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.plano li b{color:var(--creme);font-weight:600}
+/* o check acompanha a cor do cartão */
+.destaque-laranja li i{background:rgba(255,99,22,.16);border-color:rgba(255,99,22,.4)}
+.destaque-laranja li i svg{stroke:var(--laranja)}
+.destaque-plano li i{background:rgba(103,97,255,.2);border-color:rgba(143,138,255,.45)}
+.destaque-plano li i svg{stroke:var(--indigo-claro)}
 
 /* ---------------- página de download ---------------- */
 .baixar{display:grid;gap:24px;align-items:start}

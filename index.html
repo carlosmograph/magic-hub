@@ -274,26 +274,85 @@
   </div>
 </section>
 
-<!-- ============ OFERTA ============ -->
-<section class="secao superficie" id="comprar">
+<!-- ============ PREÇO ============ -->
+<!-- O mesmo bloco de preços do Magic Pack (cartões de vidro sobre o orbe indigo).
+     Cada cartão usa a cor do que acrescenta: lima = de graça (o Hub), laranja = o pack,
+     indigo = os plugins. O Completo é o checkout que já existe (assinar/ → hub_config.checkout_url).
+     SUBSTITUIR: o pack ainda não tem checkout próprio; "Quero o pack" leva para a página do pack. -->
+<section class="secao" id="comprar">
   <div class="wrap">
     <div class="cabeca">
-      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Acesso</p>
-      <h2 class="titulo" data-reveal>Paga uma vez,<br><em>usa para sempre</em></h2>
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Preço</p>
+      <h2 class="titulo" data-reveal>Paga uma vez.<br>É seu <em>pra sempre</em>.</h2>
     </div>
-    <div class="plano plano-destaque oferta" style="--cor:#FF6316" data-reveal>
-      <div>
-        <p class="plano-nome">Magic Hub · 6 plugins</p>
-        <div class="valor"><b class="palavra">Vitalício</b><small>pagamento único</small></div>
+    <div class="precos-palco">
+      <span class="precos-orbe" aria-hidden="true"></span>
+      <div class="precos">
+
+      <div class="plano" data-reveal>
+        <span class="fita fita-quieta">Comece por aqui</span>
+        <div>
+          <div class="plano-marcas" aria-hidden="true">
+            <span class="app" style="--bg:#D0FE60;--st:#1C1C1C;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+          </div>
+          <p class="plano-nome">Magic Hub</p>
+          <div class="valor"><b class="palavra">Grátis</b></div>
+          <p class="parcela parcela-quieta">sem cadastro de cartão</p>
+        </div>
+        <p class="plano-desc">O painel que instala os plugins. Baixe, abra no After e veja tudo por dentro antes de gastar um real.</p>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>O painel no <b>After Effects</b> e no <b>Premiere</b></span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Mostra os seis plugins e o que cada um faz</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Instala e atualiza num clique, sem ZXP Installer</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Windows e Mac, versões 2022 ou mais novas</span></li>
+        </ul>
+        <a class="btn btn-lima btn-bloco" href="baixar/Magic-Hub-instalador.zip" download><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 11l4.5 4.5L16.5 11M5 20h14"/></svg></i><span>Baixar de graça</span></a>
       </div>
-      <p class="plano-desc">Os seis plugins de hoje e os que vierem depois, no After Effects e no Premiere.</p>
-      <ul class="checks" style="--cor:#D0FE60">
-        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Todos os plugins CRMO no <b>After Effects</b> e no <b>Premiere</b></span></li>
-        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Instalação e atualização <b>num clique</b>, sem ZXP Installer</span></li>
-        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Plugins novos entram no Hub <b>assim que saem</b></span></li>
-        <li><i><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i><span>Windows e Mac, versões 2022 ou mais novas</span></li>
-      </ul>
-      <a class="btn btn-laranja btn-bloco" href="assinar/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Comprar acesso vitalício</span></a>
+
+      <div class="plano destaque-laranja" data-reveal>
+        <span class="fita">Só os arquivos</span>
+        <div>
+          <div class="plano-marcas" aria-hidden="true">
+            <span class="app" style="--bg:#FF6316;--st:#D0FE60;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+            <span class="app" style="--bg:#D0FE60;--st:#FF6316;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+          </div>
+          <p class="plano-nome">Pack de arquivos</p>
+          <div class="valor"><b>25</b><small>R$ · pagamento único</small></div>
+          <p class="parcela parcela-quieta">acesso vitalício</p>
+        </div>
+        <p class="plano-desc">Pra quem já tem as ferramentas e só quer parar de caçar arquivo.</p>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Texturas, overlays e transições</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Biblioteca de efeitos sonoros</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Seleção comentada de plugins e presets</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Atualizações do pack inclusas</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Magic Hub</b> já vem junto — é grátis para todo mundo</span></li>
+        </ul>
+        <a class="btn btn-laranja btn-bloco" href="pack/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Quero o pack</span></a>
+      </div>
+
+      <div class="plano destaque-plano" data-reveal>
+        <span class="fita">Plugins + arquivos</span>
+        <div>
+          <div class="plano-marcas" aria-hidden="true">
+            <span class="app" style="--bg:#FF6316;--st:#D0FE60;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+            <span class="app" style="--bg:#6761FF;--st:#D0FE60;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+            <span class="app" style="--bg:#D0FE60;--st:#FF6316;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+          </div>
+          <p class="plano-nome">Completo</p>
+          <div class="valor"><b>50</b><small>R$ · pagamento único</small></div>
+          <p class="parcela">acesso vitalício</p>
+        </div>
+        <p class="plano-desc">Pra quem edita todo dia: os seis plugins Magic no After e no Premiere, e o pack de arquivos junto.</p>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Tudo do pack de arquivos</b>, sem corte</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Os 6 plugins Magic</b>: Ease, Motion, Text, Box, SFX e Caption</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Plugins novos entram no Hub sem pagar de novo</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Licença vitalícia, sem mensalidade</span></li>
+        </ul>
+        <a class="btn btn-indigo btn-bloco" href="assinar/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Quero o completo</span></a>
+      </div>
+      </div>
     </div>
   </div>
 </section>
