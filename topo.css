@@ -35,3 +35,11 @@ body.com-topo > main{margin:56px auto 72px;padding:0 16px}
   .topo-links{order:3;width:100%;margin:0 -6px;justify-content:space-between}
   .topo-links a{padding:7px 10px;font-size:13.5px}
 }
+
+/* logado: a aba "Minha conta" vira foto + primeiro nome (sessao.js) */
+.avatar{width:26px;height:26px;border-radius:50%;flex:none;display:inline-grid;place-items:center;object-fit:cover;
+  background:#6761FF;color:#FDF7E9;font:600 12px "Host Grotesk",system-ui,sans-serif}
+.avatar.grande{width:64px;height:64px;font-size:26px}
+.topo-links a.logado{display:inline-flex;align-items:center;gap:8px;padding:4px 14px 4px 4px}
+.topo-links a.logado span{max-width:12ch;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:760px){.topo-links a.logado{padding:3px 10px 3px 3px}.topo-links a.logado .avatar{width:22px;height:22px;font-size:11px}}

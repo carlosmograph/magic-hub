@@ -4,8 +4,9 @@
 (function () {
   "use strict";
 
-  var C = window.CRMO_SITE;
-  var sb = window.supabase.createClient(C.supabaseUrl, C.supabaseChave, { auth: { persistSession: true, detectSessionInUrl: true } });
+  // sessão, chamadas à API e sair vêm de sessao.js (um cliente do Supabase para o site todo)
+  var S = window.CRMO_SESSAO;
+  var sb = S.sb, api = S.api, sessao = S.sessao, sair = S.sair, guardarPorSenha = S.guardarPorSenha;
   var raiz = document.getElementById("raiz");
 
   var G = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 12.23c0-.68-.06-1.36-.18-2.02H12v3.83h5.38a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 2.98-4.33 2.98-7.33ZM12 22c2.7 0 4.98-.9 6.63-2.43l-3.24-2.51c-.9.61-2.05.96-3.39.96-2.6 0-4.81-1.76-5.6-4.12H3.07v2.59A10 10 0 0 0 12 22Zm-5.6-8.1a6 6 0 0 1 0-3.8V7.51H3.07a10 10 0 0 0 0 8.98L6.4 13.9ZM12 5.98c1.47 0 2.79.5 3.83 1.5l2.87-2.87A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.93 5.51L6.4 10.1C7.19 7.74 9.4 5.98 12 5.98Z"/></svg>';
@@ -18,44 +19,6 @@
 
   // título em bloco: duas linhas, a colorida inteira na segunda
   function titulo(l1, l2, cor) { return "<h1>" + e(l1) + "<br><em" + (cor ? ' class="' + cor + '"' : "") + ">" + e(l2) + "</em></h1>"; }
-
-  // Entrou com e-mail e senha (/site/entrar): o token da API fica aqui, sem Supabase Auth
-  var CHAVE_SENHA = "crmo.site.senha";
-  function porSenha() {
-    try { return JSON.parse(localStorage.getItem(CHAVE_SENHA) || "null"); } catch (x) { return null; }
-  }
-  function guardarPorSenha(v) {
-    try { if (v) { localStorage.setItem(CHAVE_SENHA, JSON.stringify(v)); } else { localStorage.removeItem(CHAVE_SENHA); } } catch (x) {}
-  }
-
-  function api(metodo, rota, corpo) {
-    return sb.auth.getSession().then(function (r) {
-      var s = r.data && r.data.session;
-      var p = porSenha();
-      var cab = { "Accept": "application/json" };
-      if (s) { cab.Authorization = "Bearer " + s.access_token; } else if (p) { cab.Authorization = "Bearer " + p.token; }
-      if (corpo) { cab["Content-Type"] = "application/json"; }
-      return fetch(C.api + rota, { method: metodo, headers: cab, body: corpo ? JSON.stringify(corpo) : undefined, cache: "no-store" })
-        .then(function (x) { return x.json().catch(function () { return {}; }).then(function (d) { return { status: x.status, dados: d }; }); })
-        .catch(function () { return { status: 0, dados: {} }; });
-    });
-  }
-
-  // a sessão do Supabase Auth ou, se entrou com senha, o mesmo formato com o e-mail
-  function sessao() {
-    return sb.auth.getSession().then(function (r) {
-      var s = r.data && r.data.session;
-      var p = porSenha();
-      return s || (p ? { user: { email: p.email } } : null);
-    });
-  }
-
-  function sair() {
-    var p = porSenha();
-    guardarPorSenha(null);
-    if (p) { fetch(C.api + "/sair", { method: "POST", headers: { Authorization: "Bearer " + p.token } }).catch(function () {}); }
-    return sb.auth.signOut();
-  }
 
   function aguardando(botao, texto) { botao.disabled = true; botao.textContent = texto; }
 
@@ -204,30 +167,136 @@
   }
 
   // ---------------------------------------------------------------- /conta
+  // Sem sessão: a tela de login, estreita e no centro. Com sessão: a área da conta, larga,
+  // com três abas (#perfil, #acesso, #seguranca) — o login não aparece mais.
+  var DATA = { timeZone: "America/Sao_Paulo" };
+  function dia(ms) { return ms ? new Date(ms).toLocaleDateString("pt-BR", DATA) : ""; }
+  function mesAno(ms) { return ms ? new Date(ms).toLocaleDateString("pt-BR", { timeZone: DATA.timeZone, month: "long", year: "numeric" }) : ""; }
+
+  var ABAS = [["perfil", "Perfil"], ["acesso", "Acesso"], ["seguranca", "Segurança"]];
+  var PLUGINS = ["Magic Ease", "Magic Motion", "Magic Text", "Magic Box", "Magic SFX", "Magic Caption"];
+  var APPS = { AEFT: "After Effects", PPRO: "Premiere Pro", site: "Este site, com a senha" };
+
   function conta(aviso) {
     var volta = location.origin + location.pathname;
     sessao().then(function (s) {
       if (!s) {
-        telaEntrar(titulo("Minha", "conta") + "<p>Entre para ver sua assinatura e criar a senha do painel.</p>", volta, function () { conta(); });
+        document.body.classList.remove("na-conta");
+        telaEntrar(titulo("Minha", "conta") + "<p>Entre com a conta da compra para ver seu acesso e cuidar do seu perfil.</p>", volta, function () { conta(); });
         return;
       }
       api("GET", "/site/conta").then(function (r) {
         if (r.status === 401) { sair().then(function () { conta(); }); return; }
         if (r.status !== 200) { mostrar(titulo("Não deu", "para abrir") + "<p>O site não respondeu. Tente de novo em instantes.</p>"); return; }
-        var c = r.dados.conta;
-        var ate = c.acesso_ate ? new Date(c.acesso_ate).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" }) : "";
-        var selo = c.acesso
-          ? '<span class="selo ok">' + (c.vitalicio ? "Acesso vitalício" : "Assinatura ativa até " + e(ate)) + "</span>"
-          : '<span class="selo nao">Sem assinatura</span>';
-        mostrar(titulo("Minha", "conta") + (aviso ? '<p class="aviso">' + e(aviso) + "</p>" : "") +
-          '<div class="cartao"><div class="nome">' + e(c.nome) + '</div><div class="email">' + e(c.email) + "</div>" + selo + "</div>" +
-          (c.acesso ? "" : '<a class="btn laranja" href="../assinar/">Assinar</a>') +
-          '<div class="cartao"><p class="rotulo">' + (c.tem_senha ? "Trocar a senha do painel" : "Senha do painel") + "</p>" +
-          formSenha(c.tem_senha ? "Trocar senha" : "Criar senha") + "</div>" +
-          '<p class="link"><button type="button" id="sair">Sair do site</button></p>');
-        ligarSenha(function () { conta("Senha salva. Já dá para entrar pelo painel com e-mail e senha."); });
-        document.getElementById("sair").onclick = function () { sair().then(function () { conta(); }); };
+        S.lembrarPerfil(r.dados.conta);
+        S.desenharTopo();
+        areaDaConta(r.dados.conta, s, aviso);
       });
+    });
+  }
+
+  function areaDaConta(c, s, aviso) {
+    document.body.classList.add("na-conta");
+    var aba = (location.hash || "").slice(1);
+    if (!ABAS.some(function (a) { return a[0] === aba; })) { aba = "perfil"; }
+    var m = (s.user && s.user.user_metadata) || {};
+    var foto = c.foto || m.avatar_url || m.picture || null;
+    var selo = c.acesso
+      ? '<span class="selo ok">' + (c.vitalicio ? "Acesso vitalício" : "Ativo até " + e(dia(c.acesso_ate))) + "</span>"
+      : '<span class="selo nao">Sem acesso</span>';
+
+    mostrar(
+      '<div class="conta">' +
+        '<header class="conta-cabeca">' + S.avatar(c.nome, foto).replace('class="avatar"', 'class="avatar grande"') +
+          '<div class="conta-quem"><h1 class="conta-nome">' + e(c.nome) + "</h1>" +
+          "<p>" + e(c.email) + (c.desde ? " · na CRMO desde " + e(mesAno(c.desde)) : "") + "</p></div>" + selo +
+        "</header>" +
+        (aviso ? '<p class="aviso">' + e(aviso) + "</p>" : "") +
+        '<nav class="conta-abas" role="tablist" aria-label="Minha conta">' + ABAS.map(function (a) {
+          return '<a role="tab" href="#' + a[0] + '" aria-selected="' + (a[0] === aba) + '">' + a[1] + "</a>";
+        }).join("") + "</nav>" +
+        '<div class="conta-corpo" id="corpo"></div>' +
+      "</div>");
+
+    var corpo = document.getElementById("corpo");
+    ({ perfil: abaPerfil, acesso: abaAcesso, seguranca: abaSeguranca })[aba](corpo, c, foto);
+  }
+
+  // trocar de aba só troca o hash; o hashchange desenha de novo com a conta já carregada
+  window.addEventListener("hashchange", function () { if (document.body.classList.contains("na-conta")) { conta(); } });
+
+  function abaPerfil(corpo, c, foto) {
+    corpo.innerHTML =
+      '<section class="cartao"><p class="rotulo">Seus dados</p>' +
+        '<form id="fPerfil"><label>Nome<input name="nome" value="' + e(c.nome) + '" maxlength="80" autocomplete="name" required></label>' +
+        '<label>E-mail<input value="' + e(c.email) + '" disabled></label>' +
+        '<p class="nota">O e-mail é o da compra: é por ele que o acesso é liberado.</p>' +
+        '<p class="erro" id="erroPerfil" hidden></p><button class="btn">Salvar</button></form></section>' +
+      '<section class="cartao"><p class="rotulo">Foto</p>' +
+        (foto ? "<p>Sua foto vem da sua conta Google.</p>" : "<p>Entre com o Google e a foto da sua conta aparece aqui e no topo do site.</p>") +
+      "</section>";
+    document.getElementById("fPerfil").onsubmit = function (ev) {
+      ev.preventDefault();
+      var f = this, b = f.querySelector("button");
+      aguardando(b, "Salvando…");
+      api("POST", "/site/perfil", { nome: f.nome.value }).then(function (r) {
+        if (r.status === 200) { conta("Nome salvo."); return; }
+        var erro = document.getElementById("erroPerfil");
+        erro.textContent = r.dados.erro === "nome" ? "Escreva um nome." : "Não deu para salvar agora. Tente de novo.";
+        erro.hidden = false; b.disabled = false; b.textContent = "Salvar";
+      });
+    };
+  }
+
+  function abaAcesso(corpo, c) {
+    var texto = !c.acesso ? "Sua conta ainda não tem acesso aos plugins. Compre com este mesmo e-mail e ele libera sozinho."
+      : c.vitalicio ? "Os seis plugins de hoje e os que vierem, no After Effects e no Premiere. Sem mensalidade."
+        : "Seu acesso vale até " + dia(c.acesso_ate) + ".";
+    corpo.innerHTML =
+      '<section class="cartao status' + (c.acesso ? "" : " sem") + '"><p class="rotulo">Seu acesso</p>' +
+        "<h2>" + (c.acesso ? (c.vitalicio ? "Vitalício" : "Ativo") : "Sem acesso") + "</h2><p>" + e(texto) + "</p>" +
+        (c.acesso ? "" : '<a class="btn laranja" href="../assinar/">Comprar acesso vitalício</a>') +
+      "</section>" +
+      '<section class="cartao"><p class="rotulo">Plugins</p><ul class="lista-acesso">' + PLUGINS.map(function (n) {
+        return "<li><span>" + e(n) + '</span><em class="' + (c.acesso ? "ok" : "nao") + '">' + (c.acesso ? "Liberado" : "Bloqueado") + "</em></li>";
+      }).join("") + "</ul>" +
+        '<p class="nota">Os plugins instalam e atualizam pelo Magic Hub, dentro do After ou do Premiere.</p>' +
+        '<div class="acoes-conta"><a class="btn lima" href="../baixar/Magic-Hub-instalador.zip" download>Baixar o Magic Hub</a>' +
+        '<a class="btn quieto" href="../plugins/#instalar">Como instalar</a></div>' +
+      "</section>";
+  }
+
+  function abaSeguranca(corpo, c) {
+    corpo.innerHTML =
+      '<section class="cartao"><p class="rotulo">' + (c.tem_senha ? "Senha do painel" : "Criar a senha do painel") + "</p>" +
+        "<p>" + (c.tem_senha ? "É a senha para entrar no Magic Hub com e-mail e senha." : "Com uma senha, você entra no Magic Hub direto com e-mail e senha, sem passar pelo site.") + "</p>" +
+        formSenha(c.tem_senha ? "Trocar senha" : "Criar senha") + "</section>" +
+      '<section class="cartao"><p class="rotulo">Onde você está conectado</p><div id="sessoes"><p>Carregando…</p></div></section>' +
+      '<section class="cartao"><p class="rotulo">Este navegador</p><p>Sair do site não desconecta o Magic Hub no After ou no Premiere.</p>' +
+        '<button class="btn quieto" type="button" id="sair">Sair do site</button></section>';
+    ligarSenha(function () { conta("Senha salva. Já dá para entrar no painel com e-mail e senha."); });
+    document.getElementById("sair").onclick = function () { sair().then(function () { location.hash = ""; conta(); }); };
+    listarSessoes();
+  }
+
+  function listarSessoes() {
+    var caixa = document.getElementById("sessoes");
+    api("GET", "/site/sessoes").then(function (r) {
+      if (r.status !== 200) { caixa.innerHTML = '<p class="erro">Não deu para carregar agora.</p>'; return; }
+      var lista = r.dados.sessoes || [];
+      var outras = lista.filter(function (x) { return !x.atual; });
+      if (!lista.length) { caixa.innerHTML = "<p>Nenhum painel conectado ainda. Entre no Magic Hub pelo After ou pelo Premiere.</p>"; return; }
+      caixa.innerHTML = '<ul class="sessoes">' + lista.map(function (x) {
+        return "<li><div><b>" + e(APPS[x.app] || "Magic Hub") + "</b><span>Conectado em " + e(dia(x.criada_em)) + " · usado em " + e(dia(x.usada_em)) + "</span></div>" +
+          (x.atual ? '<em class="selo ok">Esta página</em>' : '<button type="button" class="link-btn" data-sessao="' + e(x.id) + '">Desconectar</button>') + "</li>";
+      }).join("") + "</ul>" +
+        (outras.length > 1 ? '<button type="button" class="btn quieto" data-sessao="todas">Desconectar todos</button>' : "");
+      caixa.onclick = function (ev) {
+        var b = ev.target.closest("[data-sessao]");
+        if (!b) { return; }
+        aguardando(b, "Desconectando…");
+        api("POST", "/site/sessoes/encerrar", { id: b.dataset.sessao }).then(listarSessoes);
+      };
     });
   }
 

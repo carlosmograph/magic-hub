@@ -40,3 +40,42 @@ color:#E4E2FF;border:1px solid rgba(103,97,255,.5);background:linear-gradient(18
 .erro{color:var(--rosa);font-size:14px;margin:0 0 14px}
 .aviso{font:500 12px "JetBrains Mono",monospace;letter-spacing:.06em;color:var(--lima);margin:0 0 14px}
 .link{color:var(--suave);font-size:14px}.link a,.link button{color:var(--creme);background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
+
+/* ---------------- área da conta (com login) ----------------
+   Larga e alinhada à esquerda; a tela de login continua estreita e no centro. */
+body.na-conta > main{max-width:760px;text-align:left}
+body.na-conta .marca{display:none}
+.btn.lima{color:#141A00;border-color:rgba(208,254,96,.6);background:linear-gradient(180deg,rgba(253,247,233,.1),rgba(208,254,96,.55) 42%,rgba(208,254,96,.85))}
+.conta-cabeca{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:0 0 26px}
+.conta-quem{flex:1 1 220px;min-width:0}
+.conta-nome{font-family:Anton,Impact,sans-serif;font-weight:400;font-synthesis-weight:none;text-transform:uppercase;
+  font-size:36px;line-height:1;margin:0 0 6px;overflow-wrap:anywhere}
+.conta-quem p{margin:0;font-size:14.5px;overflow-wrap:anywhere}
+.conta-cabeca .selo{margin-top:0}
+.conta-abas{display:flex;gap:4px;padding:5px;margin:0 0 20px;border-radius:999px;border:1px solid var(--linha);background:rgba(28,28,28,.75);width:max-content;max-width:100%}
+.conta-abas a{padding:9px 18px;border-radius:999px;color:var(--suave);text-decoration:none;font-weight:600;font-size:14px;white-space:nowrap}
+.conta-abas a:hover{color:var(--creme)}
+.conta-abas a[aria-selected="true"]{background:var(--creme);color:var(--preto)}
+.conta .cartao{padding:24px}
+.conta .cartao p{margin-bottom:14px}
+.conta .cartao .rotulo{margin-bottom:12px}
+.conta label{display:block;font-size:13px;color:var(--suave);margin:0 0 4px}
+.conta label input{margin-top:6px}
+.conta input:disabled{color:var(--suave);opacity:.75}
+.conta .btn{width:auto;display:inline-flex;padding:0 24px;margin:0}
+.nota{font-size:13.5px}
+.status h2{font-family:Anton,Impact,sans-serif;font-weight:400;font-synthesis-weight:none;text-transform:uppercase;font-size:46px;line-height:1;margin:0 0 10px;color:var(--lima)}
+.status.sem h2{color:var(--rosa)}
+.lista-acesso{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.lista-acesso li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid var(--linha)}
+.lista-acesso em{font:500 10px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;font-style:normal}
+.lista-acesso em.ok{color:var(--lima)}.lista-acesso em.nao{color:var(--rosa)}
+.acoes-conta{display:flex;flex-wrap:wrap;gap:10px}
+.sessoes{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.sessoes li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--linha)}
+.sessoes b{display:block;color:var(--creme);font-weight:600;font-size:14.5px}
+.sessoes span{font-size:13px;color:var(--suave)}
+.sessoes .selo{margin:0;white-space:nowrap}
+.link-btn{background:none;border:0;padding:0;color:var(--creme);text-decoration:underline;font:500 13.5px "Host Grotesk",sans-serif;cursor:pointer;white-space:nowrap}
+.conta .aviso{margin:-8px 0 18px}
+@media(max-width:560px){.conta-nome{font-size:30px}.conta-abas{width:100%}.conta-abas a{flex:1;text-align:center;padding:9px 8px}}
