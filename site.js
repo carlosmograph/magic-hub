@@ -19,11 +19,21 @@
   // título em bloco: duas linhas, a colorida inteira na segunda
   function titulo(l1, l2, cor) { return "<h1>" + e(l1) + "<br><em" + (cor ? ' class="' + cor + '"' : "") + ">" + e(l2) + "</em></h1>"; }
 
+  // Entrou com e-mail e senha (/site/entrar): o token da API fica aqui, sem Supabase Auth
+  var CHAVE_SENHA = "crmo.site.senha";
+  function porSenha() {
+    try { return JSON.parse(localStorage.getItem(CHAVE_SENHA) || "null"); } catch (x) { return null; }
+  }
+  function guardarPorSenha(v) {
+    try { if (v) { localStorage.setItem(CHAVE_SENHA, JSON.stringify(v)); } else { localStorage.removeItem(CHAVE_SENHA); } } catch (x) {}
+  }
+
   function api(metodo, rota, corpo) {
     return sb.auth.getSession().then(function (r) {
       var s = r.data && r.data.session;
+      var p = porSenha();
       var cab = { "Accept": "application/json" };
-      if (s) { cab.Authorization = "Bearer " + s.access_token; }
+      if (s) { cab.Authorization = "Bearer " + s.access_token; } else if (p) { cab.Authorization = "Bearer " + p.token; }
       if (corpo) { cab["Content-Type"] = "application/json"; }
       return fetch(C.api + rota, { method: metodo, headers: cab, body: corpo ? JSON.stringify(corpo) : undefined, cache: "no-store" })
         .then(function (x) { return x.json().catch(function () { return {}; }).then(function (d) { return { status: x.status, dados: d }; }); })
@@ -31,8 +41,20 @@
     });
   }
 
+  // a sessão do Supabase Auth ou, se entrou com senha, o mesmo formato com o e-mail
   function sessao() {
-    return sb.auth.getSession().then(function (r) { return r.data && r.data.session; });
+    return sb.auth.getSession().then(function (r) {
+      var s = r.data && r.data.session;
+      var p = porSenha();
+      return s || (p ? { user: { email: p.email } } : null);
+    });
+  }
+
+  function sair() {
+    var p = porSenha();
+    guardarPorSenha(null);
+    if (p) { fetch(C.api + "/sair", { method: "POST", headers: { Authorization: "Bearer " + p.token } }).catch(function () {}); }
+    return sb.auth.signOut();
   }
 
   function aguardando(botao, texto) { botao.disabled = true; botao.textContent = texto; }
@@ -45,9 +67,13 @@
       '<div class="ou">ou por e-mail</div>' +
       '<form id="fEmail"><input type="email" name="email" placeholder="seu@email.com" autocomplete="email" required>' +
       '<button class="btn">Receber código por e-mail</button></form>' +
-      '<p class="link">Use o e-mail da compra.</p>');
+      '<p class="link">Use o e-mail da compra.</p>' +
+      '<p class="link"><button type="button" id="comSenha">Já criei uma senha</button></p>');
     document.getElementById("google").onclick = function () {
       sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: volta } });
+    };
+    document.getElementById("comSenha").onclick = function () {
+      telaSenhaEntrar(cabeca, volta, aoEntrar, document.querySelector("#fEmail [name=email]").value.trim());
     };
     document.getElementById("fEmail").onsubmit = function (ev) {
       ev.preventDefault();
@@ -61,6 +87,31 @@
           return;
         }
         telaCodigo(email, cabeca, volta, aoEntrar);
+      });
+    };
+  }
+
+  // a senha é a do painel, criada em /conta ou depois do /ativar
+  function telaSenhaEntrar(cabeca, volta, aoEntrar, email, erro) {
+    mostrar(cabeca + (erro ? '<p class="erro">' + e(erro) + "</p>" : "") +
+      '<form id="fEntrar"><input type="email" name="email" placeholder="seu@email.com" autocomplete="email" required value="' + e(email) + '">' +
+      '<input type="password" name="senha" placeholder="Sua senha" autocomplete="current-password" required>' +
+      '<button class="btn">Entrar</button></form>' +
+      '<p class="link"><button type="button" id="semSenha">Entrar com Google ou código por e-mail</button></p>');
+    var f = document.getElementById("fEntrar");
+    (email ? f.senha : f.email).focus();
+    document.getElementById("semSenha").onclick = function () { telaEntrar(cabeca, volta, aoEntrar); };
+    f.onsubmit = function (ev) {
+      ev.preventDefault();
+      var digitado = f.email.value.trim().toLowerCase();
+      aguardando(f.querySelector("button"), "Entrando…");
+      api("POST", "/site/entrar", { email: digitado, senha: f.senha.value }).then(function (r) {
+        if (r.status === 200) { guardarPorSenha({ token: r.dados.token, email: r.dados.conta.email }); aoEntrar(); return; }
+        telaSenhaEntrar(cabeca, volta, aoEntrar, digitado,
+          r.status === 409 ? "Essa conta ainda não tem senha. Entre com Google ou pelo código por e-mail." :
+          r.status === 401 ? "E-mail ou senha errados." :
+          r.status === 429 ? "Muitas tentativas. Espere 15 minutos ou entre pelo código por e-mail." :
+          "Não deu para entrar agora. Tente de novo.");
       });
     };
   }
@@ -127,7 +178,7 @@
             "<p>Só confirme se o painel do After/Premiere está mostrando <b>este código agora</b>.</p>" + topo +
             '<button class="btn" id="confirmar" type="button">Confirmar como ' + e(s.user.email) + "</button>" +
             '<p class="link"><button type="button" id="trocar">Usar outra conta</button></p>');
-          document.getElementById("trocar").onclick = function () { sb.auth.signOut().then(passo); };
+          document.getElementById("trocar").onclick = function () { sair().then(passo); };
           document.getElementById("confirmar").onclick = function () {
             aguardando(this, "Confirmando…");
             api("POST", "/site/confirmar", { codigo: codigo }).then(function (c) {
@@ -161,7 +212,7 @@
         return;
       }
       api("GET", "/site/conta").then(function (r) {
-        if (r.status === 401) { sb.auth.signOut().then(function () { conta(); }); return; }
+        if (r.status === 401) { sair().then(function () { conta(); }); return; }
         if (r.status !== 200) { mostrar(titulo("Não deu", "para abrir") + "<p>O site não respondeu. Tente de novo em instantes.</p>"); return; }
         var c = r.dados.conta;
         var ate = c.acesso_ate ? new Date(c.acesso_ate).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" }) : "";
@@ -175,7 +226,7 @@
           formSenha(c.tem_senha ? "Trocar senha" : "Criar senha") + "</div>" +
           '<p class="link"><button type="button" id="sair">Sair do site</button></p>');
         ligarSenha(function () { conta("Senha salva. Já dá para entrar pelo painel com e-mail e senha."); });
-        document.getElementById("sair").onclick = function () { sb.auth.signOut().then(function () { conta(); }); };
+        document.getElementById("sair").onclick = function () { sair().then(function () { conta(); }); };
       });
     });
   }
