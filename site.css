@@ -1,0 +1,42 @@
+/* Páginas do Magic Hub no site (GitHub Pages). Identidade CRMO: fundo escuro com manchas
+   indigo, Anton nos títulos. Cor diz o que faz: indigo é conta e acesso, laranja cobra,
+   lima é estado bom, rosa é erro, creme navega. */
+:root{--preto:#1C1C1C;--creme:#FDF7E9;--indigo:#6761FF;--lima:#D0FE60;--laranja:#FF6316;--rosa:#FFCBEF;
+--fundo:#151517;--suave:#A6A1B5;--indigo-claro:#8F8AFF;--linha:rgba(253,247,233,.12)}
+*{box-sizing:border-box}[hidden]{display:none !important}
+html{overflow-x:clip}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:32px 16px;color:var(--creme);
+font:16px/1.5 "Host Grotesk",system-ui,sans-serif;
+background:radial-gradient(60% 45% at 50% -10%,rgba(103,97,255,.5),transparent 70%),
+radial-gradient(50% 50% at -10% 110%,rgba(103,97,255,.32),transparent 70%),var(--fundo)}
+main{width:100%;max-width:400px;text-align:center}
+.marca{width:56px;height:56px;border-radius:30%;display:grid;place-items:center;margin:0 auto 22px;background:var(--indigo);color:var(--creme)}
+.marca svg{width:62%;height:62%}
+h1{font-family:Anton,Impact,sans-serif;font-weight:400;font-synthesis-weight:none;text-transform:uppercase;font-size:44px;line-height:.95;margin:0 0 14px;letter-spacing:.005em}
+h1 em{font-style:normal;color:var(--indigo-claro);display:inline-block}
+h1 em.lima{color:var(--lima)}h1 em.rosa{color:var(--rosa)}
+p{color:var(--suave);margin:0 0 20px}p b{color:var(--creme);font-weight:600}
+.rotulo{font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);margin:0 0 8px}
+.cod{font:500 30px "JetBrains Mono",monospace;letter-spacing:.3em;padding:16px 0 16px .3em;border-radius:14px;
+border:1px solid rgba(143,138,255,.45);background:rgba(103,97,255,.12);margin:0 0 22px}
+form{margin:0 0 10px}
+input{display:block;width:100%;height:48px;border-radius:14px;margin:0 0 10px;padding:0 16px;color:var(--creme);
+font:16px "Host Grotesk",sans-serif;background:rgba(21,21,23,.7);border:1px solid var(--linha);outline:none}
+input:focus{border-color:var(--indigo-claro)}
+input.digitos{font:500 24px "JetBrains Mono",monospace;letter-spacing:.4em;text-align:center}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:48px;border-radius:999px;margin:0 0 10px;
+font:700 12.5px "Host Grotesk",sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;text-decoration:none;
+color:#E4E2FF;border:1px solid rgba(103,97,255,.5);background:linear-gradient(180deg,rgba(253,247,233,.06),rgba(103,97,255,.14) 42%,rgba(103,97,255,.55))}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn.laranja{color:#FFE9DC;border-color:rgba(255,99,22,.55);background:linear-gradient(180deg,rgba(253,247,233,.06),rgba(255,99,22,.16) 42%,rgba(255,99,22,.6))}
+.btn.quieto{color:var(--creme);border-color:rgba(253,247,233,.26);background:rgba(253,247,233,.05)}
+.btn svg{width:18px;height:18px;flex:none}
+.ou{display:flex;align-items:center;gap:12px;margin:14px 0;font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.ou:before,.ou:after{content:"";flex:1;height:1px;background:var(--linha)}
+.cartao{text-align:left;padding:18px;border-radius:18px;border:1px solid var(--linha);background:rgba(28,28,28,.75);margin:0 0 18px}
+.cartao .nome{font-weight:600;color:var(--creme)}.cartao .email{color:var(--suave);font-size:14px}
+.selo{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;font:500 11px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.selo.ok{color:var(--preto);background:var(--lima)}.selo.nao{color:var(--preto);background:var(--rosa)}
+.erro{color:var(--rosa);font-size:14px;margin:0 0 14px}
+.aviso{font:500 12px "JetBrains Mono",monospace;letter-spacing:.06em;color:var(--lima);margin:0 0 14px}
+.link{color:var(--suave);font-size:14px}.link a,.link button{color:var(--creme);background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
