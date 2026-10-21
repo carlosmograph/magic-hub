@@ -41,107 +41,200 @@
 <main>
 
 <!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap hero-in">
-    <div>
-      <span class="selo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>After Effects e Premiere</span>
-      <h1 class="titulo titulo-g">Seis plugins,<br><em>um painel só</em></h1>
-      <p class="sub">Instale, atualize e use os plugins Magic da CRMO sem sair do After Effects e do Premiere. Um login, nenhum ZXP Installer, acesso para sempre.</p>
-      <div class="acoes">
-        <a class="btn btn-laranja" href="assinar/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Comprar acesso vitalício</span></a>
-        <a class="btn btn-quieto" href="#plugins"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></i><span>Ver os plugins</span></a>
-      </div>
-      <div class="hero-nota">
-        <span><b>&#10003;</b> Pagamento único</span>
-        <span><b>&#10003;</b> Windows e Mac</span>
-        <span><b>&#10003;</b> Versões 2022 ou mais novas</span>
-      </div>
+<!-- Palco arredondado: título no centro e o produto "nascendo" do brilho embaixo.
+     Os dois painéis do lado são as telas reais (assets/paineis) e abrem a vitrine. -->
+<section class="hero-palco">
+  <div class="palco-in">
+    <span class="pilula"><b>Magic Hub</b><span>Seis plugins para After Effects e Premiere</span></span>
+    <h1 class="titulo titulo-g">Seis plugins,<br><em>um painel só</em></h1>
+    <p class="sub">Instale, atualize e use os plugins Magic da CRMO sem sair do After Effects e do Premiere. Um login, nenhum ZXP Installer, acesso para sempre.</p>
+    <div class="acoes">
+      <a class="btn btn-laranja" href="#comprar"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Comprar acesso vitalício</span></a>
+      <button class="btn btn-quieto" type="button" data-vitrine="ease"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Ver por dentro</span></button>
     </div>
 
-    <!-- A janela do Hub é desenhada aqui, não é print: muda o catálogo, muda isto junto -->
-    <div class="palco" data-reveal>
-      <div class="hub-mock inclinavel" role="img" aria-label="O painel Magic Hub com os seis plugins instalados">
-        <div class="hub-barra">
-          <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
-          <b>Magic Hub</b>
-          <span class="selo">AE 2026</span>
-        </div>
-        <div class="hub-filtros">
-          <span class="ativo"><b>5</b>Instalados</span>
-          <span><b>1</b>Atualizar</span>
-          <span><b>0</b>Novos</span>
-        </div>
-        <div class="hub-grade">
-          <div class="hub-item"><span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span><b>Magic Ease</b><small>Instalado</small></div>
-          <div class="hub-item"><span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span><b>Magic Motion</b><small>Instalado</small></div>
-          <div class="hub-item"><span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span><b>Magic Text</b><small>Instalado</small></div>
-          <div class="hub-item"><span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span><b>Magic Box</b><small>Instalado</small></div>
-          <div class="hub-item"><span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span><b>Magic SFX</b><small>Instalado</small></div>
-          <div class="hub-item"><span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span><b>Magic Caption</b><small class="instalar">Atualizar</small></div>
+    <div class="produto" aria-label="O Magic Hub entre dois painéis de plugin">
+      <button class="tela-lado esq" type="button" data-vitrine="ease" aria-label="Ver a interface do Magic Ease"><img src="assets/paineis/ease-1.webp" alt="" width="400" height="900"></button>
+      <div class="palco">
+        <div class="hub-mock inclinavel" role="img" aria-label="O painel Magic Hub com os seis plugins instalados">
+          <div class="hub-barra">
+            <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+            <b>Magic Hub</b>
+            <span class="selo">AE 2026</span>
+          </div>
+          <div class="hub-filtros">
+            <span class="ativo"><b>5</b>Instalados</span>
+            <span><b>1</b>Atualizar</span>
+            <span><b>0</b>Novos</span>
+          </div>
+          <div class="hub-grade">
+            <div class="hub-item"><span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span><b>Magic Ease</b><small>Instalado</small></div>
+            <div class="hub-item"><span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span><b>Magic Motion</b><small>Instalado</small></div>
+            <div class="hub-item"><span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span><b>Magic Text</b><small>Instalado</small></div>
+            <div class="hub-item"><span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span><b>Magic Box</b><small>Instalado</small></div>
+            <div class="hub-item"><span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span><b>Magic SFX</b><small>Instalado</small></div>
+            <div class="hub-item"><span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span><b>Magic Caption</b><small class="instalar">Atualizar</small></div>
+          </div>
         </div>
       </div>
+      <button class="tela-lado dir" type="button" data-vitrine="legenda" aria-label="Ver a interface do Magic Caption"><img src="assets/paineis/legenda-1.webp" alt="" width="400" height="900"></button>
+    </div>
+
+    <div class="compat">
+      <span class="mono">Funciona em</span>
+      <ul>
+        <li><i>Ae</i>After Effects</li>
+        <li><i>Pr</i>Premiere Pro</li>
+        <li><i>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5 10.5 4.5v7h-7zM12 4.3l8.5-1.3v8.5H12zM3.5 12.5h7v7l-7-1zM12 12.5h8.5V21L12 19.7z"/></svg></i>Windows</li>
+        <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.2 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2-1.1 2.8-2.3.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-.9-2.5-3.8zM13.9 5.8c.6-.8 1.1-1.8 1-2.8-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.7-1 2.7 1 .1 2-.5 2.6-1.3z"/></svg></i>macOS</li>
+        <li><i>+</i>Versões 2022 ou mais novas</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ============ PLUGINS ============ -->
-<!-- nomes, resumos e cores vêm de crmo-plugins/dist/catalogo.json -->
+<!-- ============ NÚMEROS ============ -->
+<!-- só número que existe no catálogo (crmo-plugins/dist/catalogo.json). Nada inventado. -->
+<section class="numeros-secao">
+  <div class="wrap numeros">
+    <div class="num" data-reveal><b data-conta="6">6</b><span>plugins num painel</span></div>
+    <div class="num" data-reveal><b data-conta="22">22</b><span>famílias de animação de texto</span></div>
+    <div class="num" data-reveal><b data-conta="15">15</b><span>estilos de legenda</span></div>
+    <div class="num" data-reveal><b data-conta="10">10</b><span>animações de entrada e saída</span></div>
+    <div class="num" data-reveal><b data-conta="8">8</b><span>curvas prontas no atalho</span></div>
+  </div>
+</section>
+
+<!-- ============ PARA O SEU TIPO DE VÍDEO ============ -->
+<!-- As abas trocam o cartão em destaque (creme = o que você escolheu). Sem JS, os três aparecem iguais. -->
+<section class="secao" id="para-quem">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Para o seu tipo de vídeo</p>
+      <h2 class="titulo" data-reveal>Cada edição pede<br><em>uma combinação</em></h2>
+    </div>
+    <div class="segmentos" role="tablist" aria-label="Tipo de vídeo" data-reveal>
+      <button type="button" role="tab" data-perfil="youtube" aria-selected="false">YouTube</button>
+      <button type="button" role="tab" data-perfil="reels" aria-selected="true">Reels e Shorts</button>
+      <button type="button" role="tab" data-perfil="marca" aria-selected="false">Motion de marca</button>
+    </div>
+    <div class="perfis">
+      <article class="perfil" data-perfil="youtube" data-reveal>
+        <div class="perfil-apps">
+          <button type="button" class="app" style="--bg:#FDF7E9;--st:#6761FF" data-vitrine="blocks" aria-label="Ver o Magic Box"><svg class="glifo"><use href="#g-caixa"/></svg></button>
+          <button type="button" class="app" style="--bg:#D0FE60;--st:#1C1C1C" data-vitrine="motion" aria-label="Ver o Magic Motion"><svg class="glifo"><use href="#g-raio"/></svg></button>
+          <button type="button" class="app escuro" style="--bg:#1C1C1C;--st:#FF6316" data-vitrine="sfx" aria-label="Ver o Magic SFX"><svg class="glifo"><use href="#g-onda"/></svg></button>
+        </div>
+        <h3>YouTube</h3>
+        <p>Vídeo longo pede informação na tela sem cansar: caixas que crescem com o texto, entradas no mesmo ritmo e som nas trocas.</p>
+        <ul class="perfil-lista"><li>Magic Box</li><li>Magic Motion</li><li>Magic SFX</li></ul>
+      </article>
+      <article class="perfil" data-perfil="reels" data-reveal>
+        <div class="perfil-apps">
+          <button type="button" class="app" style="--bg:#6761FF;--st:#FDF7E9" data-vitrine="legenda" aria-label="Ver o Magic Caption"><svg class="glifo"><use href="#g-legenda"/></svg></button>
+          <button type="button" class="app escuro" style="--bg:#1C1C1C;--st:#FF6316" data-vitrine="sfx" aria-label="Ver o Magic SFX"><svg class="glifo"><use href="#g-onda"/></svg></button>
+          <button type="button" class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF" data-vitrine="type" aria-label="Ver o Magic Text"><svg class="glifo"><use href="#g-texto"/></svg></button>
+        </div>
+        <h3>Reels e Shorts</h3>
+        <p>Legenda com a palavra grande, som em cada movimento e texto que entra no ritmo do corte. Tudo no seu computador, sem crédito por minuto.</p>
+        <ul class="perfil-lista"><li>Magic Caption</li><li>Magic SFX</li><li>Magic Text</li></ul>
+      </article>
+      <article class="perfil" data-perfil="marca" data-reveal>
+        <div class="perfil-apps">
+          <button type="button" class="app" style="--bg:#FF6316;--st:#FDF7E9" data-vitrine="ease" aria-label="Ver o Magic Ease"><svg class="glifo"><use href="#g-curva"/></svg></button>
+          <button type="button" class="app" style="--bg:#D0FE60;--st:#1C1C1C" data-vitrine="motion" aria-label="Ver o Magic Motion"><svg class="glifo"><use href="#g-raio"/></svg></button>
+          <button type="button" class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF" data-vitrine="type" aria-label="Ver o Magic Text"><svg class="glifo"><use href="#g-texto"/></svg></button>
+        </div>
+        <h3>Motion de marca</h3>
+        <p>Vinheta e logo pedem curva fina: velocidade num atalho, mola no keyframe, loop sem fim e texto animado por letra.</p>
+        <ul class="perfil-lista"><li>Magic Ease</li><li>Magic Motion</li><li>Magic Text</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLUGINS (bento) ============ -->
+<!-- nomes e resumos de crmo-plugins/dist/catalogo.json; a tela de cada cartão é a 1ª aba do painel -->
 <section class="secao superficie" id="plugins">
   <div class="wrap">
     <div class="cabeca">
       <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Os plugins</p>
       <h2 class="titulo" data-reveal>O que vem<br><em>no Magic Hub</em></h2>
-      <p class="sub" data-reveal>Cada um resolve uma parte da edição que antes era clique repetido. Todos instalam e atualizam pelo mesmo painel.</p>
+      <p class="sub" data-reveal>Clique em qualquer um para ver a interface de verdade, aba por aba.</p>
     </div>
-    <div class="grade g-2 g-3-l" style="margin-top:52px">
-      <article class="card" style="--cor:#FF6316" data-reveal>
-        <span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span>
-        <h3>Magic Ease</h3>
-        <p>Curvas de velocidade num atalho, e mola nos keyframes.</p>
-        <p class="detalhe">Alt+E abre as curvas em cima da timeline e aplica em todos os keyframes selecionados.</p>
-        <span class="tag">After Effects</span>
-        <button class="card-abrir" type="button" data-vitrine="ease" aria-label="Ver a interface do Magic Ease">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <div class="bento">
+      <article class="peca largo" style="--cor:#6761FF" data-reveal>
+        <div class="peca-texto">
+          <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span>
+          <h3>Magic Caption</h3>
+          <p>Legendas automáticas com 15 estilos animados e a palavra grande em destaque. Transcreve no seu computador, sem internet e sem crédito por minuto, e exporta SRT.</p>
+          <span class="tag">After Effects</span>
+          <button class="card-abrir" type="button" data-vitrine="legenda" aria-label="Ver a interface do Magic Caption">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="peca-tela"><img src="assets/paineis/legenda-1.webp" alt="" width="400" height="900" loading="lazy"></div>
       </article>
-      <article class="card" style="--cor:#D0FE60" data-reveal>
-        <span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span>
-        <h3>Magic Motion</h3>
-        <p>Entrada e saída de layers num clique, com escalonamento e loops.</p>
-        <p class="detalhe">10 animações, ferramentas de keyframe e âncora sem tirar a layer do lugar.</p>
-        <span class="tag">After Effects</span>
-        <button class="card-abrir" type="button" data-vitrine="motion" aria-label="Ver a interface do Magic Motion">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <article class="peca" style="--cor:#FF6316" data-reveal>
+        <div class="peca-texto">
+          <span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span>
+          <h3>Magic Ease</h3>
+          <p>Curvas de velocidade num atalho, e mola nos keyframes.</p>
+          <button class="card-abrir" type="button" data-vitrine="ease" aria-label="Ver a interface do Magic Ease">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="peca-tela"><img src="assets/paineis/ease-1.webp" alt="" width="400" height="900" loading="lazy"></div>
       </article>
-      <article class="card" style="--cor:#8F8AFF" data-reveal>
-        <span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span>
-        <h3>Magic Text</h3>
-        <p>Animações de texto com prévia ao vivo no seu próprio texto.</p>
-        <p class="detalhe">22 famílias em letras, palavras ou linhas, com 3D por letra, tudo em Text Animator nativo.</p>
-        <span class="tag">After Effects</span>
-        <button class="card-abrir" type="button" data-vitrine="type" aria-label="Ver a interface do Magic Text">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <article class="peca" style="--cor:#D0FE60" data-reveal>
+        <div class="peca-texto">
+          <span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span>
+          <h3>Magic Motion</h3>
+          <p>Entrada e saída de layers num clique, com escalonamento e loops.</p>
+          <button class="card-abrir" type="button" data-vitrine="motion" aria-label="Ver a interface do Magic Motion">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="peca-tela"><img src="assets/paineis/motion-1.webp" alt="" width="400" height="900" loading="lazy"></div>
       </article>
-      <article class="card" style="--cor:#6761FF" data-reveal>
-        <span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span>
-        <h3>Magic Box</h3>
-        <p>Caixas que crescem com o texto, botões, cartões e ícones vetoriais.</p>
-        <p class="detalhe">7 estilos, 3 modelos prontos e milhares de ícones de licença livre em Shape Layer.</p>
-        <span class="tag">After Effects</span>
-        <button class="card-abrir" type="button" data-vitrine="blocks" aria-label="Ver a interface do Magic Box">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <article class="peca" style="--cor:#8F8AFF" data-reveal>
+        <div class="peca-texto">
+          <span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span>
+          <h3>Magic Text</h3>
+          <p>Animações de texto com prévia ao vivo no seu próprio texto.</p>
+          <button class="card-abrir" type="button" data-vitrine="type" aria-label="Ver a interface do Magic Text">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="peca-tela"><img src="assets/paineis/type-1.webp" alt="" width="400" height="900" loading="lazy"></div>
       </article>
-      <article class="card" style="--cor:#FF6316" data-reveal>
-        <span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span>
-        <h3>Magic SFX</h3>
-        <p>Sua biblioteca de efeitos sonoros, com sound design automático.</p>
-        <p class="detalhe">Busca, prévia com forma de onda e som no cursor. No After, lê as animações e põe som nos momentos certos.</p>
-        <span class="tag">After Effects e Premiere</span>
-        <button class="card-abrir" type="button" data-vitrine="sfx" aria-label="Ver a interface do Magic SFX">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <article class="peca" style="--cor:#6761FF" data-reveal>
+        <div class="peca-texto">
+          <span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span>
+          <h3>Magic Box</h3>
+          <p>Caixas que crescem com o texto, botões, cartões e ícones vetoriais.</p>
+          <button class="card-abrir" type="button" data-vitrine="blocks" aria-label="Ver a interface do Magic Box">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="peca-tela"><img src="assets/paineis/blocks-1.webp" alt="" width="400" height="900" loading="lazy"></div>
       </article>
-      <article class="card" style="--cor:#6761FF" data-reveal>
-        <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span>
-        <h3>Magic Caption</h3>
-        <p>Legendas automáticas com 15 estilos animados e a palavra grande em destaque.</p>
-        <p class="detalhe">Transcreve no seu computador, sem internet e sem crédito por minuto, e exporta SRT.</p>
-        <span class="tag">After Effects</span>
-        <button class="card-abrir" type="button" data-vitrine="legenda" aria-label="Ver a interface do Magic Caption">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <article class="peca largo" style="--cor:#FF6316" data-reveal>
+        <div class="peca-texto">
+          <span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span>
+          <h3>Magic SFX</h3>
+          <p>Sua biblioteca de efeitos sonoros, com sound design automático. Busca, prévia e som no cursor. No After, lê as animações da comp e põe som nos momentos certos.</p>
+          <span class="tag">After Effects e Premiere</span>
+          <button class="card-abrir" type="button" data-vitrine="sfx" aria-label="Ver a interface do Magic SFX">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="peca-tela"><img src="assets/paineis/sfx-1.webp" alt="" width="400" height="900" loading="lazy"></div>
       </article>
+      <a class="peca hub-peca" href="plugins/" data-reveal>
+        <div class="peca-texto">
+          <div class="hub-apps" aria-hidden="true">
+            <span class="app" style="--bg:#FF6316;--st:#FDF7E9"><svg class="glifo"><use href="#g-curva"/></svg></span>
+            <span class="app" style="--bg:#D0FE60;--st:#1C1C1C"><svg class="glifo"><use href="#g-raio"/></svg></span>
+            <span class="app escuro" style="--bg:#1C1C1C;--st:#8F8AFF"><svg class="glifo"><use href="#g-texto"/></svg></span>
+            <span class="app" style="--bg:#FDF7E9;--st:#6761FF"><svg class="glifo"><use href="#g-caixa"/></svg></span>
+            <span class="app escuro" style="--bg:#1C1C1C;--st:#FF6316"><svg class="glifo"><use href="#g-onda"/></svg></span>
+            <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span>
+          </div>
+          <h3>Todos pelo mesmo painel</h3>
+          <p>O Magic Hub instala, atualiza e remove cada plugin num clique. Plugin novo aparece lá assim que sai.</p>
+          <span class="card-abrir">Como instalar<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -244,5 +337,6 @@
 
 <script src="crmo.js" defer></script>
 <script src="vitrine.js" defer></script>
+<script src="home.js" defer></script>
 </body>
 </html>

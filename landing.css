@@ -14,7 +14,140 @@
 .hero-nota b{color:var(--lima);font-weight:500}
 @media(max-width:760px){.hero{padding:44px 0 64px}.hero .sub{font-size:16.5px}}
 
-/* ---------------- a janela do Hub (desenhada, não é print) ---------------- */
+/* ---------------- início: o palco do hero ----------------
+   Um palco arredondado com o título no centro e o produto subindo de trás de um
+   horizonte: um elipse enorme, escuro, com a borda acesa em indigo (a atmosfera da marca).
+   O horizonte fica por cima da base do produto, por isso ele parece nascer dali. */
+.hero-palco{padding:16px 16px 0}
+.palco-in{position:relative;isolation:isolate;max-width:1240px;margin:0 auto;overflow:hidden;
+  padding:76px 24px 0;text-align:center;border-radius:32px;border:1px solid rgba(253,247,233,.1);
+  background:radial-gradient(55% 45% at 50% 0%,rgba(103,97,255,.5),transparent 70%),
+    radial-gradient(60% 50% at 50% 100%,rgba(103,97,255,.55),transparent 75%),
+    linear-gradient(180deg,#18181d,#111114)}
+.palco-in::after{content:"";position:absolute;z-index:3;left:50%;translate:-50% 0;bottom:-1160px;
+  width:2600px;height:1360px;border-radius:50%;pointer-events:none;background:#131317;
+  box-shadow:0 0 0 1px rgba(143,138,255,.6),0 -34px 100px -12px rgba(103,97,255,.75),
+    inset 0 40px 70px -30px rgba(103,97,255,.45)}
+.pilula{display:inline-flex;align-items:center;gap:10px;padding:5px 15px 5px 5px;border-radius:999px;
+  border:1px solid var(--linha-forte);background:rgba(21,21,23,.6);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.pilula b{flex:none;white-space:nowrap;padding:4px 11px;border-radius:999px;background:var(--creme);color:var(--preto);
+  font:600 11.5px var(--texto);letter-spacing:0;text-transform:none}
+.palco-in h1{margin:24px auto 18px}
+.palco-in .sub{margin-inline:auto;max-width:52ch;font-size:18px}
+.palco-in .acoes{justify-content:center;margin-top:30px}
+.produto{position:relative;z-index:1;display:flex;justify-content:center;align-items:flex-start;
+  height:470px;margin-top:64px}
+.produto .palco{position:relative;z-index:2;width:min(560px,100%);flex:none}
+.produto .hub-mock{text-align:left}
+.tela-lado{position:relative;top:70px;z-index:1;flex:none;width:250px;padding:0;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(253,247,233,.16);box-shadow:0 30px 70px -24px rgba(0,0,0,.9);transition:top .3s ease}
+.tela-lado img{display:block;width:100%;height:auto}
+.tela-lado.esq{rotate:-7deg;margin-right:-36px}
+.tela-lado.dir{rotate:7deg;margin-left:-36px}
+.tela-lado:hover{top:52px}
+.compat{position:relative;z-index:4;padding:34px 0 36px}
+.compat .mono{display:block;margin-bottom:16px;color:var(--suave)}
+.compat ul{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 30px}
+.compat li{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--creme)}
+.compat i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:600 10.5px var(--mono);font-style:normal;
+  color:var(--indigo-claro);border:1px solid rgba(143,138,255,.4);background:rgba(103,97,255,.12)}
+.compat svg{width:14px;height:14px;fill:currentColor}
+@media(max-width:900px){
+  .tela-lado{display:none}
+  .produto{height:auto;margin-top:48px;padding-bottom:120px}
+}
+@media(max-width:760px){
+  .palco-in{padding:52px 16px 0;border-radius:24px}
+  .palco-in .sub{font-size:16.5px}
+  .palco-in::after{bottom:-1120px}
+  .produto{padding-bottom:70px}
+  .compat{padding-top:30px}
+  .compat ul{gap:10px 18px}
+  .pilula{max-width:100%;text-align:left;letter-spacing:.08em}
+}
+
+/* ---------------- início: números ---------------- */
+.numeros-secao{padding:64px 0 8px}
+.numeros{display:grid;grid-template-columns:repeat(5,1fr);gap:24px 16px;text-align:center}
+.num b{display:block;font-family:var(--display);font-weight:400;font-synthesis-weight:none;
+  font-size:clamp(46px,6vw,76px);line-height:1;font-variant-numeric:tabular-nums}
+.num span{display:block;margin:10px auto 0;max-width:18ch;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+@media(max-width:760px){.numeros{grid-template-columns:repeat(2,1fr)}.numeros .num:last-child{grid-column:span 2}}
+
+/* ---------------- início: para o seu tipo de vídeo ----------------
+   As abas escolhem o cartão em destaque. Escolher é creme (como no painel): o
+   escolhido vira cartão creme com texto preto. */
+.segmentos{display:flex;gap:4px;width:max-content;max-width:100%;overflow-x:auto;margin:34px auto 30px;padding:5px;
+  border-radius:999px;border:1px solid var(--linha);background:rgba(28,28,28,.75);scrollbar-width:none}
+.segmentos button{padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;color:var(--suave);white-space:nowrap;
+  transition:background .2s ease,color .2s ease}
+.segmentos button:hover{color:var(--creme)}
+.segmentos button[aria-selected="true"]{background:var(--creme);color:var(--preto)}
+.perfis{display:grid;gap:16px;align-items:start}
+@media(min-width:900px){.perfis{grid-template-columns:repeat(3,1fr)}}
+.perfil{position:relative;padding:28px;border-radius:var(--raio-cartao);border:1px solid var(--linha);
+  background:var(--vidro);cursor:pointer;transition:background .25s ease,color .25s ease,border-color .25s ease,top .25s ease}
+.perfil:hover{border-color:var(--linha-forte)}
+.perfil-apps{display:flex;gap:8px}
+.perfil-apps .app{width:44px;border:0;padding:0;cursor:pointer;transition:scale .15s ease}
+.perfil-apps .app:hover{scale:1.08}
+.perfil h3{margin:22px 0 10px;font-size:22px;font-weight:600;letter-spacing:-.01em}
+.perfil p{color:var(--suave);font-size:15.5px}
+.perfil-lista{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.perfil-lista li{padding:5px 10px;border-radius:999px;border:1px solid var(--linha-forte);
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.perfil.escolhido{background:var(--creme);color:var(--preto);border-color:var(--creme);
+  box-shadow:0 34px 70px -34px rgba(253,247,233,.45)}
+.perfil.escolhido p{color:#4B4658}
+.perfil.escolhido .perfil-lista li{color:#3B3747;border-color:rgba(28,28,28,.22)}
+@media(min-width:900px){.perfil.escolhido{top:-12px}}
+
+/* ---------------- início: os plugins em bento ----------------
+   Cada peça mostra a 1ª aba do painel de verdade subindo do rodapé; o botão estica
+   (card-abrir::before) e o cartão inteiro abre a vitrine. */
+.bento{display:grid;gap:16px;margin-top:52px}
+@media(min-width:900px){.bento{grid-template-columns:repeat(3,1fr)}.bento .largo{grid-column:span 2}}
+.peca{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;min-height:460px;
+  border-radius:var(--raio-cartao);border:1px solid rgba(253,247,233,.11);background:var(--vidro);
+  transition:border-color .25s ease,box-shadow .25s ease}
+.peca::before{content:"";position:absolute;z-index:-1;left:50%;bottom:-70%;translate:-50% 0;width:170%;aspect-ratio:1.4;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,color-mix(in srgb,var(--cor) 55%,transparent),
+    color-mix(in srgb,var(--cor) 18%,transparent) 42%,transparent 68%)}
+.peca:hover{border-color:color-mix(in srgb,var(--cor) 45%,transparent);
+  box-shadow:0 34px 64px -34px color-mix(in srgb,var(--cor) 80%,transparent)}
+.peca-texto{padding:28px 28px 0}
+.peca .app{width:48px}
+.peca h3{margin:18px 0 8px;font-size:20px;font-weight:600;letter-spacing:-.01em}
+.peca p{color:#C6C2D2;font-size:15px;max-width:46ch}
+.peca .tag{margin-top:16px}
+.peca .card-abrir{display:flex;width:max-content;margin:16px 0 0}
+.peca .card-abrir::before{border-radius:var(--raio-cartao)}
+.peca:hover .card-abrir svg{translate:4px 0}
+.peca-tela{position:relative;align-self:center;width:78%;height:230px;margin-top:auto;overflow:hidden;
+  border-radius:16px 16px 0 0;border:1px solid rgba(253,247,233,.16);border-bottom:0;
+  box-shadow:0 -20px 50px -20px rgba(0,0,0,.7);transition:transform .3s ease;
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+.peca-tela img{display:block;width:100%;height:auto}
+.peca:hover .peca-tela{transform:translateY(-8px)}
+.peca-texto + .peca-tela{margin-top:28px}
+@media(min-width:900px){
+  .peca.largo{flex-direction:row}
+  .peca.largo .peca-texto{flex:1;padding:36px;align-self:center}
+  .peca.largo .peca-tela{flex:none;align-self:flex-end;width:300px;height:400px;margin:40px 40px 0 0}
+}
+.hub-peca{justify-content:center;--cor:#6761FF}
+.hub-apps{display:grid;grid-template-columns:repeat(3,46px);gap:10px}
+.hub-apps .app{width:46px}
+.hub-peca .peca-texto{padding-bottom:28px}
+/* celular: depois das regras de cima, senão elas ganham (mesma especificidade) */
+@media(max-width:760px){
+  .segmentos{width:100%}
+  .segmentos button{flex:1;padding:9px 8px;font-size:12.5px}
+  .hub-peca{min-height:0}
+}
 .hub-mock{position:relative;border-radius:24px;padding:16px;
   border:1px solid rgba(253,247,233,.14);
   background:linear-gradient(165deg,rgba(28,28,32,.92),rgba(21,21,23,.96));
