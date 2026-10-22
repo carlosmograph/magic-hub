@@ -6,6 +6,6 @@ window.CRMO_SITE = {
   api: "https://seetxjvoehgenxydxpuf.supabase.co/functions/v1/hub/api",
   // Página /contato. PREENCHER: WhatsApp só com números (55 + DDD + número) e o @ do Instagram sem o @.
   // Vazio = o botão aparece como "em breve".
-  whatsapp: "",
-  instagram: ""
+  whatsapp: "5575981251114",
+  instagram: "carlosmograph"
 };
