@@ -195,7 +195,7 @@
 .faixa .sub{margin-top:14px}
 .faixa .acoes{margin-top:26px}
 
-/* ---------------- amostras e depoimentos (os mesmos blocos do Magic Pack) ----------------
+/* ---------------- amostras (o mesmo bloco do Magic Pack) ----------------
    O grid das amostras se chama .amostras aqui: .vitrine já é a caixa da interface dos plugins. */
 .amostras{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:820px){.amostras{grid-template-columns:repeat(4,1fr)}}
@@ -204,26 +204,6 @@
   display:grid;place-items:center;padding:18px;text-align:center}
 .slot p{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--suave-2);line-height:1.7}
 .slot video,.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.prova{border-radius:var(--raio);border:1px dashed var(--linha-forte);background:var(--elevado);
-  padding:24px;min-height:180px;display:grid;align-content:center;gap:10px}
-.prova p{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave-2);line-height:1.8}
-.prova img{display:block;width:100%;height:auto;border-radius:12px}
-/* depoimento em texto: estrelas da marca, a fala, e quem disse com o plugin que usa.
-   A fita "Exemplo" marca os de mentira até entrarem os reais. */
-.depoimentos{align-items:stretch}
-.depoimento{position:relative;margin:0;display:flex;flex-direction:column;gap:18px;padding:30px 28px 26px;
-  border-radius:var(--raio-cartao);border:1px solid rgba(253,247,233,.11);background:var(--vidro)}
-.depoimento .fita{left:auto;right:22px;translate:none}
-.estrelas{display:flex;gap:4px;color:var(--lima)}
-.estrelas svg{width:18px;height:18px}
-.depoimento blockquote{margin:0;flex:1;font-size:16.5px;line-height:1.55;color:var(--creme)}
-.depoimento figcaption{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--linha)}
-.depoimento .avatar{width:40px;height:40px;font-size:15px;background:var(--cor);color:var(--preto)}
-.depoimento figcaption > span:nth-child(2){flex:1;min-width:0}
-.depoimento figcaption b{display:block;font-size:14.5px;font-weight:600}
-.depoimento figcaption small{display:block;font-size:13px;color:var(--suave)}
-.depoimento figcaption em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--suave);padding:5px 9px;border-radius:999px;border:1px solid var(--linha-forte);white-space:nowrap}
 
 /* ---------------- preço (o mesmo bloco do Magic Pack) ----------------
    Cartões de vidro sobre um orbe indigo: o vidro só funciona com cor atrás.
