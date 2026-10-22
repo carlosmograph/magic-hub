@@ -70,7 +70,7 @@
   }
 
   function desenharTopo() {
-    var a = document.querySelector(".topo-links a[data-minha-conta]");
+    var a = document.querySelector("a[data-minha-conta]");
     if (!a) { return; }
     sessao().then(function (s) {
       if (!s) { a.innerHTML = "Entrar"; a.classList.remove("logado"); return; }
