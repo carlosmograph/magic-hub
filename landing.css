@@ -253,10 +253,10 @@
 .baixar-hero{padding:80px 0 56px;text-align:center;overflow:hidden}
 .baixar-hero .titulo{margin:24px 0 18px}
 .baixar-hero .sub{margin-inline:auto;font-size:18px;max-width:52ch}
-.baixar-grande{min-height:78px;margin-top:38px;padding:16px 46px 16px 18px;font-size:16.5px;letter-spacing:.08em;
+.baixar-grande{min-height:62px;margin-top:34px;padding:13px 34px 13px 15px;font-size:14.5px;letter-spacing:.08em;
   box-shadow:inset 0 1px 0 rgba(253,247,233,.3),0 18px 44px -12px rgba(208,254,96,.75),0 0 90px -20px rgba(208,254,96,.6)}
-.baixar-grande i{width:42px;height:42px}
-.baixar-grande i svg{width:18px;height:18px}
+.baixar-grande i{width:34px;height:34px}
+.baixar-grande i svg{width:15px;height:15px}
 @media(prefers-reduced-motion:no-preference){.baixar-grande{animation:baixar-brilha 2.8s ease-in-out infinite}}
 @keyframes baixar-brilha{50%{box-shadow:inset 0 1px 0 rgba(253,247,233,.3),0 22px 56px -10px rgba(208,254,96,.95),0 0 130px -14px rgba(208,254,96,.75)}}
 .baixar-meta{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
@@ -302,7 +302,7 @@
 @media(max-width:760px){
   .baixar-hero{padding:52px 0 40px}
   .baixar-hero .sub{font-size:16.5px}
-  .baixar-grande{width:100%;justify-content:center;min-height:68px;padding:14px 22px 14px 14px;font-size:15px}
+  .baixar-grande{min-height:58px;padding:12px 28px 12px 13px;font-size:14px}
   .carrossel{margin-top:44px}
   .ficha{width:min(300px,80vw)}
 }
