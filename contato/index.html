@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contato · Magic Hub</title>
+<meta name="description" content="Fale com o Carlos, da CRMO, pelo WhatsApp ou pelo Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../crmo.css?v=20261021h">
+<link rel="stylesheet" href="../landing.css?v=20261021h">
+<link rel="stylesheet" href="../topo.css?v=20261021h">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="estrela8" viewBox="0 0 100 100"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></symbol>
+</svg>
+<div class="brilho" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="topo-marca" href="../"><i><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg></i>Magic Hub</a>
+    <nav class="topo-links" aria-label="Páginas">
+      <a href="../">Início</a>
+      <a href="../plugins/">Plugins</a>
+      <a href="../pack/">Pack</a>
+      <a href="./" aria-current="page">Contato</a>
+    </nav>
+    <div class="topo-direita">
+      <a class="topo-conta" href="../conta/" data-minha-conta>Minha conta</a>
+      <a class="topo-comprar" href="../assinar/">Comprar</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ CANAIS ============ -->
+<!-- O número do WhatsApp e o @ do Instagram ficam em config.js (whatsapp, instagram);
+     contato.js monta os links. Sem eles, o botão aparece como "Em breve". -->
+<section class="hero contato-hero">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="selo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Contato</span>
+      <h1 class="titulo titulo-g">Fale<br><em>comigo</em></h1>
+      <p class="sub">Dúvida sobre os plugins, o pack ou a sua compra? Me chama direto. Quem responde sou eu, o Carlos.</p>
+    </div>
+    <div class="canais">
+      <article class="canal" style="--cor:#D0FE60" data-reveal>
+        <i class="canal-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A8 8 0 1 1 8.6 18.6z"/><path d="M9.2 8.6c.2-.5.6-.5.9-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.5 2.1 2.7 2.7l.6-.5c.2-.1.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .4-.1.7-.5.9-.8.5-2.2.6-4-.5-1.7-1-3-2.6-3.6-4.1-.5-1.4-.2-2.4.2-2.8z"/></svg></i>
+        <h2>WhatsApp</h2>
+        <p>O jeito mais rápido. Pra dúvida antes de comprar, acesso que não liberou ou plugin que não abriu.</p>
+        <a class="btn btn-lima btn-bloco" data-canal="whatsapp" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Chamar no WhatsApp</span></a>
+      </article>
+      <article class="canal" style="--cor:#FFCBEF" data-reveal>
+        <i class="canal-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></svg></i>
+        <h2>Instagram</h2>
+        <p>Bastidores, plugins novos saindo do forno e a CRMO no dia a dia. Pode mandar direct também.</p>
+        <p class="canal-id mono"></p>
+        <a class="btn btn-quieto btn-bloco" data-canal="instagram" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Abrir o Instagram</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANTES DE CHAMAR ============ -->
+<section class="secao superficie">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Antes de chamar</p>
+      <h2 class="titulo" data-reveal>Talvez já tenha<br><em>a resposta aqui</em></h2>
+    </div>
+    <div class="passos atalhos" style="margin-top:48px">
+      <a class="passo" href="../conta/#acesso" data-reveal><h3>O acesso não liberou?</h3><p>Em Minha conta você vê se o acesso está ativo. Entre com o mesmo e-mail da compra.</p></a>
+      <a class="passo" href="../plugins/#problemas" data-reveal><h3>O plugin não aparece?</h3><p>Feche e abra o After ou o Premiere. Os outros casos comuns estão na página Plugins.</p></a>
+      <a class="passo" href="../pack/" data-reveal><h3>Quer saber do pack?</h3><p>O que entra em cada pasta e em quais programas funciona está na página do Pack.</p></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap rodape-in">
+    <img src="../assets/logo-crmo.png" alt="CRMO" width="110" height="24">
+    <nav class="rodape-links" aria-label="Páginas">
+      <a href="../">Início</a>
+      <a href="../plugins/">Plugins</a>
+      <a href="../pack/">Pack</a>
+      <a href="../conta/">Minha conta</a>
+    </nav>
+    <small>Copyright &copy; 2026 — Carlos Eduardo (CRMO). Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
+  </div>
+</footer>
+
+<script src="../crmo.js?v=20261021h" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script src="../config.js?v=20261021h"></script>
+<script src="../sessao.js?v=20261021h"></script>
+<script src="contato.js?v=20261021h"></script>
+</body>
+</html>

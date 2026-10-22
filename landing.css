@@ -390,3 +390,25 @@ html.travado{overflow-y:hidden}
 .rodape-links{display:flex;flex-wrap:wrap;gap:22px;font-size:14px;color:var(--suave)}
 .rodape-links a:hover{color:var(--creme)}
 .rodape small{display:block;width:100%;color:var(--suave-2);font-size:12.5px;margin-top:6px}
+
+/* ---------------- contato ----------------
+   Dois cartões, um por canal; a cor do brilho é a do canal (lima = WhatsApp, o jeito
+   rápido; rosa = Instagram). Sem número/@ em config.js o botão fica .desligado. */
+.contato-hero{padding-bottom:96px}
+.contato-hero .cabeca .titulo{margin:22px 0 18px}
+.canais{display:grid;gap:16px;max-width:880px;margin:52px auto 0}
+@media(min-width:760px){.canais{grid-template-columns:repeat(2,1fr)}}
+.canal{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:14px;padding:32px;
+  border-radius:var(--raio-cartao);border:1px solid rgba(253,247,233,.12);background:var(--vidro);text-align:left}
+.canal::before{content:"";position:absolute;z-index:-1;left:50%;top:-60%;translate:-50% 0;width:150%;aspect-ratio:1.4;border-radius:50%;
+  pointer-events:none;background:radial-gradient(50% 50% at 50% 50%,color-mix(in srgb,var(--cor) 26%,transparent),transparent 68%)}
+.canal-icone{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--cor) 18%,#101014);border:1px solid color-mix(in srgb,var(--cor) 45%,transparent)}
+.canal-icone svg{width:24px;height:24px;fill:none;stroke:var(--cor);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.canal h2{font-family:var(--display);font-weight:400;font-synthesis-weight:none;font-size:34px;line-height:1;text-transform:uppercase}
+.canal p{color:var(--suave);font-size:15.5px}
+.canal .canal-id:empty{display:none}
+.canal .btn{margin-top:auto}
+.btn.desligado{opacity:.45;cursor:default;pointer-events:none}
+.atalhos .passo{display:block;text-decoration:none;transition:border-color .2s ease}
+.atalhos .passo:hover{border-color:var(--linha-forte)}
