@@ -263,7 +263,25 @@
         '<p class="nota">Os plugins instalam e atualizam pelo Magic Hub, dentro do After ou do Premiere.</p>' +
         '<div class="acoes-conta"><a class="btn lima" href="../baixar/Magic-Hub-instalador.zip" download>Baixar o Magic Hub</a>' +
         '<a class="btn quieto" href="../plugins/#instalar">Como instalar</a></div>' +
-      "</section>";
+      "</section>" +
+      (c.acesso ? '<section class="cartao"><p class="rotulo">Pack de arquivos</p><div id="pack"><p>Carregando…</p></div></section>' : "");
+    if (c.acesso) { mostrarPack(); }
+  }
+
+  // o link do pack vem da API só para quem tem acesso (hub_config.pack_url); não fica no site
+  function mostrarPack() {
+    var caixa = document.getElementById("pack");
+    api("GET", "/site/pack").then(function (r) {
+      if (!caixa) { return; }
+      if (r.status === 200 && r.dados.url) {
+        caixa.innerHTML = "<p>As pastas do pack ficam no Google Drive. Baixe só o que for usar.</p>" +
+          '<div class="acoes-conta"><a class="btn" href="' + e(r.dados.url) + '" target="_blank" rel="noopener">Abrir o pack</a></div>';
+        return;
+      }
+      caixa.innerHTML = r.status === 200
+        ? "<p>O pack de arquivos sai em breve. Quando estiver pronto, o botão para baixar aparece aqui.</p>"
+        : '<p class="erro">Não deu para carregar agora. Tente de novo em instantes.</p>';
+    });
   }
 
   function abaSeguranca(corpo, c) {
