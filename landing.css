@@ -37,9 +37,8 @@
 .palco-in .sub{margin-inline:auto;max-width:52ch;font-size:18px}
 .palco-in .acoes{justify-content:center;margin-top:30px}
 .produto{position:relative;z-index:1;display:flex;justify-content:center;align-items:flex-start;
-  height:470px;margin-top:64px}
+  height:660px;margin-top:64px}
 .produto .palco{position:relative;z-index:2;width:min(560px,100%);flex:none}
-.produto .hub-mock{text-align:left}
 .tela-lado{position:relative;top:70px;z-index:1;flex:none;width:250px;padding:0;border-radius:16px;overflow:hidden;
   border:1px solid rgba(253,247,233,.16);box-shadow:0 30px 70px -24px rgba(0,0,0,.9);transition:top .3s ease}
 .tela-lado img{display:block;width:100%;height:auto}
@@ -148,40 +147,20 @@
   .segmentos button{flex:1;padding:9px 8px;font-size:12.5px}
   .hub-peca{min-height:0}
 }
-.hub-mock{position:relative;border-radius:24px;padding:16px;
-  border:1px solid rgba(253,247,233,.14);
-  background:linear-gradient(165deg,rgba(28,28,32,.92),rgba(21,21,23,.96));
-  box-shadow:inset 0 1px 0 rgba(253,247,233,.12),0 40px 80px -36px rgba(0,0,0,.9),
-    0 0 90px -30px rgba(103,97,255,.55)}
-.hub-barra{display:flex;align-items:center;gap:10px;padding:4px 4px 14px;border-bottom:1px solid var(--linha)}
-.hub-barra .app{width:28px}
-.hub-barra b{font-family:var(--display);font-weight:400;font-synthesis-weight:none;font-size:17px;
-  letter-spacing:.02em;text-transform:uppercase}
-.hub-barra .selo{margin-left:auto;padding:4px 10px;font-size:10px}
-.hub-filtros{display:flex;gap:8px;margin:14px 0}
-.hub-filtros span{flex:1;padding:9px 10px;border-radius:12px;border:1px solid var(--linha);
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
-.hub-filtros span b{display:block;font-family:var(--display);font-weight:400;font-synthesis-weight:none;
-  font-size:22px;letter-spacing:0;color:var(--creme);margin-bottom:2px}
-.hub-filtros span.ativo{border-color:rgba(208,254,96,.4);background:rgba(208,254,96,.06)}
-.hub-filtros span.ativo b{color:var(--lima)}
-.hub-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.hub-item{border-radius:16px;padding:14px 12px 12px;border:1px solid rgba(253,247,233,.09);
-  background:rgba(253,247,233,.03)}
-.hub-item .app{width:40px;margin-bottom:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
-.hub-item b{display:block;font-size:13px;font-weight:600;line-height:1.25}
-.hub-item small{display:inline-block;margin-top:8px;padding:3px 8px;border-radius:999px;
-  font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--preto);background:var(--lima)}
-.hub-item small.instalar{color:var(--creme);background:rgba(103,97,255,.5)}
-@media(max-width:480px){.hub-grade{grid-template-columns:repeat(2,1fr)}.hub-mock{padding:12px}}
+/* ---------------- a tela do Hub no hero ----------------
+   Captura do painel de verdade (assets/hub-painel.webp) numa moldura de painel do After:
+   a aba com o nome em cima (.moldura-aba, a mesma da vitrine) e a tela embaixo. */
+.hub-tela{margin:0;border-radius:20px;overflow:hidden;background:#151517;
+  border:1px solid rgba(253,247,233,.16);
+  box-shadow:inset 0 1px 0 rgba(253,247,233,.1),0 40px 80px -36px rgba(0,0,0,.9),0 0 90px -30px rgba(103,97,255,.55)}
+.hub-tela img{display:block;width:100%;height:auto}
 
 /* ---------------- ícone de produto (o .app com o glifo do Hub) ---------------- */
 /* os glifos do Hub são traço: o .app do crmo.css espera preenchimento */
 .app svg.glifo{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .card .app{width:52px;margin-bottom:22px}
 /* ícone de fundo preto some no cartão escuro: ganha uma borda própria */
-.app.escuro,.card .app.escuro,.hub-item .app.escuro{box-shadow:inset 0 0 0 1px rgba(253,247,233,.2),inset 0 1px 0 rgba(255,255,255,.12)}
+.app.escuro,.card .app.escuro{box-shadow:inset 0 0 0 1px rgba(253,247,233,.2),inset 0 1px 0 rgba(255,255,255,.12)}
 .card .apps{display:flex;flex-wrap:wrap;gap:6px}
 .card .tag{margin-top:16px}
 .card .detalhe{margin-top:12px;font-size:14px;color:var(--suave)}
