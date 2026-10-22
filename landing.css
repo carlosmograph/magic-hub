@@ -37,8 +37,8 @@
 .palco-in .sub{margin-inline:auto;max-width:52ch;font-size:18px}
 .palco-in .acoes{justify-content:center;margin-top:30px}
 .produto{position:relative;z-index:1;display:flex;justify-content:center;align-items:flex-start;
-  height:660px;margin-top:64px}
-.produto .palco{position:relative;z-index:2;width:min(560px,100%);flex:none}
+  height:800px;margin-top:64px}
+.produto .palco{position:relative;z-index:2;width:min(540px,100%);flex:none}
 .tela-lado{position:relative;top:70px;z-index:1;flex:none;width:250px;padding:0;border-radius:16px;overflow:hidden;
   border:1px solid rgba(253,247,233,.16);box-shadow:0 30px 70px -24px rgba(0,0,0,.9);transition:top .3s ease}
 .tela-lado img{display:block;width:100%;height:auto}
