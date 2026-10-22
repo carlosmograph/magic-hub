@@ -246,26 +246,66 @@
 .destaque-plano li i{background:rgba(103,97,255,.2);border-color:rgba(143,138,255,.45)}
 .destaque-plano li i svg{stroke:var(--indigo-claro)}
 
-/* ---------------- página de download ---------------- */
-.baixar{display:grid;gap:24px;align-items:start}
-@media(min-width:960px){.baixar{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px}}
-.baixar .plano{--cor:#D0FE60}
-/* a coluna do texto é mais estreita que a do hero da home: o título desce um tanto
-   para "num download só" caber numa linha inteira */
-.baixar h1.titulo-g{font-size:clamp(36px,5.2vw,62px)}
-.arquivo{display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;border:1px solid var(--linha);
-  background:rgba(21,21,23,.6)}
-.arquivo .app{width:46px}
-.arquivo b{display:block;font-size:15px}
-.arquivo span{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
-.lista-plugins{display:grid;gap:10px}
-.linha-plugin{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;
-  padding:14px 18px;border-radius:18px;border:1px solid var(--linha);background:var(--vidro)}
-.linha-plugin .app{width:44px}
-.linha-plugin b{display:block;font-size:16px;font-weight:600}
-.linha-plugin p{color:var(--suave);font-size:14px}
-.linha-plugin .selo{padding:5px 11px;font-size:10px;white-space:nowrap}
-@media(max-width:600px){.linha-plugin{grid-template-columns:auto minmax(0,1fr)}.linha-plugin .selo{grid-column:2;justify-self:start}}
+/* ---------------- página de download ----------------
+   Tudo no centro e o foco é o botão verde (lima = de graça). Embaixo, o carrossel com
+   um cartão por plugin: capa na cor do plugin com a arte 3D do Hub, o ícone na borda
+   entre a capa e o corpo, e "Ver por dentro" (creme navega) que abre a vitrine. */
+.baixar-hero{padding:80px 0 56px;text-align:center;overflow:hidden}
+.baixar-hero .titulo{margin:24px 0 18px}
+.baixar-hero .sub{margin-inline:auto;font-size:18px;max-width:52ch}
+.baixar-grande{min-height:78px;margin-top:38px;padding:16px 46px 16px 18px;font-size:16.5px;letter-spacing:.08em;
+  box-shadow:inset 0 1px 0 rgba(253,247,233,.3),0 18px 44px -12px rgba(208,254,96,.75),0 0 90px -20px rgba(208,254,96,.6)}
+.baixar-grande i{width:42px;height:42px}
+.baixar-grande i svg{width:18px;height:18px}
+@media(prefers-reduced-motion:no-preference){.baixar-grande{animation:baixar-brilha 2.8s ease-in-out infinite}}
+@keyframes baixar-brilha{50%{box-shadow:inset 0 1px 0 rgba(253,247,233,.3),0 22px 56px -10px rgba(208,254,96,.95),0 0 130px -14px rgba(208,254,96,.75)}}
+.baixar-meta{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.baixar-notas{justify-content:center;margin-top:14px}
+
+.carrossel{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:64px}
+.carrossel-trilho{order:-1;width:100%}
+.carrossel-trilho{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;outline:none;
+  padding:24px max(20px,calc((100% - 1120px) / 2)) 28px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.carrossel-trilho::-webkit-scrollbar{display:none}
+/* as setas ficam embaixo do trilho, no centro: no meio da altura elas cobriam o botão dos cartões */
+.carrossel-seta{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+  color:var(--creme);background:rgba(21,21,23,.82);border:1px solid var(--linha-forte);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .2s ease,border-color .2s ease}
+.carrossel-seta:hover{border-color:var(--creme)}
+.carrossel-seta:disabled{opacity:.3;pointer-events:none}
+.carrossel-seta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.ficha{position:relative;flex:none;width:310px;cursor:pointer;scroll-snap-align:center;text-align:left;border-radius:32px;overflow:hidden;
+  background:#0E0E13;border:1px solid rgba(253,247,233,.09);box-shadow:0 34px 70px -34px rgba(0,0,0,.95);
+  transition:border-color .25s ease,box-shadow .25s ease}
+.ficha:hover{border-color:color-mix(in srgb,var(--cor) 45%,transparent);box-shadow:0 34px 70px -30px color-mix(in srgb,var(--cor) 55%,transparent)}
+/* a capa: ondas na cor do plugin, como o pano da referência */
+.ficha-capa{height:220px;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid rgba(253,247,233,.06);
+  background:radial-gradient(90% 55% at 15% 0%,color-mix(in srgb,var(--cor) 40%,transparent),transparent 70%),
+    radial-gradient(80% 60% at 100% 55%,color-mix(in srgb,var(--cor) 28%,transparent),transparent 70%),
+    radial-gradient(70% 45% at 40% 110%,color-mix(in srgb,var(--cor) 34%,transparent),transparent 70%),
+    linear-gradient(160deg,#1B1B24,#0E0E13)}
+.ficha-capa img{width:170px;height:auto;filter:drop-shadow(0 22px 28px rgba(0,0,0,.55));transition:transform .4s cubic-bezier(.2,.7,.3,1)}
+.ficha:hover .ficha-capa img{transform:translateY(-8px) scale(1.05)}
+.ficha-icone{position:absolute;left:26px;top:220px;width:66px;margin-top:-33px;
+  box-shadow:0 0 0 5px #0E0E13,0 12px 26px -8px rgba(0,0,0,.8)}
+.ficha-icone.escuro{box-shadow:0 0 0 5px #0E0E13,inset 0 0 0 1px rgba(253,247,233,.2)}
+.ficha-ver{position:absolute;right:24px;top:220px;height:36px;margin-top:-18px;padding:0 18px;border-radius:999px;
+  background:var(--creme);color:var(--preto);font:600 13.5px var(--texto);box-shadow:0 10px 24px -10px rgba(0,0,0,.8);transition:scale .15s ease}
+.ficha-ver:hover{scale:1.05}
+.ficha-corpo{padding:52px 26px 28px}
+.ficha h3{font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.ficha-dados{display:flex;gap:18px;margin:10px 0 14px;font-size:15px;color:var(--creme)}
+.ficha-dados span + span{color:color-mix(in srgb,var(--cor) 70%,var(--creme))}
+.ficha p:last-child{font-size:14px;color:var(--suave);line-height:1.5}
+@media(max-width:760px){
+  .baixar-hero{padding:52px 0 40px}
+  .baixar-hero .sub{font-size:16.5px}
+  .baixar-grande{width:100%;justify-content:center;min-height:68px;padding:14px 22px 14px 14px;font-size:15px}
+  .carrossel{margin-top:44px}
+  .ficha{width:min(300px,80vw)}
+}
 
 /* ---------------- pack: biblioteca ---------------- */
 /* topo da página do pack: tudo no centro e a caixa de busca acesa em indigo, com a
@@ -366,9 +406,6 @@
 .card:hover .card-abrir svg{translate:4px 0}
 .card:has(.card-abrir){cursor:pointer}
 .card .card-abrir{display:flex;width:max-content;margin:16px 0 0}
-.linha-plugin{position:relative}
-.linha-plugin .card-abrir{margin:0}
-.linha-plugin:hover{border-color:var(--linha-forte)}
 
 html.travado{overflow-y:hidden}
 .vitrine{border:0;padding:0;margin:auto;background:transparent;color:var(--creme);
