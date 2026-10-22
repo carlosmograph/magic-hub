@@ -52,9 +52,20 @@
 .compat i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:600 10.5px var(--mono);font-style:normal;
   color:var(--indigo-claro);border:1px solid rgba(143,138,255,.4);background:rgba(103,97,255,.12)}
 .compat svg{width:14px;height:14px;fill:currentColor}
+/* tablet e celular: os dois painéis saem de trás do Hub, em leque, cortados pela borda do palco */
 @media(max-width:900px){
-  .tela-lado{display:none}
   .produto{height:auto;margin-top:48px;padding-bottom:120px}
+  .produto .palco{width:min(540px,76%)}
+  .tela-lado{position:absolute;top:56px;width:min(260px,40%);margin:0}
+  .tela-lado.esq{left:-6%}
+  .tela-lado.dir{right:-6%}
+  .tela-lado:hover{top:56px}
+}
+@media(max-width:480px){
+  .produto .palco{width:84%}
+  .tela-lado{top:40px;width:44%}
+  .tela-lado.esq{left:-14%}
+  .tela-lado.dir{right:-14%}
 }
 @media(max-width:760px){
   .palco-in{padding:52px 16px 0;border-radius:24px}
