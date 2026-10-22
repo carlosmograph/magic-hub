@@ -24,25 +24,25 @@
     { id: "clipe", nome: "Clipe e cinema", resumo: "Textura de filme e luz", icone: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4"/>' }
   ];
 
-  // SUBSTITUIR: os itens reais do pack (nome, pasta, programas, usos, status, link)
+  // SUBSTITUIR: os itens reais do pack (nome, tags para a busca, pasta, programas, usos, status, link)
   var ITENS = [
-    { nome: "Grão de filme", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "marca"] },
-    { nome: "Papel e poeira", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
-    { nome: "Vazamento de luz", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "youtube"] },
-    { nome: "Halftone", pasta: "texturas", programas: ["qualquer"], usos: ["marca", "reels"] },
-    { nome: "Ruído de VHS", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
-    { nome: "Whip pan", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
-    { nome: "Zoom", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
-    { nome: "Glitch", pasta: "transicoes", programas: ["pr", "ae"], usos: ["marca", "reels"] },
-    { nome: "Distorção", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "marca"] },
-    { nome: "Cortes de luz", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "youtube"] },
-    { nome: "Risers", pasta: "sons", programas: ["qualquer"], usos: ["marca", "youtube"] },
-    { nome: "Impactos", pasta: "sons", programas: ["qualquer"], usos: ["reels", "marca"] },
-    { nome: "Swooshes", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
-    { nome: "Cliques de interface", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
-    { nome: "Ambientes", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
-    { nome: "Seleção de plugins", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
-    { nome: "Seleção de presets", pasta: "presets", programas: ["pr", "ae"], usos: ["reels", "clipe"] }
+    { nome: "Grão de filme", tags: "filme analogico noise ruido cinema", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "marca"] },
+    { nome: "Papel e poeira", tags: "papel poeira sujeira textura vintage", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
+    { nome: "Vazamento de luz", tags: "luz light leak brilho flare", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "youtube"] },
+    { nome: "Halftone", tags: "pontilhado retro quadrinho print", pasta: "texturas", programas: ["qualquer"], usos: ["marca", "reels"] },
+    { nome: "Ruído de VHS", tags: "vhs fita retro glitch analogico", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
+    { nome: "Whip pan", tags: "chicote movimento rapido corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
+    { nome: "Zoom", tags: "zoom aproximar corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
+    { nome: "Glitch", tags: "glitch erro digital falha", pasta: "transicoes", programas: ["pr", "ae"], usos: ["marca", "reels"] },
+    { nome: "Distorção", tags: "distorcer warp onda", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "marca"] },
+    { nome: "Cortes de luz", tags: "luz flash brilho corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "youtube"] },
+    { nome: "Risers", tags: "riser subida tensao som", pasta: "sons", programas: ["qualquer"], usos: ["marca", "youtube"] },
+    { nome: "Impactos", tags: "impacto hit pancada boom som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "marca"] },
+    { nome: "Swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
+    { nome: "Cliques de interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
+    { nome: "Ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
+    { nome: "Seleção de plugins", tags: "plugin extensao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
+    { nome: "Seleção de presets", tags: "preset predefinicao", pasta: "presets", programas: ["pr", "ae"], usos: ["reels", "clipe"] }
   ];
 
   function e(s) {
@@ -61,6 +61,27 @@
       (pronto ? "" : '<span class="fita fita-quieta">Em breve</span>') + "</div>" +
       "<h4>" + e(item.nome) + "</h4><span>" + e(p.nome) + " · " + e(programasDe(item)) + "</span>";
     return pronto ? '<a class="pacote" href="' + e(item.link) + '">' + dentro + "</a>" : '<div class="pacote">' + dentro + "</div>";
+  }
+
+  // ---------------------------------------------------------------- busca
+  // sem acento, sem maiúscula e sem plural: "transição" acha "Transições", "sons" acha "som"
+  function normalizar(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+      .replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter(Boolean)
+      .map(function (p) { return p.replace(/(oes|aes)$/, "ao").replace(/s$/, function (f) { return p.length > 3 ? "" : f; }); })
+      .join(" ");
+  }
+  function textoDe(item) {
+    var p = pasta(item.pasta);
+    var usos = USOS.filter(function (u) { return item.usos.indexOf(u.id) >= 0; }).map(function (u) { return u.nome; }).join(" ");
+    return " " + normalizar([item.nome, item.tags, p.nome, programasDe(item), usos].join(" ")) + " ";
+  }
+  function achar(busca) {
+    var palavras = normalizar(busca).split(" ").filter(Boolean);
+    return ITENS.filter(function (i) {
+      var texto = textoDe(i);
+      return palavras.every(function (w) { return texto.indexOf(" " + w) >= 0; });
+    });
   }
 
   // ---------------------------------------------------------------- biblioteca
@@ -91,24 +112,57 @@
   }
 
   function desenharEstante() {
-    var lista = ITENS.filter(function (i) {
+    var lista = filtro.tipo === "busca" ? achar(filtro.valor) : ITENS.filter(function (i) {
       if (filtro.tipo === "pasta") { return i.pasta === filtro.valor; }
       if (filtro.tipo === "programa") { return i.programas.indexOf(filtro.valor) >= 0; }
       return true;
     });
-    var nome = filtro.tipo === "pasta" ? pasta(filtro.valor).nome
+    var nome = filtro.tipo === "busca" ? "“" + filtro.valor + "”"
+      : filtro.tipo === "pasta" ? pasta(filtro.valor).nome
       : filtro.tipo === "programa" ? PROGRAMAS.filter(function (p) { return p.id === filtro.valor; })[0].nome : "Tudo";
     tituloEstante.textContent = nome;
     contagem.textContent = lista.length + (lista.length === 1 ? " item" : " itens");
-    estante.innerHTML = lista.length ? lista.map(capa).join("") : '<p class="vazio">Nada aqui ainda.</p>';
+    estante.innerHTML = lista.length ? lista.map(capa).join("")
+      : '<p class="vazio">' + (filtro.tipo === "busca" ? "Nada com “" + e(filtro.valor) + "” no pack ainda. Tente outra palavra ou escolha uma pasta." : "Nada aqui ainda.") + "</p>";
+    return lista.length;
   }
 
   lado.addEventListener("click", function (ev) {
     var b = ev.target.closest(".filtro");
     if (!b) { return; }
     filtro = { tipo: b.dataset.tipo, valor: b.dataset.valor || null };
+    campo.value = ""; limpar.hidden = true; resultado.innerHTML = "";
     desenharLado();
     desenharEstante();
+  });
+
+  // a caixa do topo da página: filtra enquanto digita; Enter ou uma sugestão descem até a biblioteca
+  var form = document.getElementById("busca");
+  var campo = document.getElementById("busca-campo");
+  var limpar = form.querySelector(".busca-limpar");
+  var resultado = document.getElementById("busca-resultado");
+  var espera = null;
+
+  function buscar(q, descer) {
+    q = String(q || "").trim();
+    limpar.hidden = !q;
+    filtro = q ? { tipo: "busca", valor: q } : { tipo: "todos", valor: null };
+    desenharLado();
+    var n = desenharEstante();
+    resultado.innerHTML = !q ? "" : n
+      ? n + (n === 1 ? " item" : " itens") + " para “" + e(q) + "” · <a href=\"#biblioteca\">ver</a>"
+      : "Nada com “" + e(q) + "” ainda";
+    if (descer && q) { document.getElementById("biblioteca").scrollIntoView({ behavior: "smooth" }); }
+  }
+
+  campo.addEventListener("input", function () {
+    clearTimeout(espera);
+    espera = setTimeout(function () { buscar(campo.value, false); }, 120);
+  });
+  form.addEventListener("submit", function (ev) { ev.preventDefault(); buscar(campo.value, true); });
+  limpar.addEventListener("click", function () { campo.value = ""; buscar("", false); campo.focus(); });
+  document.querySelectorAll("[data-busca]").forEach(function (b) {
+    b.addEventListener("click", function () { campo.value = b.dataset.busca; buscar(campo.value, true); });
   });
 
   // ---------------------------------------------------------------- o que você vai editar

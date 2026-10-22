@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../crmo.css?v=20261021i">
-<link rel="stylesheet" href="../landing.css?v=20261021i">
-<link rel="stylesheet" href="../topo.css?v=20261021i">
+<link rel="stylesheet" href="../crmo.css?v=20261021j">
+<link rel="stylesheet" href="../landing.css?v=20261021j">
+<link rel="stylesheet" href="../topo.css?v=20261021j">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -39,21 +39,32 @@
 <!-- ============ HERO ============ -->
 <!-- SUBSTITUIR: o conteúdo do pack ainda não existe. Tudo que tem "Em breve" sai
      de pack.js (ITENS) e vira item de verdade quando ganhar status "ok" e link. -->
-<section class="hero pack-hero">
-  <div class="wrap hero-in">
-    <div>
-      <span class="selo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Pack de arquivos · em breve</span>
-      <h1 class="titulo titulo-g">Tudo que eu uso<br><em>numa pasta só</em></h1>
-      <p class="sub">Texturas, transições, efeitos sonoros e presets, separados por pasta e pelo programa em que você vai usar. Você baixa só o que precisa.</p>
-      <div class="acoes">
-        <a class="btn btn-quieto" href="#biblioteca"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></i><span>Ver o que tem dentro</span></a>
-      </div>
-      <div class="hero-nota">
-        <span><b>&#10003;</b> Premiere e After Effects</span>
-        <span><b>&#10003;</b> Cada pasta baixa separada</span>
-      </div>
+<!-- A busca filtra a biblioteca logo abaixo (pack.js): procura no nome, na pasta, no
+     programa, no tipo de vídeo e nas palavras de cada item. -->
+<section class="busca-hero">
+  <div class="wrap">
+    <span class="selo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Pack de arquivos · em breve</span>
+    <h1 class="titulo titulo-g">Tudo que eu uso<br><em>numa pasta só</em></h1>
+    <p class="sub">Texturas, transições, efeitos sonoros e presets, separados por pasta e pelo programa em que você vai usar. Você baixa só o que precisa.</p>
+    <form class="busca" id="busca" role="search" action="#biblioteca">
+      <label class="so-leitor" for="busca-campo">Buscar no pack</label>
+      <svg class="busca-lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>
+      <input id="busca-campo" type="search" placeholder="Busque: textura, glitch, riser…" autocomplete="off" spellcheck="false">
+      <button class="busca-limpar" type="button" aria-label="Limpar a busca" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <span class="busca-estrela" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+    </form>
+    <p class="busca-resultado" id="busca-resultado" aria-live="polite"></p>
+    <div class="tente">
+      <span>Tente:</span>
+      <button type="button" data-busca="textura">textura</button>
+      <button type="button" data-busca="transição">transição</button>
+      <button type="button" data-busca="som">som</button>
+      <button type="button" data-busca="glitch">glitch</button>
+      <button type="button" data-busca="vhs">VHS</button>
+      <button type="button" data-busca="luz">luz</button>
+      <button type="button" data-busca="premiere">Premiere</button>
+      <button type="button" data-busca="reels">Reels</button>
     </div>
-    <img src="../assets/pasta-3d.webp" alt="A pasta do pack de arquivos" width="454" height="454" fetchpriority="high">
   </div>
 </section>
 
@@ -146,10 +157,10 @@
   </div>
 </footer>
 
-<script src="pack.js?v=20261021i"></script>
-<script src="../crmo.js?v=20261021i" defer></script>
+<script src="pack.js?v=20261021j"></script>
+<script src="../crmo.js?v=20261021j" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
-<script src="../config.js?v=20261021i"></script>
-<script src="../sessao.js?v=20261021i"></script>
+<script src="../config.js?v=20261021j"></script>
+<script src="../sessao.js?v=20261021j"></script>
 </body>
 </html>

@@ -268,7 +268,43 @@
 @media(max-width:600px){.linha-plugin{grid-template-columns:auto minmax(0,1fr)}.linha-plugin .selo{grid-column:2;justify-self:start}}
 
 /* ---------------- pack: biblioteca ---------------- */
-.pack-hero img{width:min(360px,80%);height:auto;margin-inline:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+/* topo da página do pack: tudo no centro e a caixa de busca acesa em indigo, com a
+   estrela da marca no canto (pack.js filtra a biblioteca enquanto a pessoa digita) */
+.busca-hero{padding:84px 0 72px;text-align:center}
+.busca-hero .titulo{margin:24px 0 18px}
+.busca-hero .sub{margin-inline:auto;font-size:18px;max-width:54ch}
+.so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.busca{position:relative;display:flex;align-items:center;gap:12px;max-width:660px;height:66px;margin:40px auto 0;padding:0 20px;
+  border-radius:18px;border:1px solid rgba(143,138,255,.75);background:#141418;
+  box-shadow:0 0 0 1px rgba(103,97,255,.25),0 0 22px -2px rgba(103,97,255,.55),0 0 90px -10px rgba(103,97,255,.45),
+    inset 0 1px 0 rgba(253,247,233,.06);transition:box-shadow .2s ease,border-color .2s ease}
+.busca:focus-within{border-color:#A9A5FF;
+  box-shadow:0 0 0 1px rgba(143,138,255,.45),0 0 28px 0 rgba(103,97,255,.7),0 0 120px -6px rgba(103,97,255,.55),
+    inset 0 1px 0 rgba(253,247,233,.08)}
+.busca svg{flex:none}
+.busca-lupa{width:20px;height:20px;fill:none;stroke:var(--suave);stroke-width:2;stroke-linecap:round}
+.busca input{flex:1;min-width:0;height:100%;border:0;outline:0;background:none;color:var(--creme);
+  font:400 17px var(--texto);caret-color:var(--lima)}
+.busca input::placeholder{color:var(--suave)}
+.busca input::-webkit-search-cancel-button{display:none}
+.busca-limpar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--suave)}
+.busca-limpar:hover{color:var(--creme);background:rgba(253,247,233,.08)}
+.busca-limpar svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.busca-estrela{width:22px;height:22px;color:var(--lima);filter:drop-shadow(0 0 6px rgba(208,254,96,.8))}
+.busca-estrela svg{width:100%;height:100%}
+.busca-resultado{min-height:20px;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.busca-resultado a{color:var(--lima);text-decoration:underline}
+.tente{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:10px}
+.tente span{font-size:13.5px;color:var(--suave-2);margin-right:2px}
+.tente button{padding:7px 14px;border-radius:999px;border:1px solid var(--linha-forte);background:rgba(253,247,233,.04);
+  color:var(--creme);font:500 13.5px var(--texto);transition:border-color .15s ease,background .15s ease}
+.tente button:hover{border-color:rgba(143,138,255,.7);background:rgba(103,97,255,.12)}
+@media(max-width:760px){
+  .busca-hero{padding:52px 0 56px}
+  .busca-hero .sub{font-size:16.5px}
+  .busca{height:58px;padding:0 14px;margin-top:30px}
+  .busca input{font-size:16px}
+}
 .biblioteca{display:grid;gap:20px;align-items:start}
 @media(min-width:900px){.biblioteca{grid-template-columns:250px minmax(0,1fr)}.pastas{position:sticky;top:92px}}
 .pastas{padding:16px;border-radius:var(--raio);border:1px solid var(--linha);background:rgba(28,28,28,.8)}
