@@ -24,9 +24,12 @@
   function porSenha() { return ler(CHAVE_SENHA); }
   function guardarPorSenha(v) { gravar(CHAVE_SENHA, v); }
 
-  // Nome e foto da última resposta da API, só para o topo não piscar entre páginas
+  // Nome, foto e acesso da última resposta da API, para o topo não piscar entre páginas
   var CHAVE_PERFIL = "crmo.site.perfil";
-  function lembrarPerfil(conta) { gravar(CHAVE_PERFIL, conta ? { email: conta.email, nome: conta.nome, foto: conta.foto } : null); }
+  function lembrarPerfil(conta) {
+    gravar(CHAVE_PERFIL, conta ? { email: conta.email, nome: conta.nome, foto: conta.foto,
+      acesso: !!conta.acesso, vitalicio: !!conta.vitalicio, quando: Date.now() } : null);
+  }
 
   // a sessão do Supabase Auth ou, se entrou com senha, o mesmo formato com o e-mail
   function sessao() {
@@ -69,17 +72,44 @@
       : '<span class="avatar">' + e((nome || "?").trim().charAt(0).toUpperCase()) + "</span>";
   }
 
+  // Quem tem acesso não vê "Comprar": o botão vira o selo do acesso e leva à aba Acesso da conta
+  var ESTRELA = '<svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></svg>';
+  function seloDoTopo(a, p) {
+    var b = document.querySelector(".topo-comprar");
+    if (!b) { return; }
+    if (!b.dataset.href) { b.dataset.href = b.getAttribute("href"); }
+    if (p && p.acesso) {
+      b.innerHTML = ESTRELA + (p.vitalicio ? '<span class="topo-acesso-1">Acesso</span><span>vitalício</span>' : "<span>Acesso ativo</span>");
+      b.href = a.getAttribute("href").split("#")[0] + "#acesso";
+      b.classList.add("topo-acesso");
+    } else {
+      b.innerHTML = "Comprar";
+      b.href = b.dataset.href;
+      b.classList.remove("topo-acesso");
+    }
+  }
+
   function desenharTopo() {
     var a = document.querySelector("a[data-minha-conta]");
     if (!a) { return; }
     sessao().then(function (s) {
-      if (!s) { a.innerHTML = "Entrar"; a.classList.remove("logado"); return; }
+      if (!s) { a.innerHTML = "Entrar"; a.classList.remove("logado"); seloDoTopo(a, null); return; }
       var p = ler(CHAVE_PERFIL) || {};
+      if (p.email !== s.user.email) { p = {}; }
       var m = s.user.user_metadata || {};
-      var nome = (p.email === s.user.email && p.nome) || m.full_name || m.name || s.user.email.split("@")[0];
-      var foto = (p.email === s.user.email && p.foto) || m.avatar_url || m.picture || null;
+      var nome = p.nome || m.full_name || m.name || s.user.email.split("@")[0];
+      var foto = p.foto || m.avatar_url || m.picture || null;
       a.innerHTML = avatar(nome, foto) + "<span>" + e(String(nome).split(" ")[0]) + "</span>";
       a.classList.add("logado");
+      seloDoTopo(a, p);
+      // o acesso guardado vale 10 minutos; depois disso pergunta de novo à API (a /conta sempre pergunta)
+      if (!p.quando || Date.now() - p.quando > 600000) {
+        api("GET", "/site/conta").then(function (r) {
+          if (r.status !== 200 || !r.dados.conta) { return; }
+          lembrarPerfil(r.dados.conta);
+          seloDoTopo(a, ler(CHAVE_PERFIL));
+        });
+      }
     });
   }
 

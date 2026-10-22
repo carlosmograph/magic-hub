@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../crmo.css?v=20261022d">
-<link rel="stylesheet" href="../landing.css?v=20261022d">
-<link rel="stylesheet" href="../topo.css?v=20261022d">
+<link rel="stylesheet" href="../crmo.css?v=20261022e">
+<link rel="stylesheet" href="../landing.css?v=20261022e">
+<link rel="stylesheet" href="../topo.css?v=20261022e">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -129,19 +129,105 @@
   </div>
 </section>
 
-<!-- ============ INSTALAR ============ -->
-<!-- mesmos passos de crmo-hub/instalar/LEIA-ME.txt, que vai dentro do .zip -->
-<section class="secao superficie" id="instalar">
+<!-- ============ COMO INSTALAR ============ -->
+<!-- Tutorial em cinco passos com abas Windows/Mac (tutorial.js). Cada passo tem uma tela ao lado:
+     o recibo, o que vem no .zip, o instalador com o texto que ele mostra de verdade
+     (crmo-hub/instalar), o menu do After e as telas reais do Hub (assets/hub-*.webp). -->
+<section class="secao superficie" id="instalar" data-so="win">
   <div class="wrap">
     <div class="cabeca">
-      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg>Instalar</p>
-      <h2 class="titulo" data-reveal>Instale<br><em>uma vez só</em></h2>
-      <p class="sub" data-reveal>Feche o After Effects e o Premiere antes de começar.</p>
+      <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Como instalar</p>
+      <h2 class="titulo" data-reveal>Do download<br><em>ao primeiro plugin</em></h2>
+      <p class="sub" data-reveal>Uns três minutos, uma vez só. Depois disso o Magic Hub cuida das atualizações sozinho.</p>
     </div>
-    <div class="passos" style="margin-top:48px">
-      <div class="passo" data-reveal><h3>Extraia o .zip</h3><p>Tire tudo do arquivo baixado para uma pasta. O instalador precisa do <code>MagicHub.zxp</code> ao lado dele.</p></div>
-      <div class="passo" data-reveal><h3>Rode o instalador</h3><p>Windows: dois cliques em <code>Instalar Magic Hub (Windows).bat</code> e confirme com S. Mac: dois cliques em <code>Instalar Magic Hub (Mac).command</code> (se bloquear, botão direito › Abrir).</p></div>
-      <div class="passo" data-reveal><h3>Abra o painel</h3><p>No After ou no Premiere: <code>Janela › Extensões › Magic Hub</code>. Entre com o e-mail da compra.</p></div>
+    <div class="segmentos so-abas" role="tablist" aria-label="Sistema" data-reveal>
+      <button type="button" role="tab" data-so="win" aria-selected="true">Windows</button>
+      <button type="button" role="tab" data-so="mac" aria-selected="false">Mac</button>
+    </div>
+
+    <div class="tutorial">
+      <ol class="tutorial-passos">
+        <li><button type="button" class="passo-t" data-passo="1" aria-selected="true">
+          <i>01</i><span><b>Garanta o acesso</b>
+          <span class="passo-txt">Compre na Kiwify. O acesso fica ligado ao <strong>e-mail da compra</strong>: é com ele que você entra no Hub.</span></span></button></li>
+        <li><button type="button" class="passo-t" data-passo="2" aria-selected="false">
+          <i>02</i><span><b>Baixe o instalador</b>
+          <span class="passo-txt">Um .zip só, para Windows e Mac. O Hub em si é grátis; os plugins conferem o seu acesso.</span></span></button></li>
+        <li><button type="button" class="passo-t" data-passo="3" aria-selected="false">
+          <i>03</i><span><b>Rode o instalador</b>
+          <span class="passo-txt"><span class="so-win">Feche o After e o Premiere. Extraia o .zip, dê dois cliques em <code>Instalar Magic Hub (Windows).bat</code> e responda <strong>S</strong>.</span><span class="so-mac">Feche o After e o Premiere. Extraia o .zip e dê dois cliques em <code>Instalar Magic Hub (Mac).command</code>. Se o Mac bloquear: botão direito › Abrir. Responda <strong>s</strong>.</span></span></span></button></li>
+        <li><button type="button" class="passo-t" data-passo="4" aria-selected="false">
+          <i>04</i><span><b>Abra o painel</b>
+          <span class="passo-txt">No After Effects ou no Premiere: <strong>Janela › Extensões › Magic Hub</strong>. Encaixe o painel onde quiser, ao lado da timeline.</span></span></button></li>
+        <li><button type="button" class="passo-t" data-passo="5" aria-selected="false">
+          <i>05</i><span><b>Entre e instale</b>
+          <span class="passo-txt">Entre com o e-mail da compra (comprou pelo Google? use “Entrar pelo navegador”). Clique em <strong>Instalar</strong> em cada plugin e reabra o programa.</span></span></button></li>
+      </ol>
+
+      <div class="tutorial-tela">
+        <figure class="tela-passo" data-tela="1">
+          <div class="janela recibo">
+            <div class="janela-barra"><i></i><i></i><i></i><span>Kiwify · pagamento</span></div>
+            <div class="recibo-corpo">
+              <span class="recibo-ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+              <b>Pagamento aprovado</b>
+              <p>Magic Hub · Completo</p>
+              <dl><dt>Acesso liberado para</dt><dd>voce@email.com</dd><dt>Validade</dt><dd>Vitalício</dd></dl>
+              <p class="recibo-nota">Guarde este e-mail: é o login do Hub.</p>
+            </div>
+          </div>
+        </figure>
+        <figure class="tela-passo" data-tela="2" hidden>
+          <div class="janela arquivos">
+            <div class="janela-barra"><i></i><i></i><i></i><span>Magic-Hub-instalador.zip</span></div>
+            <ul>
+              <li class="pasta"><span>Magic Hub</span><em>pasta</em></li>
+              <li><span>MagicHub.zxp</span><em>o painel</em></li>
+              <li class="so-win destaque"><span>Instalar Magic Hub (Windows).bat</span><em>Windows</em></li>
+              <li class="so-mac destaque"><span>Instalar Magic Hub (Mac).command</span><em>Mac</em></li>
+              <li><span>instalar-windows.ps1</span><em>usado pelo .bat</em></li>
+              <li><span>LEIA-ME.txt</span><em>o passo a passo</em></li>
+            </ul>
+            <a class="btn btn-lima" href="../baixar/Magic-Hub-instalador.zip" download><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg></i><span>Baixar o instalador</span></a>
+          </div>
+        </figure>
+        <figure class="tela-passo" data-tela="3" hidden>
+          <div class="janela terminal">
+            <div class="janela-barra"><i></i><i></i><i></i><span class="so-win">Instalar Magic Hub (Windows)</span><span class="so-mac">Instalar Magic Hub (Mac).command</span></div>
+            <pre><b>  MAGIC HUB</b>
+  Instala o painel no After Effects e no Premiere (2022 ou mais novo).
+<span class="so-win">  Pasta:    %APPDATA%\Adobe\CEP\extensions\com.crmo.hub</span><span class="so-mac">  Pasta: ~/Library/Application Support/Adobe/CEP/extensions/com.crmo.hub</span>
+
+  Feche o After Effects e o Premiere. Continuar? <span class="so-win">(S/N) <u>S</u></span><span class="so-mac">(s/n) <u>s</u></span>
+
+<em>  Pronto.</em>
+  Abra o After Effects ou o Premiere: Janela &gt; Extensões &gt; Magic Hub</pre>
+          </div>
+        </figure>
+        <figure class="tela-passo" data-tela="4" hidden>
+          <div class="janela menu-ae">
+            <div class="menu-barra"><span>Arquivo</span><span>Editar</span><span>Composição</span><span>Camada</span><span class="aberto">Janela</span><span>Ajuda</span></div>
+            <div class="menu-lista">
+              <span>Área de trabalho</span><span>Alinhar</span><span>Efeitos e predefinições</span><span>Controles de efeito</span>
+              <span class="aberto">Extensões <i>›</i>
+                <span class="submenu"><span>Adobe Color Themes</span><span class="alvo"><i class="app" style="--bg:#6761FF;--st:#D0FE60"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></i>Magic Hub</span></span>
+              </span>
+              <span>Informações</span><span>Linha do tempo</span>
+            </div>
+          </div>
+        </figure>
+        <figure class="tela-passo" data-tela="5" hidden>
+          <div class="duas-telas">
+            <div class="mini-painel"><div class="moldura-aba"><span>Magic Hub</span><i></i></div><img src="../assets/hub-entrar.webp" alt="O Magic Hub pedindo e-mail e senha" width="420" height="760" loading="lazy"></div>
+            <div class="mini-painel"><div class="moldura-aba"><span>Magic Hub</span><i></i></div><img src="../assets/hub-painel.webp" alt="O Magic Hub com os seis plugins para instalar" width="780" height="1000" loading="lazy"></div>
+          </div>
+        </figure>
+      </div>
+    </div>
+
+    <div class="acoes" style="justify-content:center;margin-top:40px" data-reveal>
+      <a class="btn btn-lima" href="../baixar/Magic-Hub-instalador.zip" download><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg></i><span>Baixar o Magic Hub</span></a>
+      <a class="btn btn-quieto" href="#problemas"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Problemas comuns</span></a>
     </div>
   </div>
 </section>
@@ -186,11 +272,12 @@
   </div>
 </footer>
 
-<script src="../crmo.js?v=20261022d" defer></script>
-<script src="../vitrine.js?v=20261022d" defer></script>
-<script src="carrossel.js?v=20261022d" defer></script>
+<script src="../crmo.js?v=20261022e" defer></script>
+<script src="../vitrine.js?v=20261022e" defer></script>
+<script src="carrossel.js?v=20261022e" defer></script>
+<script src="../tutorial.js?v=20261022e" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
-<script src="../config.js?v=20261022d"></script>
-<script src="../sessao.js?v=20261022d"></script>
+<script src="../config.js?v=20261022e"></script>
+<script src="../sessao.js?v=20261022e"></script>
 </body>
 </html>

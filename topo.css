@@ -40,6 +40,11 @@
   background:linear-gradient(180deg,rgba(253,247,233,.06),rgba(255,99,22,.16) 42%,rgba(255,99,22,.55));
   box-shadow:inset 0 1px 0 rgba(253,247,233,.2)}
 .topo-comprar:hover{border-color:rgba(255,99,22,.8)}
+/* quem já tem acesso: o mesmo lugar vira o selo do acesso, em indigo (o degrau premium), sem laranja */
+.topo-comprar.topo-acesso{gap:5px;color:#FDF7E9;border-color:rgba(143,138,255,.55);
+  background:linear-gradient(180deg,rgba(253,247,233,.06),rgba(103,97,255,.18) 42%,rgba(103,97,255,.5))}
+.topo-comprar.topo-acesso:hover{border-color:rgba(143,138,255,.9)}
+.topo-acesso svg{width:13px;height:13px;flex:none;margin-right:2px;color:#D0FE60}
 
 /* /conta: o site.css centraliza o body em grade; com a barra, o body volta a ser bloco
    e o cartão de login desce para baixo dela */
@@ -67,4 +72,5 @@ body.com-topo > main{margin:56px auto 72px;padding:0 16px}
   .topo-conta .avatar{width:28px;height:28px;font-size:12px}
   .topo-comprar{padding:0 14px}
 }
-@media(max-width:380px){.topo-conta span{display:none}.topo-conta.logado{padding:0 3px}}
+@media(max-width:480px){.topo-acesso-1{display:none}}
+@media(max-width:380px){.topo-conta span:not(.avatar){display:none}.topo-conta.logado{padding:0 3px}}
