@@ -481,3 +481,88 @@ html.travado{overflow-y:hidden}
 .btn.desligado{opacity:.45;cursor:default;pointer-events:none}
 .atalhos .passo{display:block;text-decoration:none;transition:border-color .2s ease}
 .atalhos .passo:hover{border-color:var(--linha-forte)}
+
+/* ---------------- como instalar (tutorial) ----------------
+   Passos à esquerda, a tela do passo à direita (fixa enquanto rola). As abas Windows/Mac
+   trocam só o que muda entre os dois (.so-win / .so-mac). Escolher é creme; o número do
+   passo aberto acende em lima, como as estrelas da marca. */
+#instalar[data-so="win"] .so-mac,#instalar[data-so="mac"] .so-win{display:none !important}
+.so-abas{margin:30px auto 36px}
+.tutorial{display:grid;gap:24px;align-items:start}
+@media(min-width:900px){.tutorial{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px}}
+.tutorial-passos{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.passo-t{display:flex;gap:16px;width:100%;text-align:left;padding:18px 20px;border-radius:20px;
+  border:1px solid var(--linha);background:rgba(28,28,28,.5);transition:border-color .2s ease,background .2s ease}
+.passo-t:hover{border-color:var(--linha-forte)}
+.passo-t > i{flex:none;font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--suave-2);padding-top:4px}
+.passo-t b{display:block;font-size:17px;font-weight:600;color:var(--creme)}
+.passo-txt{display:block;max-height:0;overflow:hidden;opacity:0;color:var(--suave);font-size:15px;line-height:1.5;
+  transition:max-height .35s ease,opacity .25s ease,margin .25s ease}
+.passo-txt strong{color:var(--creme);font-weight:600}
+.passo-txt code{font-family:var(--mono);font-size:12px;color:var(--creme);background:rgba(253,247,233,.07);padding:1px 6px;border-radius:6px;word-break:break-word}
+.passo-t[aria-selected="true"]{border-color:rgba(253,247,233,.4);background:linear-gradient(180deg,rgba(253,247,233,.07),rgba(28,28,28,.6))}
+.passo-t[aria-selected="true"] > i{color:var(--lima)}
+.passo-t[aria-selected="true"] .passo-txt{max-height:220px;opacity:1;margin-top:8px}
+
+.tutorial-tela{position:relative;min-height:440px;display:grid;place-items:center;padding:28px;overflow:hidden;
+  border-radius:var(--raio-cartao);border:1px solid var(--linha);
+  background:radial-gradient(70% 60% at 50% 0%,rgba(103,97,255,.35),transparent 70%),rgba(21,21,23,.75)}
+@media(min-width:900px){.tutorial-tela{position:sticky;top:100px}}
+@media(max-width:899px){.tutorial-tela{order:-1;min-height:380px;padding:20px 16px}}
+.tela-passo{margin:0;width:100%;display:grid;place-items:center}
+@media(prefers-reduced-motion:no-preference){.tela-passo{animation:tela-entra .35s ease}}
+@keyframes tela-entra{from{opacity:0;transform:translateY(10px)}}
+.janela{width:min(100%,460px);border-radius:16px;overflow:hidden;border:1px solid rgba(253,247,233,.14);background:#141418;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+.janela-barra{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:#202026;border-bottom:1px solid rgba(253,247,233,.08);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--suave);white-space:nowrap;overflow:hidden}
+.janela-barra i{flex:none;width:10px;height:10px;border-radius:50%;background:rgba(253,247,233,.18)}
+.janela-barra span{margin-left:8px;overflow:hidden;text-overflow:ellipsis}
+/* 1 · recibo */
+.recibo-corpo{padding:28px 26px;text-align:center}
+.recibo-ok{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;
+  background:rgba(208,254,96,.14);border:1px solid rgba(208,254,96,.45)}
+.recibo-ok svg{width:24px;height:24px;fill:none;stroke:var(--lima);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.recibo-corpo b{display:block;font-size:21px;font-weight:600}
+.recibo-corpo > p{color:var(--suave);margin-top:4px}
+.recibo-corpo dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:20px 0 16px;padding:16px;border-radius:12px;background:rgba(253,247,233,.04);text-align:left;font-size:14px}
+.recibo-corpo dt{color:var(--suave)}
+.recibo-corpo dd{margin:0;color:var(--creme);font-family:var(--mono);font-size:12.5px;text-align:right}
+.recibo-corpo .recibo-nota{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--lima)}
+/* 2 · o que vem no .zip */
+.arquivos ul{list-style:none;margin:0;padding:10px;display:grid;gap:4px}
+.arquivos li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;font-size:14px}
+.arquivos li span{display:flex;align-items:center;gap:10px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arquivos li span::before{content:"";flex:none;width:14px;height:17px;border-radius:3px;border:1.5px solid var(--suave)}
+.arquivos li.pasta span::before{width:17px;height:13px;border-radius:2px 4px 3px 3px;background:rgba(143,138,255,.35);border-color:var(--indigo-claro)}
+.arquivos li em{flex:none;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave-2)}
+.arquivos li.destaque{background:rgba(208,254,96,.1);box-shadow:inset 0 0 0 1px rgba(208,254,96,.38)}
+.arquivos li.destaque span::before{border-color:var(--lima)}
+.arquivos .btn{display:flex;margin:6px 12px 14px}
+/* 3 · o instalador, com o texto que ele mostra de verdade */
+.terminal{background:#0D0D10}
+.terminal pre{margin:0;padding:20px;font:12.5px/1.65 var(--mono);color:#C9C6D6;white-space:pre-wrap;word-break:break-all}
+.terminal pre b{color:var(--creme)}
+.terminal pre em,.terminal pre u{font-style:normal;text-decoration:none;color:var(--lima)}
+/* 4 · o menu do After */
+.menu-ae{padding-bottom:110px;background:#1B1B20}
+.menu-barra{display:flex;gap:2px;padding:6px 8px;background:#26262C;border-bottom:1px solid rgba(253,247,233,.08);font-size:12.5px;color:#CFCBD9;white-space:nowrap;overflow:hidden}
+.menu-barra span{padding:4px 8px;border-radius:6px}
+.menu-barra .aberto{background:var(--indigo);color:#fff}
+.menu-lista{position:relative;display:grid;width:190px;margin:2px 0 0 52%;padding:6px;border-radius:10px;background:#2B2B32;
+  border:1px solid rgba(253,247,233,.12);box-shadow:0 20px 40px -16px rgba(0,0,0,.9);font-size:13px;color:#DCD8E6}
+.menu-lista > span{position:relative;display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-radius:6px}
+.menu-lista > span.aberto{background:var(--indigo);color:#fff}
+.menu-lista i{font-style:normal}
+.submenu{position:absolute;right:calc(100% + 6px);top:-6px;display:grid;min-width:170px;padding:6px;border-radius:10px;background:#2B2B32;
+  border:1px solid rgba(253,247,233,.12);box-shadow:0 20px 40px -16px rgba(0,0,0,.9);color:#DCD8E6}
+.submenu > span{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;white-space:nowrap}
+.submenu .alvo{background:rgba(208,254,96,.16);box-shadow:inset 0 0 0 1px rgba(208,254,96,.55);color:var(--creme);font-weight:600}
+.submenu .alvo .app{width:18px}
+@media(max-width:520px){.menu-barra{font-size:11.5px}.menu-lista{margin-left:42%;width:150px;font-size:12px}.submenu{min-width:0;font-size:12px}.submenu > span{padding:6px 8px}.submenu > span:not(.alvo){display:none}}
+/* 5 · as telas do Hub */
+.duas-telas{display:flex;gap:14px;justify-content:center;align-items:flex-start;width:100%}
+.mini-painel{width:46%;max-width:220px;border-radius:12px;overflow:hidden;border:1px solid rgba(253,247,233,.16);background:#151517;
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.9)}
+.mini-painel + .mini-painel{position:relative;top:28px}
+.mini-painel img{display:block;width:100%;height:auto;max-height:380px;object-fit:cover;object-position:top}
