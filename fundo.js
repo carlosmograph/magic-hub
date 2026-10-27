@@ -4,7 +4,8 @@
    - Desenha só quando a rolagem muda (com inércia); parado, não gasta nada.
    - Meia resolução: a imagem é toda difusa, então não perde nada e roda leve no celular.
    - Sem WebGL, fica o .brilho de CSS de antes. Com movimento reduzido, a cena fica parada.
-   Cores: só indigo, indigo claro, rosa e creme, sobre o --fundo. */
+   Cores: só indigo, indigo claro e um toque de rosa, bem baixos sobre o --fundo: o brilho é roxo e
+   suave, sem branco. */
 (function () {
   "use strict";
 
@@ -20,17 +21,14 @@
     "uniform vec2 uRes;uniform float uP;uniform float uV;uniform float uFaixa;",
     "const vec3 FUNDO=vec3(.082,.082,.090);",
     "const vec3 INDIGO=vec3(.404,.380,1.);",
-    "const vec3 INDIGO_C=vec3(.561,.541,1.);",
     "const vec3 ROSA=vec3(1.,.796,.937);",
-    "const vec3 CREME=vec3(.992,.969,.914);",
     "float ruido(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}",
     // luz de um arco: d = distância até a borda do círculo (negativa por dentro).
-    // Por dentro desce de creme (a borda) para lilás, indigo e escuro; por fora some rápido.
+    // Na borda é roxo (indigo com rosa), por dentro escurece para indigo; por fora some rápido.
     "vec3 arco(float d,float largura,float forca){",
     "  float t=clamp(-d/largura,0.,1.);",
-    "  vec3 lilas=mix(INDIGO,ROSA,.32)*1.12;",
-    "  vec3 borda=mix(ROSA,CREME,.45);",
-    "  vec3 cor=mix(mix(borda,lilas,smoothstep(0.,.07,t)),INDIGO,smoothstep(.1,.5,t));",
+    "  vec3 borda=mix(INDIGO,ROSA,.4);",
+    "  vec3 cor=mix(borda,INDIGO*.7,smoothstep(0.,.45,t));",
     "  float dentro=(1.-smoothstep(.3,1.,t))*step(d,0.);",
     "  float fora=exp(-max(d,0.)*22.)*step(0.,d);",
     "  return cor*(dentro+fora*.9)*forca;",
@@ -56,16 +54,16 @@
     "  float g=1.9+s*2.4;",
     "  vec2 c2=vec2(cos(g),sin(g))*1.75+vec2(asp*.25,.35);",
     "  float d2=length(p-c2)-1.62;",
-    "  vec3 lilas=mix(INDIGO,ROSA,.35);",
-    "  luz+=mix(lilas,INDIGO,smoothstep(-.05,.12,abs(d2)))*exp(-pow(d2/.13,2.))*.55;",
+    "  vec3 lilas=mix(INDIGO,ROSA,.3);",
+    "  luz+=mix(lilas,INDIGO,smoothstep(-.05,.12,abs(d2)))*exp(-pow(d2/.16,2.))*.45;",
     // as bordas das faixas do vidro: um fio escuro e um fio claro
     "  float fio=smoothstep(.45,.5,abs(f));",
     "  luz*=1.-fio*.22;",
     "  luz+=vec3(.6,.58,1.)*smoothstep(.47,.5,f)*.025*length(luz);",
     // texto passa por cima: a luz nunca chega ao creme puro no meio da tela
     "  float meio=1.-.55*exp(-pow((uv.x-.5)*2.,2.));",
-    "  vec3 cor=FUNDO+luz*.78*meio;",
-    "  cor+=(ruido(px+fract(uP*97.))-.5)*.05;",
+    "  vec3 cor=FUNDO+luz*.36*meio;",
+    "  cor+=(ruido(px+fract(uP*97.))-.5)*.03;",
     "  gl_FragColor=vec4(cor,1.);",
     "}"
   ].join("\n");
