@@ -609,3 +609,7 @@ mark.preencher{background:#FFE14D;color:#1C1C1C;padding:0 4px;border-radius:4px;
 .rodape-empresa{margin-top:2px !important}
 .precos-nota{position:relative;z-index:1;max-width:640px;margin:40px auto 0;text-align:center;font-size:14px;line-height:1.55;color:var(--suave)}
 .precos-nota a{color:var(--creme);text-decoration:underline;text-underline-offset:3px}
+
+/* fundo em WebGL (fundo.js): fica atrás de tudo, como o .brilho que ele substitui */
+.fundo-gl{position:fixed;left:0;top:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none;display:block}
+.com-fundo-gl .brilho{display:none}

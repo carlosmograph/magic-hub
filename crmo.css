@@ -90,6 +90,8 @@ ul{margin:0;padding:0;list-style:none}
 /* Seção alternada. Translúcida de propósito: é o que deixa a atmosfera
    atravessar. Se voltar para cor sólida, a luz para de passar ali. */
 .superficie{background:rgba(28,28,28,.74);border-block:1px solid var(--linha)}
+/* com o fundo em WebGL a faixa alternada fica mais rala, senão esconde a luz que se mexe */
+.com-fundo-gl .superficie{background:rgba(21,21,23,.5)}
 .cabeca{max-width:680px;margin-inline:auto;text-align:center}
 .cabeca .sub{margin:16px auto 0}
 .grade{display:grid;gap:16px}
