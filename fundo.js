@@ -1,11 +1,10 @@
-/* Fundo do site em código (WebGL): dois arcos de luz na paleta CRMO, vistos através de um
-   vidro canelado (as faixas verticais) e com grão de filme. A rolagem move a cena: o
-   horizonte sobe e atravessa a tela, a faixa diagonal gira, e a velocidade estica a luz.
+/* Fundo do site em código (WebGL), no estilo do horizonte do palco do início: um planeta
+   enorme e escuro com a borda acesa em indigo, um fio de luz na borda e a atmosfera subindo
+   dela. Liso, sem grão e sem textura. A rolagem move o horizonte: ele sobe, desce, anda de
+   lado e inclina; rolando rápido, a atmosfera se espalha um pouco mais.
    - Desenha só quando a rolagem muda (com inércia); parado, não gasta nada.
-   - Meia resolução: a imagem é toda difusa, então não perde nada e roda leve no celular.
    - Sem WebGL, fica o .brilho de CSS de antes. Com movimento reduzido, a cena fica parada.
-   Cores: só indigo, indigo claro e um toque de rosa, bem baixos sobre o --fundo: o brilho é roxo e
-   suave, sem branco. */
+   Cores: o --fundo, o corpo do planeta (#131317, o mesmo do palco), indigo e indigo claro. */
 (function () {
   "use strict";
 
@@ -17,53 +16,44 @@
 
   var VERT = "attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}";
   var FRAG = [
-    "precision mediump float;",
-    "uniform vec2 uRes;uniform float uP;uniform float uV;uniform float uFaixa;",
+    "precision highp float;",
+    "uniform vec2 uRes;uniform float uP;uniform float uV;uniform float uEsc;",
     "const vec3 FUNDO=vec3(.082,.082,.090);",
+    "const vec3 PLANETA=vec3(.075,.075,.090);",
     "const vec3 INDIGO=vec3(.404,.380,1.);",
-    "const vec3 ROSA=vec3(1.,.796,.937);",
+    "const vec3 INDIGO_C=vec3(.561,.541,1.);",
     "float ruido(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}",
-    // luz de um arco: d = distância até a borda do círculo (negativa por dentro).
-    // Na borda é roxo (indigo com rosa), por dentro escurece para indigo; por fora some rápido.
-    "vec3 arco(float d,float largura,float forca){",
-    "  float t=clamp(-d/largura,0.,1.);",
-    "  vec3 borda=mix(INDIGO,ROSA,.4);",
-    "  vec3 cor=mix(borda,INDIGO*.7,smoothstep(0.,.45,t));",
-    "  float dentro=(1.-smoothstep(.3,1.,t))*step(d,0.);",
-    "  float fora=exp(-max(d,0.)*22.)*step(0.,d);",
-    "  return cor*(dentro+fora*.9)*forca;",
+    // o horizonte: elipse de raios r, centro c, inclinada ang. d = distância até a borda em px
+    // (positiva fora). Mesmas camadas do .palco-in::after: atmosfera acima, corpo escuro,
+    // brilho logo abaixo da borda e o fio de 1px.
+    "vec3 horizonte(vec3 cor,vec2 q,vec2 c,vec2 r,float ang,float espalha){",
+    "  float cs=cos(ang),sn=sin(ang);",
+    "  vec2 v=q-c;v=vec2(cs*v.x+sn*v.y,-sn*v.x+cs*v.y);",
+    "  float d=(length(v/r)-1.)*r.y;",
+    "  cor+=INDIGO*.55*exp(-max(d,0.)/espalha)*step(0.,d);",
+    "  float dentro=smoothstep(.8,-.8,d);",
+    "  cor=mix(cor,PLANETA,dentro);",
+    "  cor+=INDIGO*.3*exp(d/40.)*dentro;",
+    "  cor+=INDIGO_C*.55*exp(-d*d/1.3);",
+    "  return cor;",
     "}",
     "void main(){",
-    "  vec2 px=gl_FragCoord.xy;",
-    "  float asp=uRes.x/uRes.y;",
-    "  vec2 uv=px/uRes;",
-    // vidro canelado: cada faixa mostra a cena um pouco deslocada e ampliada
-    "  float n=px.x/uFaixa;",
-    "  float f=fract(n)-.5;",
-    "  float id=floor(n);",
-    "  vec2 p=vec2((uv.x-.5)*asp,uv.y-.5);",
-    "  p.x+=f*uFaixa/uRes.y*1.;",
-    "  p.y+=(ruido(vec2(id,3.))-.5)*.035+f*f*.05;",
-    // a velocidade da rolagem estica a luz na vertical, como rastro
-    "  p.y*=1.-clamp(abs(uV),0.,1.)*.22;",
+    "  vec2 q=gl_FragCoord.xy/uEsc;",
+    "  vec2 R=uRes/uEsc;",
     "  float s=uP;",
-    // arco 1, o horizonte: nasce embaixo, sobe e atravessa da esquerda para a direita
-    "  vec2 c1=vec2(asp*(-.18+.5*s)+.18*sin(s*6.2),-1.42+.5*sin(s*3.1416)+.12*cos(s*9.));",
-    "  vec3 luz=arco(length(p-c1)-1.05,.42,1.);",
-    // arco 2, a faixa diagonal: um círculo grande fora da tela, que gira com a rolagem
-    "  float g=1.9+s*2.4;",
-    "  vec2 c2=vec2(cos(g),sin(g))*1.75+vec2(asp*.25,.35);",
-    "  float d2=length(p-c2)-1.62;",
-    "  vec3 lilas=mix(INDIGO,ROSA,.3);",
-    "  luz+=mix(lilas,INDIGO,smoothstep(-.05,.12,abs(d2)))*exp(-pow(d2/.16,2.))*.45;",
-    // as bordas das faixas do vidro: um fio escuro e um fio claro
-    "  float fio=smoothstep(.45,.5,abs(f));",
-    "  luz*=1.-fio*.22;",
-    "  luz+=vec3(.6,.58,1.)*smoothstep(.47,.5,f)*.025*length(luz);",
-    // texto passa por cima: a luz nunca chega ao creme puro no meio da tela
-    "  float meio=1.-.55*exp(-pow((uv.x-.5)*2.,2.));",
-    "  vec3 cor=FUNDO+luz*.36*meio;",
-    "  cor+=(ruido(px+fract(uP*97.))-.5)*.03;",
+    "  vec3 cor=FUNDO;",
+    // um brilho fraco descendo do topo, como o radial do palco
+    "  vec2 t=(q-vec2(R.x*.5,R.y))/vec2(R.x*.55,R.y*.5);",
+    "  cor+=INDIGO*.12*exp(-dot(t,t)*1.8);",
+    // o horizonte anda com a rolagem: altura, lado e inclinação em ondas lentas
+    "  vec2 r=vec2(max(1300.,R.x*1.05),680.);",
+    "  float alto=R.y*(.14+.2*(.5-.5*cos(s*9.42)));",
+    "  vec2 c=vec2(R.x*(.5+.2*sin(s*7.54)),alto-r.y);",
+    "  float ang=.09*sin(s*5.65);",
+    "  float espalha=60.*(1.+clamp(abs(uV),0.,1.)*.7);",
+    "  cor=horizonte(cor,q,c,r,ang,espalha);",
+    // pontilhado de 1/255: invisível, só evita faixas no degradê liso
+    "  cor+=(ruido(gl_FragCoord.xy)-.5)/255.;",
     "  gl_FragColor=vec4(cor,1.);",
     "}"
   ].join("\n");
@@ -90,10 +80,10 @@
   gl.enableVertexAttribArray(a);
   gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
   var uRes = gl.getUniformLocation(prog, "uRes"), uP = gl.getUniformLocation(prog, "uP"),
-    uV = gl.getUniformLocation(prog, "uV"), uFaixa = gl.getUniformLocation(prog, "uFaixa");
+    uV = gl.getUniformLocation(prog, "uV"), uEsc = gl.getUniformLocation(prog, "uEsc");
 
-  var ESCALA = 0.5;            // pixels do canvas por pixel CSS
-  var FAIXA = 54;              // largura de cada faixa do vidro, em pixels CSS
+  // pixels do canvas por pixel CSS: o fio da borda tem 1px e precisa de resolução cheia
+  var ESCALA = Math.min(window.devicePixelRatio || 1, 1.5);
   var parado = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function medir() {
@@ -104,7 +94,7 @@
       gl.viewport(0, 0, l, h);
     }
     gl.uniform2f(uRes, l, h);
-    gl.uniform1f(uFaixa, FAIXA * ESCALA);
+    gl.uniform1f(uEsc, ESCALA);
   }
 
   function alvo() {
