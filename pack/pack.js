@@ -24,24 +24,25 @@
     { id: "clipe", nome: "Clipe e cinema", resumo: "Textura de filme e luz", icone: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4"/>' }
   ];
 
-  // SUBSTITUIR: os itens reais do pack (nome, tags para a busca, pasta, programas, usos, status, link)
+  // SUBSTITUIR: os itens reais do pack (nome, tags para a busca, pasta, programas, usos, status, link).
+  // foto = a miniatura em assets/pack/<foto>.webp (640×400); sem foto, a capa fica com o nome sobre a cor da pasta
   var ITENS = [
-    { nome: "Grão de filme", tags: "filme analogico noise ruido cinema", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "marca"] },
-    { nome: "Papel e poeira", tags: "papel poeira sujeira textura vintage", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
-    { nome: "Vazamento de luz", tags: "luz light leak brilho flare", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "youtube"] },
-    { nome: "Halftone", tags: "pontilhado retro quadrinho print", pasta: "texturas", programas: ["qualquer"], usos: ["marca", "reels"] },
-    { nome: "Ruído de VHS", tags: "vhs fita retro glitch analogico", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
-    { nome: "Whip pan", tags: "chicote movimento rapido corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
-    { nome: "Zoom", tags: "zoom aproximar corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
-    { nome: "Glitch", tags: "glitch erro digital falha", pasta: "transicoes", programas: ["pr", "ae"], usos: ["marca", "reels"] },
-    { nome: "Distorção", tags: "distorcer warp onda", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "marca"] },
-    { nome: "Cortes de luz", tags: "luz flash brilho corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "youtube"] },
-    { nome: "Risers", tags: "riser subida tensao som", pasta: "sons", programas: ["qualquer"], usos: ["marca", "youtube"] },
-    { nome: "Impactos", tags: "impacto hit pancada boom som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "marca"] },
-    { nome: "Swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
-    { nome: "Cliques de interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
-    { nome: "Ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
-    { nome: "Indicações de plugins", tags: "plugin extensao indicacao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
+    { nome: "Grão de filme", foto: "grao-de-filme", tags: "filme analogico noise ruido cinema", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "marca"] },
+    { nome: "Papel e poeira", foto: "papel-e-poeira", tags: "papel poeira sujeira textura vintage", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
+    { nome: "Vazamento de luz", foto: "vazamento-de-luz", tags: "luz light leak brilho flare", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "youtube"] },
+    { nome: "Halftone", foto: "halftone", tags: "pontilhado retro quadrinho print", pasta: "texturas", programas: ["qualquer"], usos: ["marca", "reels"] },
+    { nome: "Ruído de VHS", foto: "ruido-de-vhs", tags: "vhs fita retro glitch analogico", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
+    { nome: "Whip pan", foto: "whip-pan", tags: "chicote movimento rapido corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
+    { nome: "Zoom", foto: "zoom", tags: "zoom aproximar corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
+    { nome: "Glitch", foto: "glitch", tags: "glitch erro digital falha", pasta: "transicoes", programas: ["pr", "ae"], usos: ["marca", "reels"] },
+    { nome: "Distorção", foto: "distorcao", tags: "distorcer warp onda", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "marca"] },
+    { nome: "Cortes de luz", foto: "cortes-de-luz", tags: "luz flash brilho corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "youtube"] },
+    { nome: "Risers", foto: "risers", tags: "riser subida tensao som", pasta: "sons", programas: ["qualquer"], usos: ["marca", "youtube"] },
+    { nome: "Impactos", foto: "impactos", tags: "impacto hit pancada boom som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "marca"] },
+    { nome: "Swooshes", foto: "swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
+    { nome: "Cliques de interface", foto: "cliques-de-interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
+    { nome: "Ambientes", foto: "ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
+    { nome: "Indicações de plugins", foto: "indicacoes-de-plugins", tags: "plugin extensao indicacao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
     { nome: "Seleção de presets", tags: "preset predefinicao", pasta: "presets", programas: ["pr", "ae"], usos: ["reels", "clipe"] }
   ];
 
@@ -57,7 +58,9 @@
   function capa(item) {
     var p = pasta(item.pasta);
     var pronto = item.status === "ok" && item.link;
-    var dentro = '<div class="capa" style="--cor:' + p.cor + '"><b>' + e(item.nome) + "</b>" +
+    // com foto, o nome fica só embaixo do cartão: em cima da imagem ele sumiria nas partes claras
+    var dentro = '<div class="capa' + (item.foto ? " com-foto" : "") + '" style="--cor:' + p.cor + '">' +
+      (item.foto ? '<img src="../assets/pack/' + e(item.foto) + '.webp" alt="" width="640" height="400" loading="lazy">' : "<b>" + e(item.nome) + "</b>") +
       (pronto ? "" : '<span class="fita fita-quieta">Em breve</span>') + "</div>" +
       "<h4>" + e(item.nome) + "</h4><span>" + e(p.nome) + " · " + e(programasDe(item)) + "</span>";
     return pronto ? '<a class="pacote" href="' + e(item.link) + '">' + dentro + "</a>" : '<div class="pacote">' + dentro + "</div>";
