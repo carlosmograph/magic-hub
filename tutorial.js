@@ -11,7 +11,7 @@
   var tela = sec.querySelector(".tutorial-tela");
 
   function mostrar(n) {
-    passos.forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.passo === n)); });
+    passos.forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.passo === n)); });
     telas.forEach(function (f) { f.hidden = f.dataset.tela !== n; });
   }
   function sistema(s) {

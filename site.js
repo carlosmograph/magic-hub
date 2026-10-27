@@ -24,14 +24,18 @@
 
   // ---------------------------------------------------------------- login
   // aoEntrar roda depois que o Supabase Auth devolveu uma sessão
+  // embaixo de todo formulário de login: para que serve o e-mail (LGPD, art. 9º)
+  var AVISO_DADOS = '<p class="aviso-dados">Usamos o seu e-mail só para o login e para liberar o seu acesso. ' +
+    'Veja a <a href="../privacidade/">Política de privacidade</a> e os <a href="../termos/">Termos de uso</a>.</p>';
+
   function telaEntrar(cabeca, volta, aoEntrar, erro) {
     mostrar(cabeca + (erro ? '<p class="erro">' + e(erro) + "</p>" : "") +
       '<button class="btn quieto" id="google" type="button">' + G + "Entrar com Google</button>" +
       '<div class="ou">ou por e-mail</div>' +
-      '<form id="fEmail"><input type="email" name="email" placeholder="seu@email.com" autocomplete="email" required>' +
+      '<form id="fEmail"><input type="email" name="email" placeholder="seu@email.com" aria-label="Seu e-mail" autocomplete="email" required>' +
       '<button class="btn">Receber código por e-mail</button></form>' +
       '<p class="link">Use o e-mail da compra.</p>' +
-      '<p class="link"><button type="button" id="comSenha">Já criei uma senha</button></p>');
+      '<p class="link"><button type="button" id="comSenha">Já criei uma senha</button></p>' + AVISO_DADOS);
     document.getElementById("google").onclick = function () {
       sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: volta } });
     };
@@ -57,10 +61,10 @@
   // a senha é a do painel, criada em /conta ou depois do /ativar
   function telaSenhaEntrar(cabeca, volta, aoEntrar, email, erro) {
     mostrar(cabeca + (erro ? '<p class="erro">' + e(erro) + "</p>" : "") +
-      '<form id="fEntrar"><input type="email" name="email" placeholder="seu@email.com" autocomplete="email" required value="' + e(email) + '">' +
-      '<input type="password" name="senha" placeholder="Sua senha" autocomplete="current-password" required>' +
+      '<form id="fEntrar"><input type="email" name="email" placeholder="seu@email.com" aria-label="Seu e-mail" autocomplete="email" required value="' + e(email) + '">' +
+      '<input type="password" name="senha" placeholder="Sua senha" aria-label="Sua senha" autocomplete="current-password" required>' +
       '<button class="btn">Entrar</button></form>' +
-      '<p class="link"><button type="button" id="semSenha">Entrar com Google ou código por e-mail</button></p>');
+      '<p class="link"><button type="button" id="semSenha">Entrar com Google ou código por e-mail</button></p>' + AVISO_DADOS);
     var f = document.getElementById("fEntrar");
     (email ? f.senha : f.email).focus();
     document.getElementById("semSenha").onclick = function () { telaEntrar(cabeca, volta, aoEntrar); };
@@ -83,7 +87,7 @@
     mostrar(titulo("Confira", "seu e-mail") +
       "<p>Mandamos um código para <b>" + e(email) + "</b>. Ele vale por alguns minutos.</p>" +
       (erro ? '<p class="erro">' + e(erro) + "</p>" : "") +
-      '<form id="fCodigo"><input class="digitos" name="codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]{6,10}" required autofocus>' +
+      '<form id="fCodigo"><input class="digitos" name="codigo" aria-label="Código recebido por e-mail" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]{6,10}" required autofocus>' +
       '<button class="btn">Entrar</button></form>' +
       '<p class="link"><button type="button" id="outro">Usar outro e-mail</button></p>');
     document.getElementById("outro").onclick = function () { telaEntrar(cabeca, volta, aoEntrar); };
@@ -99,8 +103,8 @@
   }
 
   function formSenha(rotulo) {
-    return '<form id="fSenha"><input type="password" name="senha" placeholder="Nova senha (8 ou mais)" autocomplete="new-password" minlength="8" required>' +
-      '<input type="password" name="senha2" placeholder="Repita a senha" autocomplete="new-password" minlength="8" required>' +
+    return '<form id="fSenha"><input type="password" name="senha" placeholder="Nova senha (8 ou mais)" aria-label="Nova senha, 8 caracteres ou mais" autocomplete="new-password" minlength="8" required>' +
+      '<input type="password" name="senha2" placeholder="Repita a senha" aria-label="Repita a nova senha" autocomplete="new-password" minlength="8" required>' +
       '<p class="erro" id="erroSenha" hidden></p><button class="btn quieto">' + e(rotulo) + "</button></form>";
   }
 
@@ -250,7 +254,7 @@
 
   function abaAcesso(corpo, c) {
     var texto = !c.acesso ? "Sua conta ainda não tem acesso aos plugins. Compre com este mesmo e-mail e ele libera sozinho."
-      : c.vitalicio ? "Os seis plugins de hoje e os que vierem, no After Effects e no Premiere. Sem mensalidade."
+      : c.vitalicio ? "Os seis plugins de hoje e os que vierem pelo Magic Hub. Sem mensalidade."
         : "Seu acesso vale até " + dia(c.acesso_ate) + ".";
     corpo.innerHTML =
       '<section class="cartao status' + (c.acesso ? "" : " sem") + '"><p class="rotulo">Seu acesso</p>' +
@@ -291,7 +295,11 @@
         formSenha(c.tem_senha ? "Trocar senha" : "Criar senha") + "</section>" +
       '<section class="cartao"><p class="rotulo">Onde você está conectado</p><div id="sessoes"><p>Carregando…</p></div></section>' +
       '<section class="cartao"><p class="rotulo">Este navegador</p><p>Sair do site não desconecta o Magic Hub no After ou no Premiere.</p>' +
-        '<button class="btn quieto" type="button" id="sair">Sair do site</button></section>';
+        '<button class="btn quieto" type="button" id="sair">Sair do site</button></section>' +
+      '<section class="cartao"><p class="rotulo">Seus dados</p>' +
+        '<p>Quer uma cópia dos seus dados, corrigir algo ou excluir a conta? Fale com a gente pelo e-mail ou pelo WhatsApp da página Contato. Respondemos em até 15 dias.</p>' +
+        '<div class="acoes-conta"><a class="btn quieto" href="../contato/">Falar com a gente</a>' +
+        '<a class="btn quieto" href="../privacidade/#direitos">Seus direitos</a></div></section>';
     ligarSenha(function () { conta("Senha salva. Já dá para entrar no painel com e-mail e senha."); });
     document.getElementById("sair").onclick = function () { sair().then(function () { location.hash = ""; conta(); }); };
     listarSessoes();

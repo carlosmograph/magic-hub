@@ -37,7 +37,7 @@
   --linha:rgba(253,247,233,.12);
   --linha-forte:rgba(253,247,233,.26);
   --suave:#A6A1B5;        /* neutro puxado pro indigo, nunca cinza morto */
-  --suave-2:#726E80;
+  --suave-2:#908C9F;  /* era #726E80: não passava no contraste AA sobre o fundo */
   --indigo-claro:#8F8AFF; /* o indigo legível como TEXTO sobre o preto */
   --lima-forte:#DBFF7E;
   --vidro:linear-gradient(180deg,rgba(253,247,233,.055),rgba(253,247,233,.015));

@@ -1,0 +1,2 @@
+/* supabase-js 2.49.4 (MIT, https://github.com/supabase/supabase-js), copiado do pacote oficial no npm
+   para o site não chamar CDN de terceiros. */

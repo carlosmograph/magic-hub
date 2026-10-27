@@ -229,7 +229,7 @@
 .plano.destaque-plano{border-color:rgba(103,97,255,.7);
   background:linear-gradient(165deg,rgba(103,97,255,.18),rgba(12,12,14,0) 55%),linear-gradient(165deg,rgba(30,30,34,.62),rgba(12,12,14,.78));
   box-shadow:inset 0 1px 0 rgba(143,138,255,.4),0 34px 70px -28px rgba(0,0,0,.9),0 0 78px -14px rgba(103,97,255,.36)}
-.destaque-plano .fita{background:var(--indigo);color:#EFEEFF}
+.destaque-plano .fita{background:var(--indigo-claro);color:var(--preto)}
 .destaque-plano .parcela{color:var(--indigo-claro)}
 /* o recomendado sobe um degrau com top, não translate (o reveal anima translate) */
 @media(min-width:940px){.plano.destaque-plano{top:-16px}}
@@ -358,7 +358,7 @@
 .filtro:hover{color:var(--creme);background:rgba(253,247,233,.04)}
 .filtro[aria-pressed="true"]{color:var(--creme);background:rgba(253,247,233,.08)}
 .filtro svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.filtro em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--suave-2)}
+.filtro em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--suave)}
 .filtro .prog{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;flex:none;
   font:600 10px var(--mono);color:var(--cor);border:1px solid color-mix(in srgb,var(--cor) 55%,transparent);
   background:color-mix(in srgb,var(--cor) 14%,transparent)}
@@ -506,9 +506,9 @@ html.travado{overflow-y:hidden}
   transition:max-height .35s ease,opacity .25s ease,margin .25s ease}
 .passo-txt strong{color:var(--creme);font-weight:600}
 .passo-txt code{font-family:var(--mono);font-size:12px;color:var(--creme);background:rgba(253,247,233,.07);padding:1px 6px;border-radius:6px;word-break:break-word}
-.passo-t[aria-selected="true"]{border-color:rgba(253,247,233,.4);background:linear-gradient(180deg,rgba(253,247,233,.07),rgba(28,28,28,.6))}
-.passo-t[aria-selected="true"] > i{color:var(--lima)}
-.passo-t[aria-selected="true"] .passo-txt{max-height:220px;opacity:1;margin-top:8px}
+.passo-t[aria-expanded="true"]{border-color:rgba(253,247,233,.4);background:linear-gradient(180deg,rgba(253,247,233,.07),rgba(28,28,28,.6))}
+.passo-t[aria-expanded="true"] > i{color:var(--lima)}
+.passo-t[aria-expanded="true"] .passo-txt{max-height:220px;opacity:1;margin-top:8px}
 
 .tutorial-tela{position:relative;min-height:440px;display:grid;place-items:center;padding:28px;overflow:hidden;
   border-radius:var(--raio-cartao);border:1px solid var(--linha);
@@ -572,3 +572,38 @@ html.travado{overflow-y:hidden}
   box-shadow:0 24px 50px -24px rgba(0,0,0,.9)}
 .mini-painel + .mini-painel{position:relative;top:28px}
 .mini-painel img{display:block;width:100%;height:auto;max-height:380px;object-fit:cover;object-position:top}
+
+/* ---------------- páginas legais (termos, privacidade, reembolso) ----------------
+   Coluna de leitura; as abas trocam de documento (creme = navega). Os <mark class="preencher">
+   são dados que faltam e saltam em amarelo para não irem ao ar vazios. */
+.legal-hero{padding-bottom:28px}
+.legal-hero .cabeca .titulo{margin:22px 0 18px}
+.legal-data{margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.legal-abas a{padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;color:var(--suave);white-space:nowrap}
+.legal-abas a:hover{color:var(--creme)}
+.legal-abas a[aria-current="page"]{background:var(--creme);color:var(--preto)}
+.legal-secao{padding-top:24px}
+.legal{max-width:760px;margin-inline:auto;padding:40px clamp(20px,5vw,48px);border-radius:var(--raio-cartao);
+  border:1px solid var(--linha);background:rgba(21,21,23,.82);color:var(--suave);font-size:16px;line-height:1.7}
+.legal h2{margin:40px 0 12px;font:600 21px/1.3 "Host Grotesk",system-ui,sans-serif;color:var(--creme);scroll-margin-top:100px}
+.legal h2:first-child{margin-top:0}
+.legal p,.legal ul{margin:0 0 14px}
+.legal ul{padding-left:20px;display:grid;gap:8px}
+.legal li::marker{color:var(--indigo-claro)}
+.legal b,.legal strong{color:var(--creme);font-weight:600}
+.legal a{color:var(--creme);text-decoration:underline;text-underline-offset:3px}
+.legal code{font-family:var(--mono);font-size:13px;color:var(--creme);background:rgba(253,247,233,.07);padding:1px 6px;border-radius:6px}
+.legal-quem{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:rgba(253,247,233,.04);border:1px solid var(--linha)}
+.legal-quem p{margin:0}.legal-quem p + p{margin-top:6px}
+.legal-tabela{overflow-x:auto;margin:0 0 16px;border-radius:14px;border:1px solid var(--linha)}
+.legal-tabela:focus-visible{outline:2px solid var(--creme);outline-offset:2px}
+.legal table{width:100%;min-width:620px;border-collapse:collapse;font-size:14px;line-height:1.5}
+.legal th,.legal td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linha)}
+.legal th{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--creme);background:rgba(253,247,233,.05)}
+.legal tr:last-child td{border-bottom:0}
+.legal td:first-child{color:var(--creme);font-weight:600}
+mark.preencher{background:#FFE14D;color:#1C1C1C;padding:0 4px;border-radius:4px;font-weight:700}
+.rodape-legal{font-size:13px}
+.rodape-empresa{margin-top:2px !important}
+.precos-nota{position:relative;z-index:1;max-width:640px;margin:40px auto 0;text-align:center;font-size:14px;line-height:1.55;color:var(--suave)}
+.precos-nota a{color:var(--creme);text-decoration:underline;text-underline-offset:3px}

@@ -74,3 +74,8 @@ body.com-topo > main{margin:56px auto 72px;padding:0 16px}
 }
 @media(max-width:480px){.topo-acesso-1{display:none}}
 @media(max-width:380px){.topo-conta span:not(.avatar){display:none}.topo-conta.logado{padding:0 3px}}
+
+/* "Pular para o conteúdo": invisível até alguém chegar nele pelo Tab */
+.pular{position:absolute;left:16px;top:-80px;z-index:100;padding:12px 18px;border-radius:999px;
+  background:#FDF7E9;color:#1C1C1C;font:600 14px "Host Grotesk",system-ui,sans-serif;text-decoration:none;transition:top .15s ease}
+.pular:focus{top:12px}

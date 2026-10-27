@@ -79,3 +79,10 @@ body.na-conta .marca{display:none}
 .link-btn{background:none;border:0;padding:0;color:var(--creme);text-decoration:underline;font:500 13.5px "Host Grotesk",sans-serif;cursor:pointer;white-space:nowrap}
 .conta .aviso{margin:-8px 0 18px}
 @media(max-width:560px){.conta-nome{font-size:30px}.conta-abas{width:100%}.conta-abas a{flex:1;text-align:center;padding:9px 8px}}
+
+/* LGPD: para que serve o e-mail, embaixo de todo login; e os links legais no pé */
+.aviso-dados{margin-top:22px;font-size:12.5px;line-height:1.5;color:var(--suave)}
+.aviso-dados a,.legal-mini a{color:var(--creme);text-decoration:underline}
+.legal-mini{display:block;margin:28px auto 0;text-align:center;font-size:12.5px;color:var(--suave)}
+body.com-topo .legal-mini{margin-bottom:40px}
+:focus-visible{outline:2px solid var(--lima);outline-offset:3px}

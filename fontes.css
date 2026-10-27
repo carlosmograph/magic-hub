@@ -1,0 +1,5 @@
+/* As três fontes da CRMO servidas pelo próprio site (antes vinham do Google Fonts, que recebia
+   o IP de cada visitante). Mesmos arquivos do painel (extension/fontes); licenças em fontes/LICENCAS.txt */
+@font-face{font-family:"Anton";src:url("fontes/Anton.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Host Grotesk";src:url("fontes/HostGrotesk.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("fontes/JetBrainsMono.woff2") format("woff2");font-weight:400 500;font-display:swap}

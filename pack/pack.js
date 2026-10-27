@@ -41,7 +41,7 @@
     { nome: "Swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
     { nome: "Cliques de interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
     { nome: "Ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
-    { nome: "Seleção de plugins", tags: "plugin extensao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
+    { nome: "Indicações de plugins", tags: "plugin extensao indicacao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
     { nome: "Seleção de presets", tags: "preset predefinicao", pasta: "presets", programas: ["pr", "ae"], usos: ["reels", "clipe"] }
   ];
 

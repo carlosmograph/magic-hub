@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pack de arquivos · Magic Hub</title>
 <meta name="description" content="Texturas, transições, efeitos sonoros e presets da CRMO, separados por pasta e por programa.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../crmo.css?v=20261022f">
-<link rel="stylesheet" href="../landing.css?v=20261022f">
-<link rel="stylesheet" href="../topo.css?v=20261022f">
+<link rel="stylesheet" href="../fontes.css?v=20261027b">
+<link rel="stylesheet" href="../crmo.css?v=20261027b">
+<link rel="stylesheet" href="../landing.css?v=20261027b">
+<link rel="stylesheet" href="../topo.css?v=20261027b">
 </head>
 <body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="estrela8" viewBox="0 0 100 100"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></symbol>
 </svg>
@@ -34,7 +33,7 @@
   </div>
 </header>
 
-<main>
+<main id="conteudo">
 
 <!-- ============ HERO ============ -->
 <!-- SUBSTITUIR: o conteúdo do pack ainda não existe. Tudo que tem "Em breve" sai
@@ -135,7 +134,7 @@
       <details><summary>Preciso baixar tudo de uma vez?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
         <p>Não. Cada pasta baixa separada, então você pega só o que vai usar no projeto.</p></details>
       <details><summary>Tem versão grátis?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>Tem: uma seleção reduzida de texturas, transições e sons, junto com o Magic Hub. O pack completo sai por R$ 25, ou vem junto no plano Completo com os seis plugins.</p></details>
+        <p>Vai ter: uma seleção reduzida de texturas, transições e sons, junto com o Magic Hub, assim que o pack sair. O pack completo sai por R$ 25, ou vem junto no plano Completo com os seis plugins.</p></details>
       <details><summary>Quando sai?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary>
         <p>Os itens marcados "Em breve" ainda estão sendo organizados. Eles aparecem aqui assim que entrarem no pack.</p></details>
     </div>
@@ -147,20 +146,27 @@
 <footer class="rodape">
   <div class="wrap rodape-in">
     <img src="../assets/logo-crmo.png" alt="CRMO" width="110" height="24">
-    <nav class="rodape-links" aria-label="Páginas">
+    <nav class="rodape-links" aria-label="Páginas, no rodapé">
       <a href="../">Início</a>
       <a href="../plugins/">Plugins</a>
+      <a href="../pack/">Pack</a>
       <a href="../conta/">Minha conta</a>
       <a href="../contato/">Contato</a>
     </nav>
-    <small>Copyright &copy; 2026 — Carlos Eduardo (CRMO). Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
+    <nav class="rodape-links rodape-legal" aria-label="Documentos legais, no rodapé">
+      <a href="../termos/">Termos de uso</a>
+      <a href="../privacidade/">Privacidade</a>
+      <a href="../reembolso/">Reembolso</a>
+    </nav>
+    <small class="rodape-empresa">CRMO · <mark class="preencher" data-preencher="nome">PREENCHER: nome completo ou razão social</mark> · <mark class="preencher" data-preencher="documento">PREENCHER: CPF ou CNPJ</mark> · <mark class="preencher" data-preencher="endereco">PREENCHER: endereço</mark> · <mark class="preencher" data-preencher="email">PREENCHER: e-mail de contato</mark></small>
+    <small>Copyright &copy; 2026 CRMO. Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
   </div>
 </footer>
 
-<script src="pack.js?v=20261022f"></script>
-<script src="../crmo.js?v=20261022f" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
-<script src="../config.js?v=20261022f"></script>
-<script src="../sessao.js?v=20261022f"></script>
+<script src="pack.js?v=20261027b"></script>
+<script src="../crmo.js?v=20261027b" defer></script>
+<script src="../vendor/supabase.js?v=2.49.4"></script>
+<script src="../config.js?v=20261027b"></script>
+<script src="../sessao.js?v=20261027b"></script>
 </body>
 </html>

@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Magic Hub · CRMO</title>
 <meta name="description" content="Os plugins Magic da CRMO num painel só, no After Effects e no Premiere. Pagamento único, acesso vitalício.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="crmo.css?v=20261022f">
-<link rel="stylesheet" href="landing.css?v=20261022f">
-<link rel="stylesheet" href="topo.css?v=20261022f">
+<link rel="stylesheet" href="fontes.css?v=20261027b">
+<link rel="stylesheet" href="crmo.css?v=20261027b">
+<link rel="stylesheet" href="landing.css?v=20261027b">
+<link rel="stylesheet" href="topo.css?v=20261027b">
 </head>
 <body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <!-- A estrela da marca e os glifos dos plugins (os mesmos do painel, extension/js/icones.js) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="estrela8" viewBox="0 0 100 100"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></symbol>
@@ -41,7 +40,7 @@
   </div>
 </header>
 
-<main>
+<main id="conteudo">
 
 <!-- ============ HERO ============ -->
 <!-- Palco arredondado: título no centro e o produto "nascendo" do brilho embaixo.
@@ -56,7 +55,7 @@
       <button class="btn btn-quieto" type="button" data-vitrine="ease"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Ver por dentro</span></button>
     </div>
 
-    <div class="produto" aria-label="O Magic Hub entre dois painéis de plugin">
+    <div class="produto" role="group" aria-label="O Magic Hub entre dois painéis de plugin">
       <button class="tela-lado esq" type="button" data-vitrine="ease" aria-label="Ver a interface do Magic Ease"><img src="assets/paineis/ease-1.webp" alt="" width="400" height="900"></button>
       <div class="palco">
         <!-- O painel de verdade (layout novo do Hub), capturado da prévia com a conta de teste do
@@ -157,7 +156,7 @@
         <div class="peca-texto">
           <span class="app" style="--bg:#6761FF;--st:#FDF7E9"><svg class="glifo"><use href="#g-legenda"/></svg></span>
           <h3>Magic Caption</h3>
-          <p>Legendas automáticas com 15 estilos animados e a palavra grande em destaque. Transcreve no seu computador, sem internet e sem crédito por minuto, e exporta SRT.</p>
+          <p>Legendas automáticas com 15 estilos animados e a palavra grande em destaque. Transcreve no seu computador, sem crédito por minuto e sem mandar o áudio para fora, e exporta SRT.</p>
           <span class="tag">After Effects</span>
           <button class="card-abrir" type="button" data-vitrine="legenda" aria-label="Ver a interface do Magic Caption">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
@@ -229,7 +228,9 @@
 </section>
 
 <!-- ============ AMOSTRAS ============ -->
-<section class="secao" id="amostras">
+<!-- Escondida (hidden) até ter vídeos de verdade: com os moldes vazios, o texto "nada de mockup"
+     prometia algo que a página não mostrava. Para voltar: troque os .slot pelos vídeos e tire o hidden. -->
+<section class="secao" id="amostras" hidden>
   <div class="wrap">
     <div class="cabeca">
       <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg> Amostras</p>
@@ -257,7 +258,7 @@
     <div class="cabeca">
       <p class="rotulo rotulo-centro" data-reveal><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela8"/></svg>Como instalar</p>
       <h2 class="titulo" data-reveal>Do download<br><em>ao primeiro plugin</em></h2>
-      <p class="sub" data-reveal>Uns três minutos, uma vez só. Depois disso o Magic Hub cuida das atualizações sozinho.</p>
+      <p class="sub" data-reveal>Uma vez só. Depois disso o Magic Hub cuida das atualizações sozinho.</p>
     </div>
     <div class="segmentos so-abas" role="tablist" aria-label="Sistema" data-reveal>
       <button type="button" role="tab" data-so="win" aria-selected="true">Windows</button>
@@ -266,19 +267,19 @@
 
     <div class="tutorial">
       <ol class="tutorial-passos">
-        <li><button type="button" class="passo-t" data-passo="1" aria-selected="true">
+        <li><button type="button" class="passo-t" data-passo="1" aria-expanded="true">
           <i>01</i><span><b>Garanta o acesso</b>
           <span class="passo-txt">Compre na Kiwify. O acesso fica ligado ao <strong>e-mail da compra</strong>: é com ele que você entra no Hub.</span></span></button></li>
-        <li><button type="button" class="passo-t" data-passo="2" aria-selected="false">
+        <li><button type="button" class="passo-t" data-passo="2" aria-expanded="false">
           <i>02</i><span><b>Baixe o instalador</b>
           <span class="passo-txt">Um .zip só, para Windows e Mac. O Hub em si é grátis; os plugins conferem o seu acesso.</span></span></button></li>
-        <li><button type="button" class="passo-t" data-passo="3" aria-selected="false">
+        <li><button type="button" class="passo-t" data-passo="3" aria-expanded="false">
           <i>03</i><span><b>Rode o instalador</b>
           <span class="passo-txt"><span class="so-win">Feche o After e o Premiere. Extraia o .zip, dê dois cliques em <code>Instalar Magic Hub (Windows).bat</code> e responda <strong>S</strong>.</span><span class="so-mac">Feche o After e o Premiere. Extraia o .zip e dê dois cliques em <code>Instalar Magic Hub (Mac).command</code>. Se o Mac bloquear: botão direito › Abrir. Responda <strong>s</strong>.</span></span></span></button></li>
-        <li><button type="button" class="passo-t" data-passo="4" aria-selected="false">
+        <li><button type="button" class="passo-t" data-passo="4" aria-expanded="false">
           <i>04</i><span><b>Abra o painel</b>
           <span class="passo-txt">No After Effects ou no Premiere: <strong>Janela › Extensões › Magic Hub</strong>. Encaixe o painel onde quiser, ao lado da timeline.</span></span></button></li>
-        <li><button type="button" class="passo-t" data-passo="5" aria-selected="false">
+        <li><button type="button" class="passo-t" data-passo="5" aria-expanded="false">
           <i>05</i><span><b>Entre e instale</b>
           <span class="passo-txt">Entre com o e-mail da compra (comprou pelo Google? use “Entrar pelo navegador”). Clique em <strong>Instalar</strong> em cada plugin e reabra o programa.</span></span></button></li>
       </ol>
@@ -286,7 +287,7 @@
       <div class="tutorial-tela">
         <figure class="tela-passo" data-tela="1">
           <div class="janela recibo">
-            <div class="janela-barra"><i></i><i></i><i></i><span>Kiwify · pagamento</span></div>
+            <div class="janela-barra"><i></i><i></i><i></i><span>Exemplo · confirmação da compra</span></div>
             <div class="recibo-corpo">
               <span class="recibo-ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
               <b>Pagamento aprovado</b>
@@ -396,16 +397,16 @@
         </div>
         <p class="plano-desc">Uma versão reduzida do pack de arquivos e o painel do Magic Hub, pra conhecer antes de gastar um real.</p>
         <ul>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Pack grátis</b>: uma seleção reduzida de texturas, transições e sons</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Pack grátis</b> (em breve): uma seleção reduzida de texturas, transições e sons</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>O painel <b>Magic Hub</b> no After Effects e no Premiere</span></li>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Os seis plugins por dentro, antes de comprar</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Veja os seis plugins por dentro antes de comprar</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Windows e Mac, versões 2022 ou mais novas</span></li>
         </ul>
         <a class="btn btn-lima btn-bloco" href="baixar/Magic-Hub-instalador.zip" download><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 11l4.5 4.5L16.5 11M5 20h14"/></svg></i><span>Baixar de graça</span></a>
       </div>
 
       <div class="plano destaque-laranja" data-reveal>
-        <span class="fita">Só os arquivos</span>
+        <span class="fita">Só os arquivos · em breve</span>
         <div>
           <div class="plano-marcas" aria-hidden="true">
             <span class="app" style="--bg:#FF6316;--st:#D0FE60;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
@@ -419,7 +420,7 @@
         <ul>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Texturas, overlays e transições</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Biblioteca de efeitos sonoros</span></li>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Seleção comentada de plugins e presets</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Indicações de plugins e presets, com link para as lojas oficiais</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Atualizações do pack inclusas</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Magic Hub</b> já vem junto — é grátis para todo mundo</span></li>
         </ul>
@@ -438,9 +439,9 @@
           <div class="valor"><b>50</b><small>R$ · pagamento único</small></div>
           <p class="parcela">acesso vitalício</p>
         </div>
-        <p class="plano-desc">Pra quem edita todo dia: os seis plugins Magic no After e no Premiere, e o pack de arquivos junto.</p>
+        <p class="plano-desc">Pra quem edita todo dia: os seis plugins Magic e o pack de arquivos junto.</p>
         <ul>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Tudo do pack de arquivos</b>, sem corte</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Tudo do pack de arquivos</b>, sem corte, assim que ele sair</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Os 6 plugins Magic</b>: Ease, Motion, Text, Box, SFX e Caption</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Plugins novos entram no Hub sem pagar de novo</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Licença vitalícia, sem mensalidade</span></li>
@@ -449,6 +450,7 @@
       </div>
       </div>
     </div>
+    <p class="precos-nota" data-reveal>Pagamento único pela Kiwify. Você tem 7 dias para desistir e receber tudo de volta (<a href="reembolso/">reembolso</a>). O que “vitalício” quer dizer está nos <a href="termos/#vitalicio">Termos de uso</a>.</p>
   </div>
 </section>
 
@@ -479,22 +481,29 @@
 <footer class="rodape">
   <div class="wrap rodape-in">
     <img src="assets/logo-crmo.png" alt="CRMO" width="110" height="24">
-    <nav class="rodape-links" aria-label="Páginas">
+    <nav class="rodape-links" aria-label="Páginas, no rodapé">
+      <a href="">Início</a>
       <a href="plugins/">Plugins</a>
       <a href="pack/">Pack</a>
       <a href="conta/">Minha conta</a>
       <a href="contato/">Contato</a>
     </nav>
-    <small>Copyright &copy; 2026 — Carlos Eduardo (CRMO). Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
+    <nav class="rodape-links rodape-legal" aria-label="Documentos legais, no rodapé">
+      <a href="termos/">Termos de uso</a>
+      <a href="privacidade/">Privacidade</a>
+      <a href="reembolso/">Reembolso</a>
+    </nav>
+    <small class="rodape-empresa">CRMO · <mark class="preencher" data-preencher="nome">PREENCHER: nome completo ou razão social</mark> · <mark class="preencher" data-preencher="documento">PREENCHER: CPF ou CNPJ</mark> · <mark class="preencher" data-preencher="endereco">PREENCHER: endereço</mark> · <mark class="preencher" data-preencher="email">PREENCHER: e-mail de contato</mark></small>
+    <small>Copyright &copy; 2026 CRMO. Adobe, Premiere Pro e After Effects são marcas da Adobe Inc.; este produto não tem vínculo com a Adobe.</small>
   </div>
 </footer>
 
-<script src="crmo.js?v=20261022f" defer></script>
-<script src="vitrine.js?v=20261022f" defer></script>
-<script src="home.js?v=20261022f" defer></script>
-<script src="tutorial.js?v=20261022f" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
-<script src="config.js?v=20261022f"></script>
-<script src="sessao.js?v=20261022f"></script>
+<script src="crmo.js?v=20261027b" defer></script>
+<script src="vitrine.js?v=20261027b" defer></script>
+<script src="home.js?v=20261027b" defer></script>
+<script src="tutorial.js?v=20261027b" defer></script>
+<script src="vendor/supabase.js?v=2.49.4"></script>
+<script src="config.js?v=20261027b"></script>
+<script src="sessao.js?v=20261027b"></script>
 </body>
 </html>
