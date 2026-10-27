@@ -1,11 +1,10 @@
-/* Fundo do site em código (WebGL): um fluido de luz roxa, bem escuro e liso. Dois corpos
-   escuros grandes quase se tocam; a luz passa pela fresta entre eles e vira um fio que se
-   abre num leque claro, como seda. A rolagem move tudo como um líquido: os corpos giram em
-   volta do centro, incham e encolhem, e o espaço inteiro ondula devagar.
-   - Desenha só quando a rolagem muda (com inércia); parado, não gasta nada.
+/* Fundo do site em código (WebGL): fundo preto com brilhos roxos suaves que oscilam o tempo
+   todo, cada um no seu ritmo (vai e volta devagar e pulsa de leve). A rolagem empurra os
+   brilhos pela tela com inércia, então eles acompanham a página.
+   - Liso: sem grão nem textura (só um pontilhado de 1/255, invisível, contra faixas).
+   - Roda a ~30 quadros por segundo e para quando a aba some.
    - Sem WebGL, fica o .brilho de CSS de antes. Com movimento reduzido, a cena fica parada.
-   Cores: do --fundo ao indigo, com um toque de rosa só no ponto mais claro, sempre baixo:
-   o texto passa por cima sem precisar de fundo próprio. */
+   Cores: indigo e indigo com um toque de rosa, sempre baixos sobre o preto. */
 (function () {
   "use strict";
 
@@ -18,43 +17,35 @@
   var VERT = "attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}";
   var FRAG = [
     "precision highp float;",
-    "uniform vec2 uRes;uniform float uP;uniform float uV;uniform float uEsc;",
-    "const vec3 FUNDO=vec3(.071,.067,.086);",
+    "uniform vec2 uRes;uniform float uP;uniform float uT;",
+    "const vec3 PRETO=vec3(.039,.039,.047);",
     "const vec3 INDIGO=vec3(.404,.380,1.);",
     "const vec3 ROSA=vec3(1.,.796,.937);",
     "float ruido(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}",
-    "vec2 girar(vec2 v,float a){float c=cos(a),s=sin(a);return vec2(c*v.x-s*v.y,s*v.x+c*v.y);}",
+    // um brilho: mancha redonda e difusa em c, raio r; oscila em volta de c e pulsa
+    "float brilho(vec2 p,vec2 c,float r,float fase,float t){",
+    "  c+=vec2(sin(t*.31+fase),cos(t*.26+fase*1.7))*.22;",
+    "  float pulso=.6+.4*sin(t*.45+fase*2.3);",
+    "  vec2 d=(p-c)/r;",
+    "  return exp(-dot(d,d))*pulso;",
+    "}",
     "void main(){",
     "  vec2 R=uRes;",
     "  vec2 p=(gl_FragCoord.xy-.5*R)/R.y;",
+    "  float t=uT;",
+    // a rolagem desce os brilhos e gira o conjunto devagar
     "  float s=uP;",
-    // o líquido: o espaço ondula em duas frequências baixas, deslocadas pela rolagem
-    "  p+=.06*vec2(sin(p.y*2.3+s*5.1),cos(p.x*1.9-s*4.3));",
-    "  p+=.03*vec2(sin(p.y*4.1-s*3.7+1.3),sin(p.x*3.6+s*4.9));",
-    // os dois corpos escuros, um de cada lado do centro, girando juntos e quase se tocando
-    "  float a=.62+s*2.4;",
-    "  vec2 cA=girar(vec2(-.63,.07),a);",
-    "  vec2 cB=girar(vec2(.63,-.07),a);",
-    "  float dA=length(p-cA)-(.62+.05*sin(s*7.3));",
-    "  float dB=length(p-cB)-(.64+.05*cos(s*6.1));",
-    "  float espalha=1.+clamp(abs(uV),0.,1.)*.6;",
-    // luz ambiente: some devagar para dentro dos corpos (borda bem larga, como seda)
-    "  float amb=smoothstep(-.4,.55,min(dA,dB));",
-    // a fresta: onde as duas bordas se aproximam, dA+dB é quase zero. Um fio fino e um halo
-    "  float junto=max(dA+dB,0.)/espalha;",
-    "  float borda=smoothstep(-.06,.0,min(dA,dB));",
-    "  float fio=exp(-junto*28.)*borda;",
-    "  float halo=exp(-junto*5.)*borda;",
-    // a luz vem de um lado só, como na referência: o leque abre para um canto
-    "  vec2 lado=girar(vec2(-.7,-.7),a-.62);",
-    "  float canto=smoothstep(-1.,1.,dot(p,lado));",
-    "  float luz=amb*.75*(.15+.85*canto)+halo*.35+fio*.45;",
-    "  luz=clamp(luz,0.,1.);",
-    // rampa: fundo → indigo escuro → indigo → um lilás no ponto mais claro; tudo baixo
-    "  vec3 cor=mix(FUNDO,INDIGO*.25,smoothstep(0.,.45,luz));",
-    "  cor=mix(cor,INDIGO*.38,smoothstep(.35,.8,luz));",
-    "  cor=mix(cor,mix(INDIGO,ROSA,.35)*.46,smoothstep(.75,1.,luz));",
-    // pontilhado de 1,5/255: invisível, só evita faixas num degradê tão escuro
+    "  float a=s*2.2;",
+    "  mat2 g=mat2(cos(a),-sin(a),sin(a),cos(a));",
+    "  vec2 q=g*p+vec2(0.,s*.6-.3);",
+    "  vec3 violeta=mix(INDIGO,ROSA,.3);",
+    "  vec3 luz=INDIGO*brilho(q,vec2(-.62,.36),.42,0.,t)*.6;",
+    "  luz+=violeta*brilho(q,vec2(.68,.02),.38,2.1,t)*.5;",
+    "  luz+=INDIGO*brilho(q,vec2(-.18,-.52),.46,4.2,t)*.55;",
+    "  luz+=violeta*brilho(q,vec2(.32,.7),.34,5.6,t)*.45;",
+    // o meio da tela fica um pouco mais escuro: é onde o texto passa
+    "  float meio=1.-.3*exp(-pow(p.x*1.8,2.));",
+    "  vec3 cor=PRETO+luz*.62*meio;",
     "  cor+=(ruido(gl_FragCoord.xy)-.5)*1.5/255.;",
     "  gl_FragColor=vec4(cor,1.);",
     "}"
@@ -81,11 +72,11 @@
   var a = gl.getAttribLocation(prog, "a");
   gl.enableVertexAttribArray(a);
   gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
-  var uRes = gl.getUniformLocation(prog, "uRes"), uP = gl.getUniformLocation(prog, "uP"),
-    uV = gl.getUniformLocation(prog, "uV"), uEsc = gl.getUniformLocation(prog, "uEsc");
+  var uRes = gl.getUniformLocation(prog, "uRes"), uP = gl.getUniformLocation(prog, "uP"), uT = gl.getUniformLocation(prog, "uT");
 
-  // pixels do canvas por pixel CSS: a luz é toda difusa, então 1 pixel por pixel CSS basta
-  var ESCALA = 1;
+  // a luz é toda difusa: meia resolução não perde nada e poupa o celular
+  var ESCALA = 0.5;
+  var QUADRO = 1000 / 30;
   var parado = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function medir() {
@@ -96,7 +87,6 @@
       gl.viewport(0, 0, l, h);
     }
     gl.uniform2f(uRes, l, h);
-    gl.uniform1f(uEsc, ESCALA);
   }
 
   function alvo() {
@@ -104,44 +94,42 @@
     return total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
   }
 
-  var atual = parado ? 0.12 : alvo(), vel = 0, antes = 0, rodando = false;
+  var atual = alvo(), inicio = performance.now(), antes = 0, ultimo = 0, rodando = false;
 
-  function desenhar() {
+  function desenhar(agora) {
     gl.uniform1f(uP, atual);
-    gl.uniform1f(uV, vel);
+    gl.uniform1f(uT, parado ? 0 : (agora - inicio) / 1000);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
-  // inércia: o fundo persegue a rolagem com uma mola amortecida, igual em 60 ou 120 Hz
+  // os brilhos oscilam sempre; a rolagem chega neles com inércia, igual em 60 ou 120 Hz
   function quadro(agora) {
-    var dt = Math.min(0.05, (agora - antes) / 1000 || 0.016);
-    antes = agora;
-    var t = alvo(), passo = 1 - Math.exp(-dt * 5);
-    var novo = atual + (t - atual) * passo;
-    vel += ((novo - atual) / dt * 6 - vel) * (1 - Math.exp(-dt * 8));
-    atual = novo;
-    desenhar();
-    if (Math.abs(t - atual) > 0.0002 || Math.abs(vel) > 0.002) { requestAnimationFrame(quadro); }
-    else { vel = 0; desenhar(); rodando = false; }
+    if (document.hidden) { rodando = false; return; }
+    requestAnimationFrame(quadro);
+    if (agora - ultimo < QUADRO) { return; }
+    var dt = Math.min(0.1, (agora - (antes || agora)) / 1000);
+    antes = agora; ultimo = agora;
+    atual += (alvo() - atual) * (1 - Math.exp(-dt * 4));
+    desenhar(agora);
   }
   function acordar() {
     if (parado || rodando || document.hidden) { return; }
     rodando = true;
-    antes = performance.now();
+    antes = 0;
     requestAnimationFrame(quadro);
   }
 
   medir();
-  desenhar();
+  desenhar(performance.now());
   document.body.insertBefore(tela, document.body.firstChild);
   document.documentElement.classList.add("com-fundo-gl");
 
-  window.addEventListener("scroll", acordar, { passive: true });
-  window.addEventListener("resize", function () { medir(); desenhar(); acordar(); });
+  window.addEventListener("resize", function () { medir(); desenhar(performance.now()); });
   document.addEventListener("visibilitychange", acordar);
   tela.addEventListener("webglcontextlost", function (ev) {
     ev.preventDefault();
     document.documentElement.classList.remove("com-fundo-gl");
     tela.remove();
   });
+  acordar();
 }());
