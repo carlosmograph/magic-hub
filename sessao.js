@@ -73,7 +73,7 @@
   }
 
   // Quem tem acesso não vê "Comprar": o botão vira o selo do acesso e leva à aba Acesso da conta
-  var ESTRELA = '<svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M92 50 L55.54 52.3 L64.14 64.14 L52.3 55.54 L50 92 L47.7 55.54 L35.86 64.14 L44.46 52.3 L8 50 L44.46 47.7 L35.86 35.86 L47.7 44.46 L50 8 L52.3 44.46 L64.14 35.86 L55.54 47.7 Z"/></svg>';
+  var ESTRELA = '<svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 8.01 L55.34 44.66 L91.99 50 L55.34 55.34 L50 91.99 L44.66 55.34 L8.01 50 L44.66 44.66 Z M70.04 29.96 L55.1 50 L70.04 70.04 L50 55.1 L29.96 70.04 L44.9 50 L29.96 29.96 L50 44.9 Z"/></svg>';
   function seloDoTopo(a, p) {
     var b = document.querySelector(".topo-comprar");
     if (!b) { return; }
