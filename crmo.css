@@ -5,7 +5,7 @@
    Uso:
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="./crmo.css">
 
    E, logo depois de abrir o <body>, a estrela da marca:
@@ -43,13 +43,12 @@
   --vidro:linear-gradient(180deg,rgba(253,247,233,.055),rgba(253,247,233,.015));
 
   /* --- tipografia ---
-     Anton tem um peso só (400). Por isso todo título declara
-     font-synthesis-weight:none — sem isso o navegador engorda a letra
-     sozinho e o corte reto do desenho some. Impact fica de reserva para o
-     instante antes da fonte carregar; no iOS e no Android ele não existe. */
-  --display:"Anton",Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;
+     O site do Magic Hub usa só a Host Grotesk (pedido 2026-10-29): títulos em 700,
+     texto em 400, rótulos em 500. --display e --mono continuam existindo e apontam
+     para ela, para o resto do CSS não precisar mudar. */
+  --display:"Host Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --texto:"Host Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --mono:"Host Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 
   /* --- forma --- */
   --raio:20px;
@@ -103,21 +102,21 @@ ul{margin:0;padding:0;list-style:none}
    ------------------------------------------------------------ */
 /* Rótulo de seção: mono em caixa alta, com a estrela da marca na frente. */
 .rotulo{display:flex;align-items:center;gap:10px;margin:0 0 18px;
-  font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--suave)}
+  font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.01em;
+  text-transform:none;color:var(--suave)}
 .rotulo svg{width:13px;height:13px;flex:0 0 auto;color:var(--lima)}
 .rotulo-centro{justify-content:center}
 
-.titulo{font-family:var(--display);font-weight:400;font-synthesis-weight:none;
+.titulo{font-family:var(--display);font-weight:700;
   font-size:clamp(30px,4.8vw,54px);line-height:1;letter-spacing:.005em;
-  text-transform:uppercase}
+  text-transform:none}
 .titulo-g{font-size:clamp(38px,7vw,74px);line-height:.93}
 /* O trecho colorido do título. Use o indigo-claro, não o indigo puro:
    #6761FF em corpo grande sobre preto fica pesado demais para ler. */
 .titulo em{font-style:normal;color:var(--indigo-claro)}
 
 .sub{color:var(--suave);font-size:17px;max-width:60ch}
-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.01em;text-transform:none;
   color:var(--suave-2)}
 
 /* ------------------------------------------------------------
@@ -170,7 +169,7 @@ ul{margin:0;padding:0;list-style:none}
    ------------------------------------------------------------ */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:11px;
   min-height:54px;padding:13px 26px 13px 15px;border-radius:999px;
-  font-weight:700;font-size:13.5px;letter-spacing:.07em;text-transform:uppercase;text-align:center;
+  font-weight:700;font-size:13.5px;letter-spacing:.01em;text-transform:none;text-align:center;
   color:var(--btn-txt);
   border:1px solid color-mix(in srgb,var(--acento) 46%,transparent);
   background:linear-gradient(180deg,
@@ -264,7 +263,7 @@ ul{margin:0;padding:0;list-style:none}
   padding:5px 11px;border-radius:999px;
   background:rgba(15,15,19,.6);border:1px solid rgba(253,247,233,.14);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  font-family:var(--mono);font-size:10px;letter-spacing:.01em;text-transform:none;
   color:var(--cor)}
 
 /* ------------------------------------------------------------
@@ -272,7 +271,7 @@ ul{margin:0;padding:0;list-style:none}
    ------------------------------------------------------------ */
 .selo{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--linha-forte);
   border-radius:999px;padding:7px 16px;font-family:var(--mono);font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+  letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .selo svg{width:12px;height:12px;color:var(--lima)}
 /* Selo colorido: passe --cor */
 .selo-cor{background:color-mix(in srgb,var(--cor) 14%,transparent);
@@ -282,7 +281,7 @@ ul{margin:0;padding:0;list-style:none}
 .fita{position:absolute;top:-13px;left:50%;translate:-50% 0;
   background:var(--laranja);color:#1B0500;
   border-radius:999px;padding:5px 15px;font-family:var(--mono);font-size:10px;font-weight:500;
-  letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+  letter-spacing:.01em;text-transform:none;white-space:nowrap}
 .fita-quieta{background:rgba(21,21,23,.72);border:1px solid var(--linha-forte);color:var(--suave);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 
@@ -335,10 +334,10 @@ ul{margin:0;padding:0;list-style:none}
    translate aqui seria zerado por ele. */
 @media(min-width:940px){.plano-alto{top:-16px}}
 .plano-marcas{display:flex;gap:8px;margin-bottom:18px}
-.plano-nome{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+.plano-nome{font-family:var(--mono);font-size:11px;letter-spacing:.01em;text-transform:none;
   color:var(--suave)}
 .valor{display:flex;align-items:flex-end;gap:10px;margin-top:8px}
-.valor b{font-family:var(--display);font-weight:400;font-synthesis-weight:none;font-size:64px;
+.valor b{font-family:var(--display);font-weight:700;font-size:64px;
   line-height:.82;color:var(--creme);font-variant-numeric:tabular-nums}
 /* palavra no lugar de número precisa de corpo menor, senão estoura */
 .valor b.palavra{font-size:44px;letter-spacing:.01em}

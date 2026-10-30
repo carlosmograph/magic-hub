@@ -283,7 +283,7 @@
         return;
       }
       caixa.innerHTML = r.status === 200
-        ? "<p>O pack de arquivos sai em breve. Quando estiver pronto, o botão para baixar aparece aqui.</p>"
+        ? "<p>O link das pastas ainda não chegou. Tente de novo em instantes; se continuar assim, fale com o suporte.</p>"
         : '<p class="erro">Não deu para carregar agora. Tente de novo em instantes.</p>';
     });
   }

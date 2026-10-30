@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Magic Hub · CRMO</title>
 <meta name="description" content="Os plugins Magic da CRMO num painel só, no After Effects e no Premiere. Pagamento único, acesso vitalício.">
-<link rel="stylesheet" href="fontes.css?v=20261027e">
-<link rel="stylesheet" href="crmo.css?v=20261027e">
-<link rel="stylesheet" href="landing.css?v=20261027e">
-<link rel="stylesheet" href="topo.css?v=20261027e">
+<link rel="stylesheet" href="fontes.css?v=20261029j">
+<link rel="stylesheet" href="crmo.css?v=20261029j">
+<link rel="stylesheet" href="landing.css?v=20261029j">
+<link rel="stylesheet" href="topo.css?v=20261029j">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -43,8 +43,7 @@
 <main id="conteudo">
 
 <!-- ============ HERO ============ -->
-<!-- Palco arredondado: título no centro e o produto "nascendo" do brilho embaixo.
-     Os dois painéis do lado são as telas reais (assets/paineis) e abrem a vitrine. -->
+<!-- Palco de ponta a ponta: título no centro e o leque dos plugins "nascendo" do brilho embaixo. -->
 <section class="hero-palco">
   <div class="palco-in">
     <span class="pilula pilula-so"><b>Magic Hub</b></span>
@@ -55,17 +54,39 @@
       <button class="btn btn-quieto" type="button" data-vitrine="ease"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span>Ver por dentro</span></button>
     </div>
 
-    <div class="produto" role="group" aria-label="O Magic Hub entre dois painéis de plugin">
-      <button class="tela-lado esq" type="button" data-vitrine="ease" aria-label="Ver a interface do Magic Ease"><img src="assets/paineis/ease-1.webp" alt="" width="400" height="900"></button>
-      <div class="palco">
-        <!-- O painel de verdade (layout novo do Hub), capturado da prévia com a conta de teste do
-             servidor falso. Para trocar: capture de novo e salve em assets/hub-painel.webp -->
-        <figure class="hub-tela inclinavel">
-          <div class="moldura-aba"><span>Magic Hub</span><i></i></div>
-          <img src="assets/hub-painel.webp" width="780" height="1000" alt="O painel Magic Hub: saudação, uma atualização pronta e os seis plugins com a arte de cada um" fetchpriority="high">
-        </figure>
-      </div>
-      <button class="tela-lado dir" type="button" data-vitrine="legenda" aria-label="Ver a interface do Magic Caption"><img src="assets/paineis/legenda-1.webp" alt="" width="400" height="900"></button>
+    <!-- O leque dos plugins: cor = o par de cada produto no catálogo; versões de crmo-plugins/dist/catalogo.json.
+         Cada cartão abre a vitrine (as telas reais) daquele plugin. -->
+    <div class="leque" role="list" aria-label="Os seis plugins do Magic Hub">
+      <button class="carta claro" type="button" role="listitem" style="--k:-2.5;--d:2.0;--c:#FDF7E9" data-vitrine="blocks" aria-label="Ver o Magic Box">
+        <span class="carta-topo"><b>Magic Box</b><small>Caixas que crescem com o texto</small></span>
+        <span class="carta-versao">v1.0</span>
+        <img src="assets/plugins/blocks.webp" alt="" width="512" height="512" loading="lazy">
+      </button>
+      <button class="carta escuro" type="button" role="listitem" style="--k:-1.5;--d:1.0;--brilho:rgba(103,97,255,.75)" data-vitrine="type" aria-label="Ver o Magic Text">
+        <span class="carta-topo"><b>Magic Text</b><small>22 famílias de animação</small></span>
+        <span class="carta-versao">v1.0</span>
+        <img src="assets/plugins/type.webp" alt="" width="512" height="512" loading="lazy">
+      </button>
+      <button class="carta claro" type="button" role="listitem" style="--k:-0.5;--d:0.0;--c:#FF6316" data-vitrine="ease" aria-label="Ver o Magic Ease">
+        <span class="carta-topo"><b>Magic Ease</b><small>Curvas num atalho</small></span>
+        <span class="carta-versao">v1.1</span>
+        <img src="assets/plugins/ease.webp" alt="" width="512" height="512" fetchpriority="high">
+      </button>
+      <button class="carta" type="button" role="listitem" style="--k:0.5;--d:0.0;--c:#6761FF" data-vitrine="legenda" aria-label="Ver o Magic Caption">
+        <span class="carta-topo"><b>Magic Caption</b><small>15 estilos de legenda</small></span>
+        <span class="carta-versao">v1.1</span>
+        <img src="assets/plugins/legenda.webp" alt="" width="512" height="512" fetchpriority="high">
+      </button>
+      <button class="carta claro" type="button" role="listitem" style="--k:1.5;--d:1.0;--c:#D0FE60" data-vitrine="motion" aria-label="Ver o Magic Motion">
+        <span class="carta-topo"><b>Magic Motion</b><small>Entrada e saída num clique</small></span>
+        <span class="carta-versao">v1.1</span>
+        <img src="assets/plugins/motion.webp" alt="" width="512" height="512" loading="lazy">
+      </button>
+      <button class="carta escuro" type="button" role="listitem" style="--k:2.5;--d:2.0;--brilho:rgba(255,99,22,.7)" data-vitrine="sfx" aria-label="Ver o Magic SFX">
+        <span class="carta-topo"><b>Magic SFX</b><small>Sound design automático</small></span>
+        <span class="carta-versao">v1.0</span>
+        <img src="assets/plugins/sfx.webp" alt="" width="512" height="512" loading="lazy">
+      </button>
     </div>
 
     <div class="compat">
@@ -373,7 +394,7 @@
 <!-- O mesmo bloco de preços do Magic Pack (cartões de vidro sobre o orbe indigo).
      Cada cartão usa a cor do que acrescenta: lima = de graça (pack reduzido + Hub), laranja = o pack,
      indigo = os plugins. O Completo é o checkout que já existe (assinar/ → hub_config.checkout_url).
-     SUBSTITUIR: o pack ainda não tem checkout próprio; "Quero o pack" leva para a página do pack.
+     "Quero o pack" vai direto para o checkout do pack na Kiwify (pay.kiwify.com.br/NabLJFV).
      SUBSTITUIR: o pack grátis ainda não existe; "Baixar de graça" baixa por enquanto só o instalador do Hub. -->
 <section class="secao" id="comprar">
   <div class="wrap">
@@ -397,34 +418,12 @@
         </div>
         <p class="plano-desc">Uma versão reduzida do pack de arquivos e o painel do Magic Hub, pra conhecer antes de gastar um real.</p>
         <ul>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Pack grátis</b> (em breve): uma seleção reduzida de texturas, transições e sons</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Pack grátis</b>: uma seleção reduzida de texturas, transições e sons</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>O painel <b>Magic Hub</b> no After Effects e no Premiere</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Veja os seis plugins por dentro antes de comprar</span></li>
           <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Windows e Mac, versões 2022 ou mais novas</span></li>
         </ul>
         <a class="btn btn-lima btn-bloco" href="baixar/Magic-Hub-instalador.zip" download><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 11l4.5 4.5L16.5 11M5 20h14"/></svg></i><span>Baixar de graça</span></a>
-      </div>
-
-      <div class="plano destaque-laranja" data-reveal>
-        <span class="fita">Só os arquivos · em breve</span>
-        <div>
-          <div class="plano-marcas" aria-hidden="true">
-            <span class="app" style="--bg:#FF6316;--st:#D0FE60;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
-            <span class="app" style="--bg:#D0FE60;--st:#FF6316;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
-          </div>
-          <p class="plano-nome">Pack de arquivos</p>
-          <div class="valor"><b>25</b><small>R$ · pagamento único</small></div>
-          <p class="parcela parcela-quieta">acesso vitalício</p>
-        </div>
-        <p class="plano-desc">Pra quem já tem as ferramentas e só quer parar de caçar arquivo.</p>
-        <ul>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Texturas, overlays e transições</span></li>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Biblioteca de efeitos sonoros</span></li>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Indicações de plugins e presets, com link para as lojas oficiais</span></li>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Atualizações do pack inclusas</span></li>
-          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Magic Hub</b> já vem junto — é grátis para todo mundo</span></li>
-        </ul>
-        <a class="btn btn-laranja btn-bloco" href="pack/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Quero o pack</span></a>
       </div>
 
       <div class="plano destaque-plano" data-reveal>
@@ -448,6 +447,28 @@
         </ul>
         <a class="btn btn-indigo btn-bloco" href="assinar/"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Quero o completo</span></a>
       </div>
+      <div class="plano destaque-laranja" data-reveal>
+        <span class="fita">Só os arquivos</span>
+        <div>
+          <div class="plano-marcas" aria-hidden="true">
+            <span class="app" style="--bg:#FF6316;--st:#D0FE60;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+            <span class="app" style="--bg:#D0FE60;--st:#FF6316;width:40px"><svg viewBox="0 0 100 100"><use href="#estrela8"/></svg></span>
+          </div>
+          <p class="plano-nome">Pack de arquivos</p>
+          <div class="valor"><b>25</b><small>R$ · pagamento único</small></div>
+          <p class="parcela parcela-quieta">acesso vitalício</p>
+        </div>
+        <p class="plano-desc">Pra quem já tem as ferramentas e só quer parar de caçar arquivo.</p>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Texturas, overlays e transições</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Biblioteca de efeitos sonoros</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Indicações de plugins e presets, com link para as lojas oficiais</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span>Atualizações do pack inclusas</span></li>
+          <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i><span><b>Magic Hub</b> já vem junto — é grátis para todo mundo</span></li>
+        </ul>
+        <a class="btn btn-laranja btn-bloco" href="https://pay.kiwify.com.br/NabLJFV" target="_blank" rel="noopener"><i><svg viewBox="0 0 100 100" class="cheio" aria-hidden="true"><use href="#estrela8"/></svg></i><span>Quero o pack</span></a>
+      </div>
+
       </div>
     </div>
     <p class="precos-nota" data-reveal>Pagamento único pela Kiwify. Você tem 7 dias para desistir e receber tudo de volta (<a href="reembolso/">reembolso</a>). O que “vitalício” quer dizer está nos <a href="termos/#vitalicio">Termos de uso</a>.</p>

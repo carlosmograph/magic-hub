@@ -27,23 +27,22 @@
   // SUBSTITUIR: os itens reais do pack (nome, tags para a busca, pasta, programas, usos, status, link).
   // foto = a miniatura em assets/pack/<foto>.webp (640×400); sem foto, a capa fica com o nome sobre a cor da pasta
   var ITENS = [
-    { nome: "Grão de filme", foto: "grao-de-filme", tags: "filme analogico noise ruido cinema", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "marca"] },
-    { nome: "Papel e poeira", foto: "papel-e-poeira", tags: "papel poeira sujeira textura vintage", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
-    { nome: "Vazamento de luz", foto: "vazamento-de-luz", tags: "luz light leak brilho flare", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "youtube"] },
-    { nome: "Halftone", foto: "halftone", tags: "pontilhado retro quadrinho print", pasta: "texturas", programas: ["qualquer"], usos: ["marca", "reels"] },
-    { nome: "Ruído de VHS", foto: "ruido-de-vhs", tags: "vhs fita retro glitch analogico", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
-    { nome: "Whip pan", foto: "whip-pan", tags: "chicote movimento rapido corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
-    { nome: "Zoom", foto: "zoom", tags: "zoom aproximar corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
-    { nome: "Glitch", foto: "glitch", tags: "glitch erro digital falha", pasta: "transicoes", programas: ["pr", "ae"], usos: ["marca", "reels"] },
-    { nome: "Distorção", foto: "distorcao", tags: "distorcer warp onda", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "marca"] },
-    { nome: "Cortes de luz", foto: "cortes-de-luz", tags: "luz flash brilho corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "youtube"] },
-    { nome: "Risers", foto: "risers", tags: "riser subida tensao som", pasta: "sons", programas: ["qualquer"], usos: ["marca", "youtube"] },
-    { nome: "Impactos", foto: "impactos", tags: "impacto hit pancada boom som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "marca"] },
-    { nome: "Swooshes", foto: "swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
-    { nome: "Cliques de interface", foto: "cliques-de-interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
-    { nome: "Ambientes", foto: "ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
-    { nome: "Indicações de plugins", foto: "indicacoes-de-plugins", tags: "plugin extensao indicacao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] },
-    { nome: "Seleção de presets", tags: "preset predefinicao", pasta: "presets", programas: ["pr", "ae"], usos: ["reels", "clipe"] }
+    { nome: "Grão de filme", link: "https://drive.google.com/drive/folders/1VkqCtqNIktrAunutQn6yB_pbfcanOGjf", foto: "grao-de-filme", tags: "filme analogico noise ruido cinema", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "marca"] },
+    { nome: "Papel e poeira", link: "https://drive.google.com/drive/folders/16Q08mhq0s-3PdCpojEQO6JLDHhTj8hOv", foto: "papel-e-poeira", tags: "papel poeira sujeira textura vintage", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
+    { nome: "Vazamento de luz", link: "https://drive.google.com/drive/folders/1e87f4gPX-xm_W2lkftM6PfsQNAEXQU4O", foto: "vazamento-de-luz", tags: "luz light leak brilho flare", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "youtube"] },
+    { nome: "Halftone", link: "https://drive.google.com/drive/folders/1H97-7i9uj5whgzaFhQM2ykHyRgQGQNAZ", foto: "halftone", tags: "pontilhado retro quadrinho print", pasta: "texturas", programas: ["qualquer"], usos: ["marca", "reels"] },
+    { nome: "Ruído de VHS", link: "https://drive.google.com/drive/folders/1ntClLy9h1Rj9Z7x8KFEhHpAygmtH7Tdj", foto: "ruido-de-vhs", tags: "vhs fita retro glitch analogico", pasta: "texturas", programas: ["qualquer"], usos: ["clipe", "reels"] },
+    { nome: "Whip pan", link: "https://drive.google.com/drive/folders/1O3PzjAnIE7Ymron1RqgyqABTLuxksZPn", foto: "whip-pan", tags: "chicote movimento rapido corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
+    { nome: "Zoom", link: "https://drive.google.com/drive/folders/1Ie0F0GeJCoSZjMhM_ukoyKCN6fjLrb9-", foto: "zoom", tags: "zoom aproximar corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["reels", "youtube"] },
+    { nome: "Glitch", link: "https://drive.google.com/drive/folders/1lPirTHixYWYXcLBOgha0cypHWTMjmpUE", foto: "glitch", tags: "glitch erro digital falha", pasta: "transicoes", programas: ["pr", "ae"], usos: ["marca", "reels"] },
+    { nome: "Distorção", link: "https://drive.google.com/drive/folders/1EIp_aVwDFw9y4WwT9mIWFdua0kZRzIWn", foto: "distorcao", tags: "distorcer warp onda", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "marca"] },
+    { nome: "Cortes de luz", link: "https://drive.google.com/drive/folders/1CfgweBqyGnGC33yOOZaT9xhPUaZgz7wK", foto: "cortes-de-luz", tags: "luz flash brilho corte", pasta: "transicoes", programas: ["pr", "ae"], usos: ["clipe", "youtube"] },
+    { nome: "Risers", link: "https://drive.google.com/drive/folders/1SD__xYfpTpXyGa-fQ9CasUVasbVx61SZ", foto: "risers", tags: "riser subida tensao som", pasta: "sons", programas: ["qualquer"], usos: ["marca", "youtube"] },
+    { nome: "Impactos", link: "https://drive.google.com/drive/folders/1a8D1WnqpbcAWlp3yh1HPqXTHs8CN4uUx", foto: "impactos", tags: "impacto hit pancada boom som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "marca"] },
+    { nome: "Swooshes", link: "https://drive.google.com/drive/folders/1pTqyMo-eBK-AzUPykPVnTVnFk90EGTe5", foto: "swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
+    { nome: "Cliques de interface", link: "https://drive.google.com/drive/folders/18m8y2aMk-mgI62Km5MEJwIVs9ty06ulr", foto: "cliques-de-interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
+    { nome: "Ambientes", link: "https://drive.google.com/drive/folders/1_JRSWJO_mmxPNY8XapMme5-KeRAWcA3f", foto: "ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
+    { nome: "Indicações de plugins", link: "https://drive.google.com/drive/folders/16HRJvdKIxTAjXsooBZkH-KfJChgBLv8w", foto: "indicacoes-de-plugins", tags: "plugin extensao indicacao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] }
   ];
 
   function e(s) {
@@ -57,13 +56,14 @@
 
   function capa(item) {
     var p = pasta(item.pasta);
-    var pronto = item.status === "ok" && item.link;
+    // cada cartão abre a pasta dele no Google Drive (link no item); sem link, leva à conta
+    var link = item.link || "../conta/#pack", fora = /^https?:/.test(link);
     // com foto, o nome fica só embaixo do cartão: em cima da imagem ele sumiria nas partes claras
     var dentro = '<div class="capa' + (item.foto ? " com-foto" : "") + '" style="--cor:' + p.cor + '">' +
       (item.foto ? '<img src="../assets/pack/' + e(item.foto) + '.webp" alt="" width="640" height="400" loading="lazy">' : "<b>" + e(item.nome) + "</b>") +
-      (pronto ? "" : '<span class="fita fita-quieta">Em breve</span>') + "</div>" +
+      "</div>" +
       "<h4>" + e(item.nome) + "</h4><span>" + e(p.nome) + " · " + e(programasDe(item)) + "</span>";
-    return pronto ? '<a class="pacote" href="' + e(item.link) + '">' + dentro + "</a>" : '<div class="pacote">' + dentro + "</div>";
+    return '<a class="pacote" href="' + e(link) + '"' + (fora ? ' target="_blank" rel="noopener"' : "") + ">" + dentro + "</a>";
   }
 
   // ---------------------------------------------------------------- busca

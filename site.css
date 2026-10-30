@@ -1,5 +1,5 @@
 /* Páginas do Magic Hub no site (GitHub Pages). Identidade CRMO: fundo escuro com manchas
-   indigo, Anton nos títulos. Cor diz o que faz: indigo é conta e acesso, laranja cobra,
+   indigo, Host Grotesk em tudo. Cor diz o que faz: indigo é conta e acesso, laranja cobra,
    lima é estado bom, rosa é erro, creme navega. */
 :root{--preto:#1C1C1C;--creme:#FDF7E9;--indigo:#6761FF;--lima:#D0FE60;--laranja:#FF6316;--rosa:#FFCBEF;
 --fundo:#151517;--suave:#A6A1B5;--indigo-claro:#8F8AFF;--linha:rgba(253,247,233,.12)}
@@ -12,33 +12,33 @@ radial-gradient(50% 50% at -10% 110%,rgba(103,97,255,.32),transparent 70%),var(-
 main{width:100%;max-width:400px;text-align:center}
 .marca{width:56px;height:56px;border-radius:30%;display:grid;place-items:center;margin:0 auto 22px;background:var(--indigo);color:var(--creme)}
 .marca svg{width:62%;height:62%}
-h1{font-family:Anton,Impact,sans-serif;font-weight:400;font-synthesis-weight:none;text-transform:uppercase;font-size:44px;line-height:.95;margin:0 0 14px;letter-spacing:.005em}
+h1{font-family:"Host Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:700;text-transform:none;font-size:44px;line-height:.95;margin:0 0 14px;letter-spacing:.005em}
 h1 em{font-style:normal;color:var(--indigo-claro);display:inline-block}
 h1 em.lima{color:var(--lima)}h1 em.rosa{color:var(--rosa)}
 p{color:var(--suave);margin:0 0 20px}p b{color:var(--creme);font-weight:600}
-.rotulo{font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);margin:0 0 8px}
-.cod{font:500 30px "JetBrains Mono",monospace;letter-spacing:.3em;padding:16px 0 16px .3em;border-radius:14px;
+.rotulo{font:500 11px "Host Grotesk",system-ui,sans-serif;letter-spacing:.01em;text-transform:none;color:var(--suave);margin:0 0 8px}
+.cod{font:500 30px "Host Grotesk",system-ui,sans-serif;letter-spacing:.3em;padding:16px 0 16px .3em;border-radius:14px;
 border:1px solid rgba(143,138,255,.45);background:rgba(103,97,255,.12);margin:0 0 22px}
 form{margin:0 0 10px}
 input{display:block;width:100%;height:48px;border-radius:14px;margin:0 0 10px;padding:0 16px;color:var(--creme);
 font:16px "Host Grotesk",sans-serif;background:rgba(21,21,23,.7);border:1px solid var(--linha);outline:none}
 input:focus{border-color:var(--indigo-claro)}
-input.digitos{font:500 24px "JetBrains Mono",monospace;letter-spacing:.4em;text-align:center}
+input.digitos{font:500 24px "Host Grotesk",system-ui,sans-serif;letter-spacing:.4em;text-align:center}
 .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:48px;border-radius:999px;margin:0 0 10px;
-font:700 12.5px "Host Grotesk",sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;text-decoration:none;
+font:700 12.5px "Host Grotesk",sans-serif;letter-spacing:.01em;text-transform:none;cursor:pointer;text-decoration:none;
 color:#E4E2FF;border:1px solid rgba(103,97,255,.5);background:linear-gradient(180deg,rgba(253,247,233,.06),rgba(103,97,255,.14) 42%,rgba(103,97,255,.55))}
 .btn:disabled{opacity:.55;cursor:wait}
 .btn.laranja{color:#FFE9DC;border-color:rgba(255,99,22,.55);background:linear-gradient(180deg,rgba(253,247,233,.06),rgba(255,99,22,.16) 42%,rgba(255,99,22,.6))}
 .btn.quieto{color:var(--creme);border-color:rgba(253,247,233,.26);background:rgba(253,247,233,.05)}
 .btn svg{width:18px;height:18px;flex:none}
-.ou{display:flex;align-items:center;gap:12px;margin:14px 0;font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.ou{display:flex;align-items:center;gap:12px;margin:14px 0;font:500 11px "Host Grotesk",system-ui,sans-serif;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .ou:before,.ou:after{content:"";flex:1;height:1px;background:var(--linha)}
 .cartao{text-align:left;padding:18px;border-radius:18px;border:1px solid var(--linha);background:rgba(28,28,28,.75);margin:0 0 18px}
 .cartao .nome{font-weight:600;color:var(--creme)}.cartao .email{color:var(--suave);font-size:14px}
-.selo{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;font:500 11px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.selo{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;font:500 11px "Host Grotesk",system-ui,sans-serif;letter-spacing:.01em;text-transform:none}
 .selo.ok{color:var(--preto);background:var(--lima)}.selo.nao{color:var(--preto);background:var(--rosa)}
 .erro{color:var(--rosa);font-size:14px;margin:0 0 14px}
-.aviso{font:500 12px "JetBrains Mono",monospace;letter-spacing:.06em;color:var(--lima);margin:0 0 14px}
+.aviso{font:500 12px "Host Grotesk",system-ui,sans-serif;letter-spacing:.06em;color:var(--lima);margin:0 0 14px}
 .link{color:var(--suave);font-size:14px}.link a,.link button{color:var(--creme);background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
 
 /* ---------------- área da conta (com login) ----------------
@@ -48,7 +48,7 @@ body.na-conta .marca{display:none}
 .btn.lima{color:#141A00;border-color:rgba(208,254,96,.6);background:linear-gradient(180deg,rgba(253,247,233,.1),rgba(208,254,96,.55) 42%,rgba(208,254,96,.85))}
 .conta-cabeca{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:0 0 26px}
 .conta-quem{flex:1 1 220px;min-width:0}
-.conta-nome{font-family:Anton,Impact,sans-serif;font-weight:400;font-synthesis-weight:none;text-transform:uppercase;
+.conta-nome{font-family:"Host Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:700;text-transform:none;
   font-size:36px;line-height:1;margin:0 0 6px;overflow-wrap:anywhere}
 .conta-quem p{margin:0;font-size:14.5px;overflow-wrap:anywhere}
 .conta-cabeca .selo{margin-top:0}
@@ -64,11 +64,11 @@ body.na-conta .marca{display:none}
 .conta input:disabled{color:var(--suave);opacity:.75}
 .conta .btn{width:auto;display:inline-flex;padding:0 24px;margin:0}
 .nota{font-size:13.5px}
-.status h2{font-family:Anton,Impact,sans-serif;font-weight:400;font-synthesis-weight:none;text-transform:uppercase;font-size:46px;line-height:1;margin:0 0 10px;color:var(--lima)}
+.status h2{font-family:"Host Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:700;text-transform:none;font-size:46px;line-height:1;margin:0 0 10px;color:var(--lima)}
 .status.sem h2{color:var(--rosa)}
 .lista-acesso{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 .lista-acesso li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid var(--linha)}
-.lista-acesso em{font:500 10px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;font-style:normal}
+.lista-acesso em{font:500 10px "Host Grotesk",system-ui,sans-serif;letter-spacing:.01em;text-transform:none;font-style:normal}
 .lista-acesso em.ok{color:var(--lima)}.lista-acesso em.nao{color:var(--rosa)}
 .acoes-conta{display:flex;flex-wrap:wrap;gap:10px}
 .sessoes{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
@@ -86,3 +86,14 @@ body.na-conta .marca{display:none}
 .legal-mini{display:block;margin:28px auto 0;text-align:center;font-size:12.5px;color:var(--suave)}
 body.com-topo .legal-mini{margin-bottom:40px}
 :focus-visible{outline:2px solid var(--lima);outline-offset:3px}
+
+/* ---------------- obrigado (pós-compra) ----------------
+   Um pouco mais larga que o login; os três passos em lista numerada, com o número em indigo. */
+body.pos-compra > main{max-width:460px}
+.passos-pos{list-style:none;padding:0;margin:4px 0 24px;display:grid;gap:10px;text-align:left}
+.passos-pos li{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1px solid var(--linha);background:rgba(28,28,28,.75)}
+.passos-pos i{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 13px "Host Grotesk",sans-serif;font-style:normal;
+  color:var(--creme);background:var(--indigo);box-shadow:0 0 16px -2px rgba(103,97,255,.7)}
+.passos-pos span{color:var(--suave);font-size:15px;line-height:1.45;padding-top:3px}
+.passos-pos b{color:var(--creme);font-weight:600}
+.pos-compra .link{margin-top:10px;line-height:1.7}

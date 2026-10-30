@@ -10,7 +10,7 @@
 .hero .sub{font-size:18px;max-width:46ch}
 .hero .acoes{margin-top:32px}
 .hero-nota{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave-2)}
+  font-family:var(--mono);font-size:11px;letter-spacing:.01em;text-transform:none;color:var(--suave-2)}
 .hero-nota b{color:var(--lima);font-weight:500}
 @media(max-width:760px){.hero{padding:44px 0 64px}.hero .sub{font-size:16.5px}}
 
@@ -18,19 +18,20 @@
    Um palco arredondado com o título no centro e o produto subindo de trás de um
    horizonte: um elipse enorme, escuro, com a borda acesa em indigo (a atmosfera da marca).
    O horizonte fica por cima da base do produto, por isso ele parece nascer dali. */
-.hero-palco{padding:16px 16px 0}
-.palco-in{position:relative;isolation:isolate;max-width:1240px;margin:0 auto;overflow:hidden;
-  padding:76px 24px 0;text-align:center;border-radius:32px;border:1px solid rgba(253,247,233,.1);
+.hero-palco{padding:0}
+/* sem moldura: o palco vai de ponta a ponta da tela */
+.palco-in{position:relative;isolation:isolate;overflow:hidden;
+  padding:92px 24px 0;text-align:center;
   background:radial-gradient(55% 45% at 50% 0%,rgba(103,97,255,.5),transparent 70%),
     radial-gradient(60% 50% at 50% 100%,rgba(103,97,255,.55),transparent 75%),
     linear-gradient(180deg,#18181d,#111114)}
 .palco-in::after{content:"";position:absolute;z-index:3;left:50%;translate:-50% 0;bottom:-1160px;
-  width:2600px;height:1360px;border-radius:50%;pointer-events:none;background:#131317;
+  width:max(2600px,240vw);height:1360px;border-radius:50%;pointer-events:none;background:#131317;
   box-shadow:0 0 0 1px rgba(143,138,255,.6),0 -34px 100px -12px rgba(103,97,255,.75),
     inset 0 40px 70px -30px rgba(103,97,255,.45)}
 .pilula{display:inline-flex;align-items:center;gap:10px;padding:5px 15px 5px 5px;border-radius:999px;
   border:1px solid var(--linha-forte);background:rgba(21,21,23,.6);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .pilula b{flex:none;white-space:nowrap;padding:4px 11px;border-radius:999px;background:var(--creme);color:var(--preto);
   font:600 11.5px var(--texto);letter-spacing:0;text-transform:none}
 /* só o nome, sem a frase ao lado: a borda fica igual dos dois lados */
@@ -38,15 +39,46 @@
 .palco-in h1{margin:24px auto 18px}
 .palco-in .sub{margin-inline:auto;max-width:52ch;font-size:18px}
 .palco-in .acoes{justify-content:center;margin-top:30px}
-.produto{position:relative;z-index:1;display:flex;justify-content:center;align-items:flex-start;
-  height:800px;margin-top:64px}
-.produto .palco{position:relative;z-index:2;width:min(540px,100%);flex:none}
-.tela-lado{position:relative;top:70px;z-index:1;flex:none;width:250px;padding:0;border-radius:16px;overflow:hidden;
-  border:1px solid rgba(253,247,233,.16);box-shadow:0 30px 70px -24px rgba(0,0,0,.9);transition:top .3s ease}
-.tela-lado img{display:block;width:100%;height:auto}
-.tela-lado.esq{rotate:-7deg;margin-right:-36px}
-.tela-lado.dir{rotate:7deg;margin-left:-36px}
-.tela-lado:hover{top:52px}
+/* O leque dos 6 plugins (referência: vitrine de jogos). Cada cartão tem a cor do produto (o par do
+   catálogo), nome, frase curta, a versão de agora e a arte 3D. --k = posição no leque (-2,5 … 2,5):
+   gira e desce mais quanto mais longe do meio; os dois do meio são maiores. A base de todos some
+   atrás do horizonte (::after do palco, z 3). Sem translate/rotate soltos: tudo no transform. */
+.leque{--w:clamp(150px,17vw,250px);position:relative;z-index:1;display:flex;justify-content:center;align-items:flex-start;
+  height:calc(var(--w) * 1.42);margin:56px auto 0;padding-top:24px}
+.carta{--c:#6761FF;--t:var(--creme);--a:rgba(0,0,0,.25);position:relative;top:0;flex:none;
+  width:var(--w);height:calc(var(--w) * 1.34);margin:0 calc(var(--w) * -.14);padding:0;border-radius:calc(var(--w) * .13);
+  overflow:hidden;text-align:left;color:var(--t);cursor:pointer;
+  z-index:calc(10 - var(--d) * 2);
+  transform:rotate(calc(var(--k) * 6deg)) translateY(calc(var(--d) * var(--d) * 9px)) scale(calc(1.1 - var(--d) * .06));
+  transform-origin:50% 100%;
+  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 38%,rgba(0,0,0,.26)),var(--c);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(255,255,255,.14),0 30px 60px -24px rgba(0,0,0,.95);
+  transition:top .3s cubic-bezier(.2,.7,.3,1)}
+.carta:hover,.carta:focus-visible{top:-18px}
+.carta-topo{position:absolute;left:9%;right:9%;top:8%;z-index:2;display:block}
+.carta-topo b{display:block;font-size:calc(var(--w) * .1);font-weight:700;letter-spacing:-.01em;line-height:1.05}
+.carta-topo small{display:block;margin-top:5px;font-size:calc(var(--w) * .052);line-height:1.3;opacity:.78}
+.carta-versao{position:absolute;right:7%;top:6.5%;z-index:2;display:flex;align-items:center;gap:5px;padding:4px 9px 4px 6px;border-radius:999px;
+  font-size:calc(var(--w) * .048);font-weight:600;background:var(--a);color:var(--t)}
+.carta-versao::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.85}
+/* com a versão no canto, o nome não pode passar por baixo dela */
+.carta-topo{right:34%}
+/* a arte fica na parte de cima do cartão: a de baixo some atrás do horizonte.
+   Arte alta (balão, raio, T) encosta no texto: o cartão dela desce um pouco com --desce */
+.carta img{position:absolute;left:50%;top:calc(27% + var(--desce,0%));z-index:1;width:78%;height:auto;margin-left:-39%;
+  filter:drop-shadow(0 18px 22px rgba(0,0,0,.45))}
+/* cor do texto pela cor do cartão: creme, lima e laranja pedem texto escuro */
+.carta[data-vitrine="legenda"],.carta[data-vitrine="motion"],.carta[data-vitrine="type"]{--desce:6%}
+.carta.claro{--t:var(--preto);--a:rgba(28,28,28,.12)}
+/* cartão preto: o brilho da segunda cor do par sobe do fundo */
+.carta.escuro{background:radial-gradient(90% 70% at 50% 100%,var(--brilho),transparent 70%),
+  linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,0) 38%),#232328}
+.carta.escuro .carta-versao{--a:rgba(253,247,233,.1)}
+/* grade bem apagada atrás do título, como na referência */
+.palco-in::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(253,247,233,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(253,247,233,.045) 1px,transparent 1px);
+  background-size:72px 72px;background-position:50% 0;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent 75%)}
 .compat{position:relative;z-index:4;padding:34px 0 36px}
 .compat .mono{display:block;margin-bottom:16px;color:var(--suave)}
 .compat ul{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 30px}
@@ -54,26 +86,11 @@
 .compat i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:600 10.5px var(--mono);font-style:normal;
   color:var(--indigo-claro);border:1px solid rgba(143,138,255,.4);background:rgba(103,97,255,.12)}
 .compat svg{width:14px;height:14px;fill:currentColor}
-/* tablet e celular: os dois painéis saem de trás do Hub, em leque, cortados pela borda do palco */
-@media(max-width:900px){
-  .produto{height:auto;margin-top:48px;padding-bottom:120px}
-  .produto .palco{width:min(540px,76%)}
-  .tela-lado{position:absolute;top:56px;width:min(260px,40%);margin:0}
-  .tela-lado.esq{left:-6%}
-  .tela-lado.dir{right:-6%}
-  .tela-lado:hover{top:56px}
-}
-@media(max-width:480px){
-  .produto .palco{width:84%}
-  .tela-lado{top:40px;width:44%}
-  .tela-lado.esq{left:-14%}
-  .tela-lado.dir{right:-14%}
-}
 @media(max-width:760px){
-  .palco-in{padding:52px 16px 0;border-radius:24px}
+  .palco-in{padding:52px 16px 0}
   .palco-in .sub{font-size:16.5px}
   .palco-in::after{bottom:-1120px}
-  .produto{padding-bottom:70px}
+  .leque{margin-top:40px}
   .compat{padding-top:30px}
   .compat ul{gap:10px 18px}
   .pilula{max-width:100%;text-align:left;letter-spacing:.08em}
@@ -82,10 +99,10 @@
 /* ---------------- início: números ---------------- */
 .numeros-secao{padding:64px 0 8px}
 .numeros{display:grid;grid-template-columns:repeat(5,1fr);gap:24px 16px;text-align:center}
-.num b{display:block;font-family:var(--display);font-weight:400;font-synthesis-weight:none;
+.num b{display:block;font-family:var(--display);font-weight:700;
   font-size:clamp(46px,6vw,76px);line-height:1;font-variant-numeric:tabular-nums}
 .num span{display:block;margin:10px auto 0;max-width:18ch;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+  letter-spacing:.01em;text-transform:none;color:var(--suave)}
 @media(max-width:760px){.numeros{grid-template-columns:repeat(2,1fr)}.numeros .num:last-child{grid-column:span 2}}
 
 /* ---------------- início: para o seu tipo de vídeo ----------------
@@ -109,7 +126,7 @@
 .perfil p{color:var(--suave);font-size:15.5px}
 .perfil-lista{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
 .perfil-lista li{padding:5px 10px;border-radius:999px;border:1px solid var(--linha-forte);
-  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+  font-family:var(--mono);font-size:10px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .perfil.escolhido{background:var(--creme);color:var(--preto);border-color:var(--creme);
   box-shadow:0 34px 70px -34px rgba(253,247,233,.45)}
 .perfil.escolhido p{color:#4B4658}
@@ -204,7 +221,7 @@
 .slot{position:relative;aspect-ratio:9/13;border-radius:14px;overflow:hidden;
   border:1px dashed var(--linha-forte);background:var(--elevado);
   display:grid;place-items:center;padding:18px;text-align:center}
-.slot p{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--suave-2);line-height:1.7}
+.slot p{font-family:var(--mono);font-size:10px;letter-spacing:.01em;text-transform:none;color:var(--suave-2);line-height:1.7}
 .slot video,.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------------- preço (o mesmo bloco do Magic Pack) ----------------
@@ -217,7 +234,9 @@
   background:radial-gradient(50% 50% at 50% 50%,rgba(103,97,255,.40),rgba(143,138,255,.11) 46%,transparent 70%)}
 @media(prefers-reduced-motion:no-preference){.precos-orbe{animation:crmo-pulsa 9s ease-in-out infinite alternate}}
 .precos{position:relative;z-index:1;display:grid;gap:20px;max-width:1080px;margin-inline:auto}
-@media(min-width:760px) and (max-width:939px){.precos{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:760px) and (max-width:939px){.precos{grid-template-columns:repeat(2,1fr)}
+  /* o plano que sobra sozinho na segunda linha fica no meio, com a largura de uma coluna */
+  .precos > .plano:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 10px)}}
 @media(min-width:940px){.precos{grid-template-columns:repeat(3,1fr)}}
 /* vidro esfumaçado: o orbe passa borrado por um vidro escuro em vez de clarear o cartão.
    Vem antes das variantes de cor, que têm a mesma especificidade e só somam o tom por cima */
@@ -263,52 +282,36 @@
 .baixar-grande i svg{width:15px;height:15px}
 @media(prefers-reduced-motion:no-preference){.baixar-grande{animation:baixar-brilha 2.8s ease-in-out infinite}}
 @keyframes baixar-brilha{50%{box-shadow:inset 0 1px 0 rgba(253,247,233,.3),0 22px 56px -10px rgba(208,254,96,.95),0 0 130px -14px rgba(208,254,96,.75)}}
-.baixar-meta{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.baixar-meta{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .baixar-notas{justify-content:center;margin-top:14px}
 
 .carrossel{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:64px}
-.carrossel-trilho{order:-1;width:100%}
-.carrossel-trilho{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;outline:none;
-  padding:24px max(20px,calc((100% - 1120px) / 2)) 28px;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+/* O trilho sempre centralizado: a sobra dos lados é meia tela menos meio cartão, então qualquer
+   cartão (até o primeiro e o último) para no meio, e o snap assenta no mais perto do centro.
+   Os cartões são os mesmos do leque do hero (.carta), retos. */
+.carrossel-trilho{--w:clamp(220px,26vw,270px);order:-1;width:100%;display:flex;align-items:center;gap:22px;
+  overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;outline:none;
+  /* o trilho rola de lado e por isso corta tudo que sai dele: embaixo sobra espaço para o brilho
+     do cartão do meio, e a margem negativa devolve as setas para perto */
+  padding:30px calc(50% - var(--w) / 2) 100px;margin-bottom:-66px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .carrossel-trilho::-webkit-scrollbar{display:none}
-/* as setas ficam embaixo do trilho, no centro: no meio da altura elas cobriam o botão dos cartões */
-.carrossel-seta{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+.carrossel-trilho .carta{--k:0;--d:0;margin:0;z-index:auto;scroll-snap-align:center;opacity:.55;transform:scale(.9);transform-origin:50% 50%;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1),opacity .35s ease,top .3s cubic-bezier(.2,.7,.3,1)}
+.carrossel-trilho .carta.no-centro{opacity:1;transform:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(255,255,255,.14),0 34px 70px -26px rgba(103,97,255,.75)}
+/* as setas ficam embaixo do trilho, no centro: no meio da altura elas cobriam o cartão */
+.carrossel-seta{position:relative;z-index:1;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
   color:var(--creme);background:rgba(21,21,23,.82);border:1px solid var(--linha-forte);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .2s ease,border-color .2s ease}
 .carrossel-seta:hover{border-color:var(--creme)}
 .carrossel-seta:disabled{opacity:.3;pointer-events:none}
 .carrossel-seta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.ficha{position:relative;flex:none;width:310px;cursor:pointer;scroll-snap-align:center;text-align:left;border-radius:32px;overflow:hidden;
-  background:#0E0E13;border:1px solid rgba(253,247,233,.09);box-shadow:0 34px 70px -34px rgba(0,0,0,.95);
-  transition:border-color .25s ease,box-shadow .25s ease}
-.ficha:hover{border-color:color-mix(in srgb,var(--cor) 45%,transparent);box-shadow:0 34px 70px -30px color-mix(in srgb,var(--cor) 55%,transparent)}
-/* a capa: ondas na cor do plugin, como o pano da referência */
-.ficha-capa{height:220px;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid rgba(253,247,233,.06);
-  background:radial-gradient(90% 55% at 15% 0%,color-mix(in srgb,var(--cor) 40%,transparent),transparent 70%),
-    radial-gradient(80% 60% at 100% 55%,color-mix(in srgb,var(--cor) 28%,transparent),transparent 70%),
-    radial-gradient(70% 45% at 40% 110%,color-mix(in srgb,var(--cor) 34%,transparent),transparent 70%),
-    linear-gradient(160deg,#1B1B24,#0E0E13)}
-.ficha-capa img{width:170px;height:auto;filter:drop-shadow(0 22px 28px rgba(0,0,0,.55));transition:transform .4s cubic-bezier(.2,.7,.3,1)}
-.ficha:hover .ficha-capa img{transform:translateY(-8px) scale(1.05)}
-.ficha-icone{position:absolute;left:26px;top:220px;width:66px;margin-top:-33px;
-  box-shadow:0 0 0 5px #0E0E13,0 12px 26px -8px rgba(0,0,0,.8)}
-.ficha-icone.escuro{box-shadow:0 0 0 5px #0E0E13,inset 0 0 0 1px rgba(253,247,233,.2)}
-.ficha-ver{position:absolute;right:24px;top:220px;height:36px;margin-top:-18px;padding:0 18px;border-radius:999px;
-  background:var(--creme);color:var(--preto);font:600 13.5px var(--texto);box-shadow:0 10px 24px -10px rgba(0,0,0,.8);transition:scale .15s ease}
-.ficha-ver:hover{scale:1.05}
-.ficha-corpo{padding:52px 26px 28px}
-.ficha h3{font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
-.ficha-dados{display:flex;gap:18px;margin:10px 0 14px;font-size:15px;color:var(--creme)}
-.ficha-dados span + span{color:color-mix(in srgb,var(--cor) 70%,var(--creme))}
-.ficha p:last-child{font-size:14px;color:var(--suave);line-height:1.5}
 @media(max-width:760px){
   .baixar-hero{padding:52px 0 40px}
   .baixar-hero .sub{font-size:16.5px}
   .baixar-grande{min-height:58px;padding:12px 28px 12px 13px;font-size:14px}
   .carrossel{margin-top:44px}
-  .ficha{width:min(300px,80vw)}
+  .carrossel-trilho{--w:min(260px,68vw)}
 }
 
 /* ---------------- pack: biblioteca ---------------- */
@@ -336,7 +339,7 @@
 .busca-limpar svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .busca-estrela{width:22px;height:22px;color:var(--lima);filter:drop-shadow(0 0 6px rgba(208,254,96,.8))}
 .busca-estrela svg{width:100%;height:100%}
-.busca-resultado{min-height:20px;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.busca-resultado{min-height:20px;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .busca-resultado a{color:var(--lima);text-decoration:underline}
 .tente{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:10px}
 .tente span{font-size:13.5px;color:var(--suave-2);margin-right:2px}
@@ -371,16 +374,16 @@
   .filtro{width:auto;flex:none;white-space:nowrap;padding:8px 12px}
 }
 .estante-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
-.estante-topo h3{font-family:var(--display);font-weight:400;font-synthesis-weight:none;font-size:30px;
-  line-height:1;text-transform:uppercase}
+.estante-topo h3{font-family:var(--display);font-weight:700;font-size:30px;
+  line-height:1;text-transform:none}
 .estante{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 @media(max-width:480px){.estante{grid-template-columns:repeat(2,1fr);gap:10px}}
 .pacote{display:block}
 .capa{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;display:grid;place-items:center;
   border:1px solid rgba(253,247,233,.1);
   background:radial-gradient(90% 90% at 50% 120%,color-mix(in srgb,var(--cor) 55%,transparent),transparent 70%),#1d1d21}
-.capa b{font-family:var(--display);font-weight:400;font-synthesis-weight:none;font-size:clamp(15px,2.2vw,22px);
-  line-height:1;text-transform:uppercase;text-align:center;padding:0 12px;color:var(--creme)}
+.capa b{font-family:var(--display);font-weight:700;font-size:clamp(15px,2.2vw,22px);
+  line-height:1;text-transform:none;text-align:center;padding:0 12px;color:var(--creme)}
 .capa .fita{top:10px;left:10px;translate:none;font-size:8.5px;padding:4px 10px}
 .pacote h4{margin:10px 0 2px;font-size:14.5px;font-weight:600}
 .pacote span{font-size:12.5px;color:var(--suave)}
@@ -403,7 +406,7 @@
 /* ---------------- vitrine: a interface de verdade de cada plugin ---------------- */
 /* o botão cobre o cartão inteiro (o ::before estica), mas só o rótulo aparece */
 .card-abrir{display:inline-flex;align-items:center;gap:8px;margin-top:18px;margin-left:10px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--creme)}
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.01em;text-transform:none;color:var(--creme)}
 .card-abrir svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
   transition:translate .2s ease}
 .card-abrir::before{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
@@ -429,7 +432,7 @@ html.travado{overflow-y:hidden}
   box-shadow:0 30px 70px -30px color-mix(in srgb,var(--cor) 70%,transparent)}
 .moldura-aba{display:flex;align-items:center;justify-content:space-between;gap:10px;height:28px;padding:0 12px;
   background:#232327;border-bottom:1px solid rgba(253,247,233,.08);
-  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+  font-family:var(--mono);font-size:10px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .moldura-aba i{width:10px;height:10px;border-radius:50%;border:1px solid var(--suave-2)}
 /* quase no tamanho real (360 de 400px) e rolando dentro da moldura, como o painel no After */
 .moldura-tela{width:360px;height:min(68dvh,660px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3a3a40 transparent}
@@ -438,7 +441,7 @@ html.travado{overflow-y:hidden}
 .vitrine-info .sub{margin-top:12px;font-size:16.5px}
 .telas{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .telas button{padding:8px 14px;border-radius:999px;border:1px solid var(--linha-forte);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .telas button:hover{color:var(--creme)}
 .telas button[aria-pressed="true"]{color:var(--preto);background:var(--creme);border-color:var(--creme)}
 .tela-texto{margin-top:16px;min-height:3em;color:#C6C2D2;font-size:15.5px;max-width:42ch}
@@ -482,7 +485,7 @@ html.travado{overflow-y:hidden}
 .canal-icone{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
   background:color-mix(in srgb,var(--cor) 18%,#101014);border:1px solid color-mix(in srgb,var(--cor) 45%,transparent)}
 .canal-icone svg{width:24px;height:24px;fill:none;stroke:var(--cor);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.canal h2{font-family:var(--display);font-weight:400;font-synthesis-weight:none;font-size:34px;line-height:1;text-transform:uppercase}
+.canal h2{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;text-transform:none}
 .canal p{color:var(--suave);font-size:15.5px}
 .canal .canal-id:empty{display:none}
 .canal .btn{margin-top:auto}
@@ -536,14 +539,14 @@ html.travado{overflow-y:hidden}
 .recibo-corpo dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:20px 0 16px;padding:16px;border-radius:12px;background:rgba(253,247,233,.04);text-align:left;font-size:14px}
 .recibo-corpo dt{color:var(--suave)}
 .recibo-corpo dd{margin:0;color:var(--creme);font-family:var(--mono);font-size:12.5px;text-align:right}
-.recibo-corpo .recibo-nota{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--lima)}
+.recibo-corpo .recibo-nota{font-family:var(--mono);font-size:10.5px;letter-spacing:.01em;text-transform:none;color:var(--lima)}
 /* 2 · o que vem no .zip */
 .arquivos ul{list-style:none;margin:0;padding:10px;display:grid;gap:4px}
 .arquivos li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;font-size:14px}
 .arquivos li span{display:flex;align-items:center;gap:10px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .arquivos li span::before{content:"";flex:none;width:14px;height:17px;border-radius:3px;border:1.5px solid var(--suave)}
 .arquivos li.pasta span::before{width:17px;height:13px;border-radius:2px 4px 3px 3px;background:rgba(143,138,255,.35);border-color:var(--indigo-claro)}
-.arquivos li em{flex:none;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave-2)}
+.arquivos li em{flex:none;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.01em;text-transform:none;color:var(--suave-2)}
 .arquivos li.destaque{background:rgba(208,254,96,.1);box-shadow:inset 0 0 0 1px rgba(208,254,96,.38)}
 .arquivos li.destaque span::before{border-color:var(--lima)}
 .arquivos .btn{display:flex;margin:6px 12px 14px}
@@ -580,7 +583,7 @@ html.travado{overflow-y:hidden}
    são dados que faltam e saltam em amarelo para não irem ao ar vazios. */
 .legal-hero{padding-bottom:28px}
 .legal-hero .cabeca .titulo{margin:22px 0 18px}
-.legal-data{margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave)}
+.legal-data{margin-top:14px;font-size:11px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .legal-abas a{padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;color:var(--suave);white-space:nowrap}
 .legal-abas a:hover{color:var(--creme)}
 .legal-abas a[aria-current="page"]{background:var(--creme);color:var(--preto)}
@@ -601,7 +604,7 @@ html.travado{overflow-y:hidden}
 .legal-tabela:focus-visible{outline:2px solid var(--creme);outline-offset:2px}
 .legal table{width:100%;min-width:620px;border-collapse:collapse;font-size:14px;line-height:1.5}
 .legal th,.legal td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linha)}
-.legal th{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--creme);background:rgba(253,247,233,.05)}
+.legal th{font:500 11px/1.4 var(--mono);letter-spacing:.01em;text-transform:none;color:var(--creme);background:rgba(253,247,233,.05)}
 .legal tr:last-child td{border-bottom:0}
 .legal td:first-child{color:var(--creme);font-weight:600}
 mark.preencher{background:#FFE14D;color:#1C1C1C;padding:0 4px;border-radius:4px;font-weight:700}
