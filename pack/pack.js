@@ -42,6 +42,7 @@
     { nome: "Swooshes", link: "https://drive.google.com/drive/folders/1pTqyMo-eBK-AzUPykPVnTVnFk90EGTe5", foto: "swooshes", tags: "swoosh whoosh passagem vento som", pasta: "sons", programas: ["qualquer"], usos: ["reels", "youtube"] },
     { nome: "Cliques de interface", link: "https://drive.google.com/drive/folders/18m8y2aMk-mgI62Km5MEJwIVs9ty06ulr", foto: "cliques-de-interface", tags: "clique ui botao interface som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "reels"] },
     { nome: "Ambientes", link: "https://drive.google.com/drive/folders/1_JRSWJO_mmxPNY8XapMme5-KeRAWcA3f", foto: "ambientes", tags: "ambiente fundo atmosfera som", pasta: "sons", programas: ["qualquer"], usos: ["youtube", "clipe"] },
+    { nome: "LUTs", link: "https://drive.google.com/drive/folders/1KRWy7dyEG4KJXZv09ODcUKF8CROEtmGC?usp=sharing", foto: "luts", tags: "lut cor color grading correcao look cinema", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "clipe"] },
     { nome: "Indicações de plugins", link: "https://drive.google.com/drive/folders/16HRJvdKIxTAjXsooBZkH-KfJChgBLv8w", foto: "indicacoes-de-plugins", tags: "plugin extensao indicacao", pasta: "presets", programas: ["pr", "ae"], usos: ["youtube", "marca"] }
   ];
 
@@ -58,9 +59,10 @@
     var p = pasta(item.pasta);
     // cada cartão abre a pasta dele no Google Drive (link no item); sem link, leva à conta
     var link = item.link || "../conta/#pack", fora = /^https?:/.test(link);
-    // com foto, o nome fica só embaixo do cartão: em cima da imagem ele sumiria nas partes claras
+    // com foto, a imagem fica escura (pouca opacidade) e o nome vai por cima, em caixa alta no centro
     var dentro = '<div class="capa' + (item.foto ? " com-foto" : "") + '" style="--cor:' + p.cor + '">' +
-      (item.foto ? '<img src="../assets/pack/' + e(item.foto) + '.webp" alt="" width="640" height="400" loading="lazy">' : "<b>" + e(item.nome) + "</b>") +
+      (item.foto ? '<img src="../assets/pack/' + e(item.foto) + '.webp" alt="" width="640" height="400" loading="lazy">' : "") +
+      "<b>" + e(item.nome) + "</b>" +
       "</div>" +
       "<h4>" + e(item.nome) + "</h4><span>" + e(p.nome) + " · " + e(programasDe(item)) + "</span>";
     return '<a class="pacote" href="' + e(link) + '"' + (fora ? ' target="_blank" rel="noopener"' : "") + ">" + dentro + "</a>";
