@@ -1,13 +1,15 @@
-/* Vitrine dos plugins: clicar num plugin abre a interface de verdade dele.
-   As telas são capturas da prévia dos painéis (crmo-plugins, porta 4331), uma por aba,
-   a 400px de largura — o mesmo HTML que roda no After. Não publicamos o painel em si:
-   o código do plugin só chega pelo Hub, para quem tem acesso.
-   Qualquer elemento com data-vitrine="<id>" abre a vitrine daquele plugin.
-   Para trocar as telas: capture de novo e salve em assets/paineis/<id>-<n>.webp. */
+/* Vitrine dos plugins: clicar num plugin abre o tutorial de 10 s dele, o mesmo dos cartões
+   (assets/tutoriais/<id>.mp4, gerado em remotion-crmo), com as abas do painel explicadas ao lado.
+   O vídeo toca mudo e em loop; o botão do canto liga o som e cala os vídeos dos cartões.
+   Com movimento reduzido, fica o pôster e o botão toca com som.
+   Qualquer elemento com data-vitrine="<id>" abre a vitrine daquele plugin. */
 (function () {
   "use strict";
 
-  var BASE = new URL("assets/paineis/", document.currentScript.src).href;
+  var BASE = new URL("assets/tutoriais/", document.currentScript.src).href;
+  var calmo = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var SOM = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/>' +
+    '<path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg>';
 
   var PLUGINS = [
     { id: "ease", nome: "Magic Ease", cor: "#FF6316", bg: "#FF6316", st: "#FDF7E9", glifo: "g-curva", apps: "After Effects",
@@ -56,32 +58,32 @@
   function e(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; });
   }
-  function tela(p, i) { return BASE + p.id + "-" + (i + 1) + ".webp"; }
 
   var caixa = document.createElement("dialog");
   caixa.className = "vitrine";
   caixa.setAttribute("aria-labelledby", "vitrine-nome");
   document.body.appendChild(caixa);
-  var atual = 0, telaAtual = 0;
+  var atual = 0;
 
   function desenhar() {
-    var p = PLUGINS[atual], t = p.telas[telaAtual];
+    var p = PLUGINS[atual];
     caixa.style.setProperty("--cor", p.cor);
     caixa.innerHTML =
       '<div class="vitrine-in">' +
         '<button class="vitrine-fechar" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
-        '<figure class="moldura">' +
-          '<div class="moldura-aba"><span>' + e(p.nome) + "</span><i></i></div>" +
-          '<div class="moldura-tela" tabindex="0"><img src="' + tela(p, telaAtual) + '" width="400" height="900" alt="Interface do ' + e(p.nome) + ", aba " + e(t.aba) + '"></div>' +
+        '<figure class="vitrine-video">' +
+          '<video src="' + BASE + p.id + '.mp4" poster="' + BASE + p.id + '.webp" width="540" height="960" muted loop playsinline' +
+            ' aria-label="Tutorial de 10 segundos do ' + e(p.nome) + '"></video>' +
+          '<button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do ' + e(p.nome) + '">' + SOM + "</button>" +
         "</figure>" +
         '<div class="vitrine-info">' +
           '<span class="app' + (p.escuro ? " escuro" : "") + '" style="--bg:' + p.bg + ";--st:" + p.st + '"><svg class="glifo"><use href="#' + p.glifo + '"/></svg></span>' +
           '<h2 class="titulo" id="vitrine-nome">' + e(p.nome) + "</h2>" +
           '<p class="sub">' + e(p.resumo) + "</p>" +
-          (p.telas.length > 1 ? '<div class="telas" role="group" aria-label="Abas do painel">' + p.telas.map(function (x, i) {
-            return '<button type="button" data-tela="' + i + '" aria-pressed="' + (i === telaAtual) + '">' + e(x.aba) + "</button>";
-          }).join("") + "</div>" : "") +
-          '<p class="tela-texto" aria-live="polite">' + e(t.texto) + "</p>" +
+          // o que cada aba do painel faz, numa lista só
+          '<ul class="checks vitrine-lista">' + p.telas.map(function (x) {
+            return '<li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>' + e(x.texto) + "</span></li>";
+          }).join("") + "</ul>" +
           '<span class="tag">' + e(p.apps) + "</span>" +
           '<div class="vitrine-pe">' +
             '<button type="button" class="vitrine-passo" data-passo="-1" aria-label="Plugin anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>' +
@@ -90,35 +92,55 @@
           "</div>" +
         "</div>" +
       "</div>";
-    // as outras abas já vêm carregando, para a troca não piscar
-    p.telas.forEach(function (x, i) { if (i !== telaAtual) { new Image().src = tela(p, i); } });
+    if (!calmo) { tocar(caixa.querySelector("video")); }
+  }
+
+  function tocar(v) {
+    var pr = v.play();
+    if (pr && pr.catch) { pr.catch(function () {}); }
+  }
+  // os vídeos dos cartões ficam atrás da vitrine: nunca dois sons ao mesmo tempo
+  function calarCartoes() {
+    document.querySelectorAll(".peca-video video").forEach(function (v) { v.muted = true; });
+  }
+  function som(b) {
+    var v = caixa.querySelector("video"), nome = PLUGINS[atual].nome;
+    if (v.muted) { calarCartoes(); v.muted = false; v.currentTime = 0; tocar(v); }
+    else { v.muted = true; if (calmo) { v.pause(); } }
+    b.setAttribute("aria-pressed", String(!v.muted));
+    b.setAttribute("aria-label", (v.muted ? "Ouvir o tutorial do " : "Tirar o som do tutorial do ") + nome);
   }
 
   function abrir(id) {
     var i = PLUGINS.map(function (p) { return p.id; }).indexOf(id);
     if (i < 0) { return; }
-    atual = i; telaAtual = 0;
+    atual = i;
+    calarCartoes();
     desenhar();
     if (!caixa.open) { caixa.showModal(); document.documentElement.classList.add("travado"); }
   }
 
   caixa.addEventListener("click", function (ev) {
     if (ev.target === caixa || ev.target.closest(".vitrine-fechar")) { caixa.close(); document.documentElement.classList.remove("travado"); return; }
-    var b = ev.target.closest("[data-tela]");
-    if (b) { telaAtual = Number(b.dataset.tela); desenhar(); caixa.querySelector('[data-tela="' + telaAtual + '"]').focus(); return; }
+    var s = ev.target.closest(".video-som");
+    if (s) { som(s); return; }
     var passo = ev.target.closest("[data-passo]");
     if (passo) {
-      atual = (atual + Number(passo.dataset.passo) + PLUGINS.length) % PLUGINS.length; telaAtual = 0;
+      atual = (atual + Number(passo.dataset.passo) + PLUGINS.length) % PLUGINS.length;
       desenhar(); caixa.querySelector('[data-passo="' + passo.dataset.passo + '"]').focus();
     }
   });
   caixa.addEventListener("keydown", function (ev) {
     if (ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
-      atual = (atual + (ev.key === "ArrowRight" ? 1 : -1) + PLUGINS.length) % PLUGINS.length; telaAtual = 0;
+      atual = (atual + (ev.key === "ArrowRight" ? 1 : -1) + PLUGINS.length) % PLUGINS.length;
       desenhar(); caixa.querySelector(".vitrine-passo").focus();
     }
   });
-  caixa.addEventListener("close", function () { document.documentElement.classList.remove("travado"); });
+  caixa.addEventListener("close", function () {
+    document.documentElement.classList.remove("travado");
+    var v = caixa.querySelector("video");
+    if (v) { v.pause(); v.muted = true; }
+  });
 
   document.addEventListener("click", function (ev) {
     var alvo = ev.target.closest("[data-vitrine]");

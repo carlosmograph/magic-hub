@@ -34,6 +34,8 @@
   }
 
   videos.forEach(function (v) {
+    // a vitrine cala os cartões quando liga o som dela: o botão acompanha
+    v.addEventListener("volumechange", function () { marcar(v); });
     v.parentNode.querySelector(".video-som").addEventListener("click", function () {
       if (!v.muted) { calar(v); return; }
       videos.forEach(function (outro) { if (outro !== v && !outro.muted) { calar(outro); } });

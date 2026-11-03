@@ -443,25 +443,27 @@ html.travado{overflow-y:hidden}
   border:1px solid var(--linha-forte);background:rgba(21,21,23,.7)}
 .vitrine-fechar:hover{border-color:var(--creme)}
 .vitrine-fechar svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-/* moldura de painel do After: a aba com o nome em cima, a tela embaixo */
-.moldura{margin:0;border-radius:16px;overflow:hidden;border:1px solid rgba(253,247,233,.16);background:#151517;
+/* o tutorial do plugin, inteiro em 9:16, com o brilho da cor do produto embaixo */
+.vitrine-video{position:relative;margin:0;height:min(68dvh,640px);aspect-ratio:9/16;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(253,247,233,.16);background:#0C0C0F;
   box-shadow:0 30px 70px -30px color-mix(in srgb,var(--cor) 70%,transparent)}
+.vitrine-video video{display:block;width:100%;height:100%;object-fit:cover}
+.vitrine-video .video-som{top:14px;right:14px}
+/* o filme do Magic Hub na página de plugins: 16:9, com a sombra longa e o brilho indigo dos cartões */
+.filme{margin:52px auto 0;max-width:960px;border-radius:var(--raio-cartao);overflow:hidden;
+  border:1px solid rgba(253,247,233,.14);background:#0C0C0F;
+  box-shadow:inset 0 1px 0 rgba(253,247,233,.1),0 40px 80px -30px rgba(0,0,0,.9),0 0 90px -30px rgba(103,97,255,.45)}
+.filme video{display:block;width:100%;height:auto;aspect-ratio:16/9}
+/* aba de painel do After, com o nome em cima (os mini-painéis do "como instalar") */
 .moldura-aba{display:flex;align-items:center;justify-content:space-between;gap:10px;height:28px;padding:0 12px;
   background:#232327;border-bottom:1px solid rgba(253,247,233,.08);
   font-family:var(--mono);font-size:10px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
 .moldura-aba i{width:10px;height:10px;border-radius:50%;border:1px solid var(--suave-2)}
-/* quase no tamanho real (360 de 400px) e rolando dentro da moldura, como o painel no After */
-.moldura-tela{width:360px;height:min(68dvh,660px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3a3a40 transparent}
-.moldura-tela img{display:block;width:100%;height:auto}
 .vitrine-info .app{width:52px;margin-bottom:20px}
 .vitrine-info .sub{margin-top:12px;font-size:16.5px}
-.telas{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.telas button{padding:8px 14px;border-radius:999px;border:1px solid var(--linha-forte);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.01em;text-transform:none;color:var(--suave)}
-.telas button:hover{color:var(--creme)}
-.telas button[aria-pressed="true"]{color:var(--preto);background:var(--creme);border-color:var(--creme)}
-.tela-texto{margin-top:16px;min-height:3em;color:#C6C2D2;font-size:15.5px;max-width:42ch}
-.vitrine-info .tag{margin-top:14px}
+.vitrine-lista{margin-top:24px;max-width:44ch}
+.vitrine-lista li{color:#C6C2D2;font-size:15px}
+.vitrine-info .tag{margin-top:20px}
 .vitrine-pe{display:flex;align-items:center;gap:12px;margin-top:30px;padding-top:20px;border-top:1px solid var(--linha)}
 .vitrine-passo{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--linha-forte)}
 .vitrine-passo:hover{border-color:var(--creme)}
@@ -470,13 +472,9 @@ html.travado{overflow-y:hidden}
 @media(max-width:760px){
   .vitrine{width:calc(100vw - 24px);max-height:calc(100dvh - 24px)}
   .vitrine-in{grid-template-columns:1fr;gap:24px;padding:56px 18px 20px;max-height:calc(100dvh - 24px);align-items:start}
-  /* o nome e as abas vêm antes da tela, senão a troca de aba fica lá embaixo */
-  .vitrine-info{order:-1}
   .vitrine-info .app{width:44px;margin-bottom:14px}
   .vitrine-pe{margin-top:20px;padding-top:16px}
-  .moldura{justify-self:center;width:min(100%,340px)}
-  /* no celular a caixa inteira já rola: a tela entra inteira, sem segunda rolagem */
-  .moldura-tela{width:100%;height:auto;overflow:visible}
+  .vitrine-video{justify-self:center;width:min(100%,300px);height:auto}
 }
 
 /* ---------------- rodapé ---------------- */
