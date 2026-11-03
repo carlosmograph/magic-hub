@@ -138,7 +138,9 @@
    (card-abrir::before) e o cartão inteiro abre a vitrine. */
 .bento{display:grid;gap:16px;margin-top:52px}
 @media(min-width:900px){.bento{grid-template-columns:repeat(3,1fr)}.bento .largo{grid-column:span 2}}
-.peca{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;min-height:460px;
+/* clip, não hidden: o brilho (::before) é mais largo que o cartão, e com hidden o foco no botão do som
+   rolava o cartão de lado */
+.peca{position:relative;isolation:isolate;overflow:hidden;overflow:clip;display:flex;flex-direction:column;min-height:460px;
   border-radius:var(--raio-cartao);border:1px solid rgba(253,247,233,.11);background:var(--vidro);
   transition:border-color .25s ease,box-shadow .25s ease}
 .peca::before{content:"";position:absolute;z-index:-1;left:50%;bottom:-70%;translate:-50% 0;width:170%;aspect-ratio:1.4;
@@ -167,6 +169,20 @@
   .peca.largo .peca-texto{flex:1;padding:36px;align-self:center}
   .peca.largo .peca-tela{flex:none;align-self:flex-end;width:300px;height:400px;margin:40px 40px 0 0}
 }
+/* o tutorial de 10 s no lugar da captura: o vídeo inteiro em 9:16, cortando só a faixa de progresso do rodapé.
+   Vem depois de .peca-tela (mesma especificidade). A máscara faz da tela um contexto de empilhamento, então é ela
+   que sobe acima do ::before do card-abrir (z-index 1); sem pointer-events, o clique no vídeo cai no cartão e
+   abre a vitrine, e só o botão do som recebe o clique. */
+.peca-video{z-index:2;pointer-events:none;width:min(244px,72%);height:auto;aspect-ratio:9/15;background:#0C0C0F;
+  -webkit-mask-image:linear-gradient(180deg,#000 92%,transparent);mask-image:linear-gradient(180deg,#000 92%,transparent)}
+.peca-video video{display:block;width:100%;height:auto}
+.video-som{position:absolute;z-index:2;top:10px;right:10px;pointer-events:auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  color:var(--creme);background:rgba(21,21,23,.72);border:1px solid var(--linha-forte);transition:border-color .2s ease,background .2s ease}
+.video-som:hover{border-color:var(--creme)}
+.video-som[aria-pressed="true"]{color:var(--preto);background:var(--creme);border-color:var(--creme)}
+.video-som svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.video-som[aria-pressed="true"] .som-mudo,.video-som[aria-pressed="false"] .som-onda{display:none}
+@media(min-width:900px){.peca.largo .peca-video{width:270px;height:auto}}
 .hub-peca{justify-content:center;--cor:#6761FF}
 .hub-apps{display:grid;grid-template-columns:repeat(3,46px);gap:10px}
 .hub-apps .app{width:46px}

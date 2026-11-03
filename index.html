@@ -8,7 +8,7 @@
 <meta name="description" content="Os plugins Magic da CRMO num painel só, no After Effects e no Premiere. Pagamento único, acesso vitalício.">
 <link rel="stylesheet" href="fontes.css?v=20261029j">
 <link rel="stylesheet" href="crmo.css?v=20261030b">
-<link rel="stylesheet" href="landing.css?v=20261030e">
+<link rel="stylesheet" href="landing.css?v=20261103c">
 <link rel="stylesheet" href="topo.css?v=20261029j">
 </head>
 <body>
@@ -167,7 +167,8 @@
 </section>
 
 <!-- ============ PLUGINS (bento) ============ -->
-<!-- nomes e resumos de crmo-plugins/dist/catalogo.json; a tela de cada cartão é a 1ª aba do painel -->
+<!-- nomes e resumos de crmo-plugins/dist/catalogo.json; cada cartão toca o tutorial de 10 s do plugin
+     (remotion-crmo: npm run tutoriais e depois python tools/tutoriais-para-site.py; videos.js controla o som) -->
 <section class="secao superficie" id="plugins">
   <div class="wrap">
     <div class="cabeca">
@@ -184,7 +185,10 @@
           <span class="tag">After Effects</span>
           <button class="card-abrir" type="button" data-vitrine="legenda" aria-label="Ver a interface do Magic Caption">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="peca-tela"><img src="assets/paineis/legenda-1.webp" alt="" width="400" height="900" loading="lazy"></div>
+        <div class="peca-tela peca-video">
+          <video src="assets/tutoriais/legenda.mp4" poster="assets/tutoriais/legenda.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Tutorial de 10 segundos do Magic Caption"></video>
+          <button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do Magic Caption"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg></button>
+        </div>
       </article>
       <article class="peca" style="--cor:#FF6316" data-reveal>
         <div class="peca-texto">
@@ -193,7 +197,10 @@
           <p>Curvas de velocidade num atalho, e mola nos keyframes.</p>
           <button class="card-abrir" type="button" data-vitrine="ease" aria-label="Ver a interface do Magic Ease">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="peca-tela"><img src="assets/paineis/ease-1.webp" alt="" width="400" height="900" loading="lazy"></div>
+        <div class="peca-tela peca-video">
+          <video src="assets/tutoriais/ease.mp4" poster="assets/tutoriais/ease.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Tutorial de 10 segundos do Magic Ease"></video>
+          <button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do Magic Ease"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg></button>
+        </div>
       </article>
       <article class="peca" style="--cor:#D0FE60" data-reveal>
         <div class="peca-texto">
@@ -202,7 +209,10 @@
           <p>Entrada e saída de layers num clique, com escalonamento e loops.</p>
           <button class="card-abrir" type="button" data-vitrine="motion" aria-label="Ver a interface do Magic Motion">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="peca-tela"><img src="assets/paineis/motion-1.webp" alt="" width="400" height="900" loading="lazy"></div>
+        <div class="peca-tela peca-video">
+          <video src="assets/tutoriais/motion.mp4" poster="assets/tutoriais/motion.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Tutorial de 10 segundos do Magic Motion"></video>
+          <button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do Magic Motion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg></button>
+        </div>
       </article>
       <article class="peca" style="--cor:#8F8AFF" data-reveal>
         <div class="peca-texto">
@@ -211,7 +221,10 @@
           <p>Animações de texto com prévia ao vivo no seu próprio texto.</p>
           <button class="card-abrir" type="button" data-vitrine="type" aria-label="Ver a interface do Magic Text">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="peca-tela"><img src="assets/paineis/type-1.webp" alt="" width="400" height="900" loading="lazy"></div>
+        <div class="peca-tela peca-video">
+          <video src="assets/tutoriais/type.mp4" poster="assets/tutoriais/type.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Tutorial de 10 segundos do Magic Text"></video>
+          <button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do Magic Text"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg></button>
+        </div>
       </article>
       <article class="peca" style="--cor:#6761FF" data-reveal>
         <div class="peca-texto">
@@ -220,7 +233,10 @@
           <p>Caixas que crescem com o texto, botões, cartões e ícones vetoriais.</p>
           <button class="card-abrir" type="button" data-vitrine="blocks" aria-label="Ver a interface do Magic Box">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="peca-tela"><img src="assets/paineis/blocks-1.webp" alt="" width="400" height="900" loading="lazy"></div>
+        <div class="peca-tela peca-video">
+          <video src="assets/tutoriais/blocks.mp4" poster="assets/tutoriais/blocks.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Tutorial de 10 segundos do Magic Box"></video>
+          <button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do Magic Box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg></button>
+        </div>
       </article>
       <article class="peca largo" style="--cor:#FF6316" data-reveal>
         <div class="peca-texto">
@@ -230,7 +246,10 @@
           <span class="tag">After Effects e Premiere</span>
           <button class="card-abrir" type="button" data-vitrine="sfx" aria-label="Ver a interface do Magic SFX">Ver a interface<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="peca-tela"><img src="assets/paineis/sfx-1.webp" alt="" width="400" height="900" loading="lazy"></div>
+        <div class="peca-tela peca-video">
+          <video src="assets/tutoriais/sfx.mp4" poster="assets/tutoriais/sfx.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Tutorial de 10 segundos do Magic SFX"></video>
+          <button class="video-som" type="button" aria-pressed="false" aria-label="Ouvir o tutorial do Magic SFX"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="som-onda" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="som-mudo" d="m16 9.5 5 5m0-5-5 5"/></svg></button>
+        </div>
       </article>
       <a class="peca hub-peca" href="plugins/" data-reveal>
         <div class="peca-texto">
@@ -527,6 +546,7 @@
 <script src="vitrine.js?v=20261027e" defer></script>
 <script src="home.js?v=20261027e" defer></script>
 <script src="tutorial.js?v=20261027e" defer></script>
+<script src="videos.js?v=20261103a" defer></script>
 <script src="vendor/supabase.js?v=2.49.4"></script>
 <script src="config.js?v=20261027e"></script>
 <script src="sessao.js?v=20261030b"></script>
